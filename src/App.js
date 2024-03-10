@@ -44,28 +44,20 @@ function App() {
           </div>
           <div className="footer-section">
             <h3>Quick Links</h3>
-            <ul className="footer-nav">
-              <li>
-                <a href="#home" className="nav-link">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="nav-link">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="nav-link">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="nav-link">
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <div className="footer-nav">
+              <a href="#home" className="footer-link">
+                Home
+              </a>
+              <a href="#about" className="footer-link">
+                About
+              </a>
+              <a href="#services" className="footer-link">
+                Services
+              </a>
+              <a href="#contact" className="footer-link">
+                Contact
+              </a>
+            </div>
           </div>
           <div className="footer-section">
             <h3>Newsletter</h3>
