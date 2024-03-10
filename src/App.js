@@ -1,23 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <header className="header">
+          <nav>
+            <a href="#home" className="nav-link">
+              Home
+            </a>
+            <a href="#about" className="nav-link">
+              About
+            </a>
+            <a href="#services" className="nav-link">
+              Services
+            </a>
+            <a href="#contact" className="nav-link">
+              Contact
+            </a>
+          </nav>
+        </header>
+        <footer className="footer">
+          <div className="footer-section">
+            <h3>Information</h3>
+            <a href="#terms" className="footer-link">
+              Terms and Conditions
+            </a>
+            <a href="#privacy" className="footer-link">
+              Privacy Policy
+            </a>
+          </div>
+          <div className="footer-section">
+            <h3>Quick Links</h3>
+            <ul className="footer-nav">
+              <li>
+                <a href="#home" className="nav-link">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="nav-link">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="nav-link">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="nav-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h3>Newsletter</h3>
+            <form>
+              <label htmlFor="email">Subscribe to our newsletter:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

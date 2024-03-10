@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+.container {
+  margin: 0 auto;
+  padding: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
+  background-color: #f3f3f3;
+  justify-content: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-link {
+  margin-right: 20px;
+  color: #333;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+  max-width: 300px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+}
+
+.footer-link {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.newsletter-form {
+  margin-top: 20px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.nav-link:last-child {
+  margin-right: 0;
 }
