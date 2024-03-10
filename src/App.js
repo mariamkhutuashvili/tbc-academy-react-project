@@ -1,5 +1,10 @@
 import "./App.css";
 
+function toggleTheme() {
+  const mainContent = document.querySelector(".main-content");
+  mainContent.classList.toggle("dark-theme");
+}
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +25,13 @@ function App() {
             </a>
           </nav>
         </header>
+        <main className="main-content">
+          <h1>Your Story Starts With Us.</h1>
+          <button className="button">Learn More</button>
+          <button className="button" onClick={toggleTheme}>
+            Switch Theme
+          </button>
+        </main>
         <footer className="footer">
           <div className="footer-section">
             <h3>Information</h3>
