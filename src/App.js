@@ -1,3 +1,4 @@
+import Blog from "./components/Blog";
 import "./App.css";
 
 function toggleTheme() {
@@ -31,23 +32,12 @@ function App() {
           <button className="button" onClick={toggleTheme}>
             Switch Theme
           </button>
+          <Blog />
         </main>
         <footer className="footer">
           <div className="footer-section">
-            <h3>Information</h3>
-            <a href="#terms" className="footer-link">
-              Terms and Conditions
-            </a>
-            <a href="#privacy" className="footer-link">
-              Privacy Policy
-            </a>
-          </div>
-          <div className="footer-section">
             <h3>Quick Links</h3>
             <div className="footer-nav">
-              <a href="#home" className="footer-link">
-                Home
-              </a>
               <a href="#about" className="footer-link">
                 About
               </a>
@@ -58,6 +48,15 @@ function App() {
                 Contact
               </a>
             </div>
+          </div>
+          <div className="footer-section">
+            <h3>Information</h3>
+            <a href="#terms" className="footer-link">
+              Terms and Conditions
+            </a>
+            <a href="#privacy" className="footer-link">
+              Privacy Policy
+            </a>
           </div>
           <div className="footer-section">
             <h3>Newsletter</h3>
