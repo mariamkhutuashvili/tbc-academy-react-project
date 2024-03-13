@@ -1,19 +1,16 @@
 function Article({ title, date, photo, summary }) {
   return (
-    <div
-      className="article"
-      style={{ display: "flex", margin: "50px", alignItems: "center" }}
-    >
-      <div style={{ flex: 2, marginRight: "20px" }}>
+    <div className="article-container">
+      <div className="article-image-container">
         <img
           src={photo}
           alt="Article"
-          style={{ width: "100%", height: "auto", borderRadius: "5px" }}
+          className="article-image"
         />
       </div>
-      <div style={{ flex: 3 }}>
-        <h2 style={{ marginTop: "0" }}>{title}</h2>
-        <p style={{ fontStyle: "italic", color: "#777" }}>{date}</p>
+      <div className="article-details">
+        <h2 className="article-title">{title}</h2>
+        <p className="article-date">{date}</p>
         <p>{summary}</p>
         <button className="button">Read More</button>
       </div>

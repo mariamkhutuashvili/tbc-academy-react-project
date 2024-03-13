@@ -17,13 +17,13 @@ function Blog() {
   ];
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <div style={{ flex: 3 }}>
+    <div className="blog-container">
+      <div className="blog-articles">
         {articles.map((article, index) => (
           <Article key={index} {...article} />
         ))}
       </div>
-      <div style={{ flex: 1, margin: "50px" }}>
+      <div className="blog-archives">
         <h3>Archives</h3>
         <ul>
           {articles.map((article, index) => (

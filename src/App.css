@@ -48,6 +48,50 @@
   color: white;
 }
 
+.blog-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-articles {
+  flex: 3;
+}
+
+.blog-archives {
+  flex: 1;
+  margin: 50px;
+}
+
+.article-container {
+  display: flex;
+  margin: 50px;
+  align-items: center;
+}
+
+.article-image-container {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.article-details {
+  flex: 3;
+}
+
+.article-title {
+  margin-top: 0;
+}
+
+.article-date {
+  font-style: italic;
+  color: #777;
+}
+
 .footer {
   display: flex;
   justify-content: space-around;
