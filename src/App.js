@@ -11,6 +11,11 @@ function App() {
     <div className="App">
       <div className="container">
         <header className="header">
+          <div>
+            <button className="button" onClick={toggleTheme}>
+              Switch Theme
+            </button>
+          </div>
           <nav>
             <a href="#home" className="nav-link">
               Home
@@ -27,11 +32,7 @@ function App() {
           </nav>
         </header>
         <main className="main-content">
-          <h1>Your Story Starts With Us.</h1>
-          <button className="button">Learn More</button>
-          <button className="button" onClick={toggleTheme}>
-            Switch Theme
-          </button>
+          <h1>Stay Updated with Our Latest News!</h1>
           <Blog />
         </main>
         <footer className="footer">
