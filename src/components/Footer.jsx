@@ -33,6 +33,7 @@ function Footer() {
             id="email"
             name="email"
             placeholder="Enter your email"
+            className="newsletter-input"
           />
           <button type="submit">Subscribe</button>
         </form>
