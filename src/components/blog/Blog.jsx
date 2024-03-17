@@ -1,17 +1,18 @@
 import Article from "./Article";
+import "./Blog.css";
 
 function Blog() {
   const articles = [
     {
       title: "Article 1",
       date: "March 10, 2024",
-      photo: require("../assets/blog-1.jpg"),
+      photo: require("../../assets/blog-1.jpg"),
       summary: "This is a summary of the first article...",
     },
     {
       title: "Article 2",
       date: "March 11, 2024",
-      photo: require("../assets/blog-2.jpg"),
+      photo: require("../../assets/blog-2.jpg"),
       summary: "This is a summary of the second article...",
     },
   ];

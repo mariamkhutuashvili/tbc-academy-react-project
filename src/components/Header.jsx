@@ -13,8 +13,8 @@ function Header({ toggleTheme }) {
         <a href="#about" className="nav-link">
           About
         </a>
-        <a href="#services" className="nav-link">
-          Services
+        <a href="#products" className="nav-link">
+          Products
         </a>
         <a href="#contact" className="nav-link">
           Contact

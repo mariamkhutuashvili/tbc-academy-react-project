@@ -7,8 +7,8 @@ function Footer() {
           <a href="#about" className="footer-link">
             About
           </a>
-          <a href="#services" className="footer-link">
-            Services
+          <a href="#products" className="footer-link">
+            Products
           </a>
           <a href="#contact" className="footer-link">
             Contact
@@ -33,6 +33,7 @@ function Footer() {
             id="email"
             name="email"
             placeholder="Enter your email"
+            className="newsletter-input"
           />
           <button type="submit">Subscribe</button>
         </form>
