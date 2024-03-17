@@ -1,10 +1,10 @@
-// import Blog from "./blog/Blog";
+import Products from "./products/Products";
 
 function MainContent() {
   return (
     <main className="main-content">
-      <h1>Stay Updated with Our Latest News!</h1>
-      {/* <Blog /> */}
+      <h1>Our Online Store</h1>
+      <Products />
     </main>
   );
 }
