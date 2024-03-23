@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
 import Blog from "./components/blog/Blog";
+import Contact from "./components/contact/Contact";
 import "./App.css";
 
 function toggleTheme() {
@@ -20,6 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainContent />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
           <Footer />
