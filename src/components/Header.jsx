@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Header({ toggleTheme }) {
   return (
     <header className="header">
@@ -7,18 +9,18 @@ function Header({ toggleTheme }) {
         </button>
       </div>
       <nav className="nav">
-        <a href="#home" className="nav-link">
+        <Link to="/" className="nav-link">
           Home
-        </a>
-        <a href="#about" className="nav-link">
-          About
-        </a>
-        <a href="#products" className="nav-link">
+        </Link>
+        <Link to="/products" className="nav-link">
           Products
-        </a>
-        <a href="#contact" className="nav-link">
+        </Link>
+        <Link to="/blog" className="nav-link">
+          Blog
+        </Link>
+        <Link to="/contact" className="nav-link">
           Contact
-        </a>
+        </Link>
       </nav>
     </header>
   );

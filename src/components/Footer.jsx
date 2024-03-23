@@ -1,18 +1,20 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer-section">
         <h3>Quick Links</h3>
         <div className="footer-nav">
-          <a href="#about" className="footer-link">
-            About
-          </a>
-          <a href="#products" className="footer-link">
+          <Link to="/products" className="footer-link">
             Products
-          </a>
-          <a href="#contact" className="footer-link">
+          </Link>
+          <Link to="/blog" className="footer-link">
+            Blog
+          </Link>
+          <Link to="/contact" className="footer-link">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
       <div className="footer-section">

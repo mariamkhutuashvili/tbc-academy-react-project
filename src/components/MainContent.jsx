@@ -1,12 +1,8 @@
-import Products from "./products/Products";
-import Search from "./search/Search";
-
 function MainContent() {
   return (
     <main className="main-content">
-      <h1>Refresh & Refill Online Store</h1>
-      <Search />
-      <Products />
+      <h1>Your Story Starts With Us.</h1>
+      <button className="button">Learn More</button>
     </main>
   );
 }
