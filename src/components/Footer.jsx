@@ -10,6 +10,9 @@ function Footer() {
           <a href="#products" className="footer-link">
             Products
           </a>
+          <a href="#blog" className="footer-link">
+            Blog
+          </a>
           <a href="#contact" className="footer-link">
             Contact
           </a>
