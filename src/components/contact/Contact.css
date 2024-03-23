@@ -1,7 +1,9 @@
 .contact-container {
   text-align: center;
-  padding: 50px 20px;
-  margin: 20px;
+}
+
+.contact-info {
+  margin-bottom: 35px;
 }
 
 .contact-info p {

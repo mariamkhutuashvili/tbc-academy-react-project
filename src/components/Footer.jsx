@@ -6,9 +6,6 @@ function Footer() {
       <div className="footer-section">
         <h3>Quick Links</h3>
         <div className="footer-nav">
-          <Link to="/about" className="footer-link">
-            About
-          </Link>
           <Link to="/products" className="footer-link">
             Products
           </Link>

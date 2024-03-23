@@ -1,3 +1,4 @@
+import ContactForm from "./ContactForm";
 import "./Contact.css";
 
 function Contact() {
@@ -15,6 +16,7 @@ function Contact() {
           <strong>Address:</strong> 123 Main Street, Anytown, USA
         </p>
       </div>
+      <ContactForm />
     </div>
   );
 }
