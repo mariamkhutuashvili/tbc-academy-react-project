@@ -1,3 +1,8 @@
+.store h1 {
+  margin: 20px 0 20px 0;
+  font-size: 3vw;
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
