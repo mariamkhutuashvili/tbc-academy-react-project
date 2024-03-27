@@ -1,0 +1,16 @@
+.Home {
+  flex-grow: 1;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.Home h1 {
+  margin: 20px 0 20px 0;
+  color: purple;
+  font-size: 3vw;
+}

@@ -1,4 +1,4 @@
-import Search from "../search/Search";
+import Search from "../../components/search/Search";
 import productsData from "./productsData";
 import "./Products.css";
 
