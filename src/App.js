@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Products from "./components/products/Products";
 import Blog from "./components/blog/Blog";
 import Contact from "./components/contact/Contact";
+import Profile from "./components/profile/Profile";
 import "./App.css";
 
 function toggleTheme() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
           <Footer />
