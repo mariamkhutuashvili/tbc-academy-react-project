@@ -1,28 +1,22 @@
 .profile-container {
   max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 8px;
+  margin: 40px auto;
+  padding: 40px;
+  border-radius: 12px;
   text-align: center;
-  flex-grow: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
-  height: 100vh;
+  gap: 30px;
 }
 
-.user-info,
-.password-update {
-  margin-bottom: 20px;
-}
-
-input[type="password"] {
-  display: block;
-  width: 80%;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 16px;
+input[type="password"],
+.save-button {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-top: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
 }

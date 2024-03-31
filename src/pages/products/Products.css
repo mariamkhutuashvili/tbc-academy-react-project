@@ -22,3 +22,12 @@
   object-fit: contain;
   margin-bottom: 10px;
 }
+
+.product-price {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.sort-button {
+  margin-top: 20px;
+}
