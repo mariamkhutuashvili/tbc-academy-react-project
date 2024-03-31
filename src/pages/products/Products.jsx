@@ -6,9 +6,13 @@ import "./Products.css";
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredProducts = productsData.filter((product) =>
-    product.headline.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProducts = productsData.filter(
+    (product) =>
+      product.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.price.toString().includes(searchTerm)
   );
+
   return (
     <div className="store">
       <h1>Refresh & Refill Online Store</h1>
