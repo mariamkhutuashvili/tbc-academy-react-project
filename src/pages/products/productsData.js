@@ -31,6 +31,34 @@ const products = [
     photo: require("../../assets/champagne.png"),
     price: 49.99,
   },
+  {
+    id: 5,
+    headline: "Water",
+    description: "Stay hydrated with our pure and refreshing water.",
+    photo: require("../../assets/water.png"),
+    price: 1.99,
+  },
+  {
+    id: 6,
+    headline: "Beer",
+    description: "Enjoy the rich taste of our finely brewed beer.",
+    photo: require("../../assets/beer.png"),
+    price: 2.99,
+  },
+  {
+    id: 7,
+    headline: "Wine",
+    description: "Savor the rich flavors of our carefully curated wines.",
+    photo: require("../../assets/wine.png"),
+    price: 15.99,
+  },
+  {
+    id: 8,
+    headline: "Coffee",
+    description: "Kickstart your day with our aromatic and bold coffees.",
+    photo: require("../../assets/coffee.png"),
+    price: 3.99,
+  },
 ];
 
 export default products;
