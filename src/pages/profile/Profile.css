@@ -11,7 +11,7 @@
 }
 
 input[type="password"],
-.button {
+.save-button {
   width: calc(100% - 20px);
   padding: 12px;
   margin-top: 10px;
