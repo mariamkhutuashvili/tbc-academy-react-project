@@ -3,9 +3,21 @@ import Search from "../../components/search/Search";
 import productsData from "./productsData";
 import "./Products.css";
 
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSorted, setIsSorted] = useState(false);
+
+  const debouncedSetSearchTerm = debounce(setSearchTerm, 300);
 
   const filteredAndSortedProducts = productsData
     .filter(
@@ -19,7 +31,7 @@ function Products() {
   return (
     <div className="store">
       <h1>Refresh & Refill Online Store</h1>
-      <Search onChange={(e) => setSearchTerm(e.target.value)} />
+      <Search onChange={(e) => debouncedSetSearchTerm(e.target.value)} />
       <button onClick={() => setIsSorted(!isSorted)} className="button">
         {isSorted ? "Reset" : "Sort by Price"}
       </button>
