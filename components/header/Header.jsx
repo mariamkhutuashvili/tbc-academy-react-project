@@ -1,9 +1,11 @@
 import Link from "next/link";
+import ToggleThemeButton from "../toggleTheme/ToggleTheme";
 import "./Header.css";
 
 function Header() {
   return (
     <header className="header">
+      <ToggleThemeButton />
       <nav className="nav">
         <Link href="/" className="nav-link">
           Home
