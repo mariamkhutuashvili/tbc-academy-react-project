@@ -1,0 +1,22 @@
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+input[type="password"],
+.save-button {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
