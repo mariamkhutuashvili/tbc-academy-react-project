@@ -1,28 +1,25 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import ToggleThemeButton from "../toggleTheme/ToggleTheme";
 import "./Header.css";
 
-function Header({ toggleTheme }) {
+function Header() {
   return (
     <header className="header">
-      <div>
-        <button className="button" onClick={toggleTheme}>
-          Switch Theme
-        </button>
-      </div>
+      <ToggleThemeButton />
       <nav className="nav">
-        <Link to="/" className="nav-link">
+        <Link href="/" className="nav-link">
           Home
         </Link>
-        <Link to="/products" className="nav-link">
+        <Link href="/products" className="nav-link">
           Products
         </Link>
-        <Link to="/blog" className="nav-link">
+        <Link href="/blog" className="nav-link">
           Blog
         </Link>
-        <Link to="/contact" className="nav-link">
+        <Link href="/contact" className="nav-link">
           Contact
         </Link>
-        <Link to="/profile" className="nav-link">
+        <Link href="/profile" className="nav-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

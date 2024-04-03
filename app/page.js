@@ -1,12 +1,10 @@
-import "./Home.css";
+import "../styles/page.css";
 
-function Home() {
+export default function Home() {
   return (
-    <main className="Home">
+    <main className="home">
       <h1>Your Story Starts With Us.</h1>
       <button className="button">Learn More</button>
     </main>
   );
 }
-
-export default Home;

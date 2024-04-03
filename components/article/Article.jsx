@@ -1,12 +1,10 @@
+import Image from "next/image";
+
 function Article({ title, date, photo, summary }) {
   return (
     <div className="article-container">
       <div className="article-image-container">
-        <img
-          src={photo}
-          alt="Article"
-          className="article-image"
-        />
+        <Image src={photo} alt="Article" className="article-image" />
       </div>
       <div className="article-details">
         <h2 className="article-title">{title}</h2>

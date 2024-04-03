@@ -1,7 +1,10 @@
+"use client";
+
+import Image from "next/image";
 import React, { useState } from "react";
 import Search from "../../components/search/Search";
-import productsData from "./productsData";
-import "./Products.css";
+import productsData from "../../data/productsData";
+import "../../styles/Products.css";
 
 function debounce(func, wait) {
   let timeout;
@@ -39,7 +42,7 @@ function Products() {
         {filteredAndSortedProducts.map(
           ({ id, headline, description, photo, price }) => (
             <div key={id} className="product">
-              <img src={photo} alt={headline} />
+              <Image src={photo} alt={headline} />
               <h2>{headline}</h2>
               <p>{description}</p>
               <p className="product-price">${price.toFixed(2)}</p>
