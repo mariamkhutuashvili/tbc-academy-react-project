@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Search from "../components/search/Search";
-import "../styles/page.css";
+import "../styles/Page.css";
 
 function debounce(func, wait) {
   let timeout;
@@ -19,12 +20,14 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch("https://dummyjson.com/products");
       const data = await response.json();
       setProducts(data.products);
+      console.log(data.products);
     };
     fetchProducts();
   }, []);
@@ -40,6 +43,10 @@ function Products() {
     )
     .sort((a, b) => (isSorted ? a.price - b.price : 0));
 
+  const handleProductClick = (id) => {
+    router.push(`/products/${id}`);
+  };
+
   return (
     <div className="store">
       <h1>Online Store</h1>
@@ -50,7 +57,11 @@ function Products() {
       <div className="products-grid">
         {filteredAndSortedProducts.map(
           ({ id, title, description, thumbnail, price }) => (
-            <div key={id} className="product">
+            <div
+              key={id}
+              className="product"
+              onClick={() => handleProductClick(id)}
+            >
               <Image src={thumbnail} alt={title} width={500} height={500} />
               <h2>{title}</h2>
               <p>{description}</p>
