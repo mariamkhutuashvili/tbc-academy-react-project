@@ -10,8 +10,8 @@ function Header() {
         <Link href="/" className="nav-link">
           Home
         </Link>
-        <Link href="/products" className="nav-link">
-          Products
+        <Link href="/about" className="nav-link">
+          About
         </Link>
         <Link href="/blog" className="nav-link">
           Blog
