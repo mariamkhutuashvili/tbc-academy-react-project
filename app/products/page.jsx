@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Search from "../../components/search/Search";
-import productsData from "../../data/productsData";
 import "../../styles/Products.css";
 
 function debounce(func, wait) {
@@ -19,13 +18,23 @@ function debounce(func, wait) {
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSorted, setIsSorted] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch("https://dummyjson.com/products");
+      const data = await response.json();
+      setProducts(data.products);
+    };
+    fetchProducts();
+  }, []);
 
   const debouncedSetSearchTerm = debounce(setSearchTerm, 300);
 
-  const filteredAndSortedProducts = productsData
+  const filteredAndSortedProducts = products
     .filter(
       (product) =>
-        product.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.price.toString().includes(searchTerm)
     )
@@ -33,17 +42,17 @@ function Products() {
 
   return (
     <div className="store">
-      <h1>Refresh & Refill Online Store</h1>
+      <h1>Online Store</h1>
       <Search onChange={(e) => debouncedSetSearchTerm(e.target.value)} />
       <button onClick={() => setIsSorted(!isSorted)} className="button">
         {isSorted ? "Reset" : "Sort by Price"}
       </button>
       <div className="products-grid">
         {filteredAndSortedProducts.map(
-          ({ id, headline, description, photo, price }) => (
+          ({ id, title, description, thumbnail, price }) => (
             <div key={id} className="product">
-              <Image src={photo} alt={headline} />
-              <h2>{headline}</h2>
+              <Image src={thumbnail} alt={title} width={500} height={500} />
+              <h2>{title}</h2>
               <p>{description}</p>
               <p className="product-price">${price.toFixed(2)}</p>
               <button className="button">Add to Cart</button>
