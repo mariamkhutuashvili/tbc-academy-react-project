@@ -1,21 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
-const URL = "https://dummyjson.com/products";
+import Image from "next/image";
 import "../../../styles/Product.css";
 
-// function Products() {
-//   const [product, setProduct] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       const response = await fetch("https://dummyjson.com/products");
-//       const data = await response.json();
-//       setProducts(data.products);
-//     };
-//     fetchProducts();
-//   }, []);
+const URL = "https://dummyjson.com/products";
 
 export default function Product({ params }) {
   const [product, setProduct] = useState([]);
@@ -32,11 +21,7 @@ export default function Product({ params }) {
   }, [params.id, setProduct]);
 
   return (
-    <div
-      onClick={() => handleClick(id)}
-      key={product.index}
-      className="product-page"
-    >
+    <div key={product.index} className="product-page">
       <Image
         src={product.thumbnail}
         alt="product"

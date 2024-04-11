@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Article({ title, date, photo }) {
+function Article({ id, title, date, photo, onReadMore }) {
   return (
     <div className="article-container">
       <div className="article-image-container">
@@ -9,7 +9,9 @@ function Article({ title, date, photo }) {
       <div className="article-details">
         <h2 className="article-title">{title}</h2>
         <p className="article-date">{date}</p>
-        <button className="button">Read More</button>
+        <button className="button" onClick={() => onReadMore(id)}>
+          Read More
+        </button>
       </div>
     </div>
   );
