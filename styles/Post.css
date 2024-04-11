@@ -1,0 +1,11 @@
+.post-page {
+  flex-grow: 1;
+  margin: 25px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
