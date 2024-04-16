@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Article from "../../components/article/Article";
-import blogImage from "../../public/assets/blog.jpg";
-import "../../styles/blog.css";
+import Article from "../../../components/article/Article";
+import blogImage from "../../../public/assets/blog.jpg";
+import "../../../styles/blog.css";
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);

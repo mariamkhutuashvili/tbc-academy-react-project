@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import "../../styles/Profile.css";
+import "../../../styles/Profile.css";
 
 export default function Profile() {
   const [newPassword, setNewPassword] = useState("");

@@ -1,5 +1,5 @@
-import ContactForm from "../../components/contactForm/ContactForm";
-import "../../styles/Contact.css";
+import ContactForm from "../../../components/contactForm/ContactForm";
+import "../../../styles/Contact.css";
 
 export default function Contact() {
   return (
