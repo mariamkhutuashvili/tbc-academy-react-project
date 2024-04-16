@@ -1,6 +1,6 @@
 import "./ContactForm.css";
 
-function ContactForm() {
+export default function ContactForm() {
   return (
     <form className="contact-form">
       <label htmlFor="name">Name</label>
@@ -26,5 +26,3 @@ function ContactForm() {
     </form>
   );
 }
-
-export default ContactForm;

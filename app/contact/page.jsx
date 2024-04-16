@@ -1,7 +1,7 @@
 import ContactForm from "../../components/contactForm/ContactForm";
 import "../../styles/Contact.css";
 
-function Contact() {
+export default function Contact() {
   return (
     <div className="contact-container">
       <h1>Contact Us</h1>
@@ -20,5 +20,3 @@ function Contact() {
     </div>
   );
 }
-
-export default Contact;

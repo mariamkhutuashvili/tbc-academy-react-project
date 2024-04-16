@@ -2,7 +2,7 @@ import Link from "next/link";
 import ToggleThemeButton from "../toggleTheme/ToggleTheme";
 import "./Header.css";
 
-function Header() {
+export default function Header() {
   return (
     <header className="header">
       <ToggleThemeButton />
@@ -40,5 +40,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
