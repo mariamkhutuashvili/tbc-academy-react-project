@@ -13,7 +13,7 @@ export default async function Login() {
 
   console.log("cookie:", cookie);
 
-  if (cookie) {
+  if (cookie?.value) {
     redirect("/");
   }
 

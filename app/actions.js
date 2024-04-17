@@ -1,7 +1,6 @@
-"use server";
-
 import { AUTH_COOKIE_KEY } from "../constants";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function login(username, password) {
   "use server";
@@ -25,8 +24,10 @@ export async function login(username, password) {
   }
 }
 
-// const cookieStore = cookies();
-// cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
+export async function logout() {
+  "use server";
+  const cookieStore = cookies();
 
-// console.log(response);
-// }
+  cookieStore.delete(AUTH_COOKIE_KEY);
+  redirect("/login");
+}

@@ -8,19 +8,19 @@ export default function DashboardLayout({ children }) {
   const cookieStore = cookies();
   const cookie = cookieStore.get(AUTH_COOKIE_KEY);
 
-  if (!cookie) redirect("/login");
+  if (!cookie?.value) redirect("/login");
 
   return (
-    <html lang="en">
-      <body>
-        <div className="App">
-          <div className="container">
-            <Header />
-            <div className="pages">{children}</div>
-            <Footer />
-          </div>
-        </div>
-      </body>
-    </html>
+    // <html lang="en">
+    //   <body>
+    <div className="App">
+      <div className="container">
+        <Header />
+        <div className="pages">{children}</div>
+        <Footer />
+      </div>
+    </div>
+    //   </body>
+    // </html>
   );
 }
