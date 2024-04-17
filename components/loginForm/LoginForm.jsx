@@ -1,31 +1,27 @@
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+"use client";
 
-export default function LoginForm() {
-  const [email, setEmail] = useState("");
+import { useState } from "react";
+
+export default function LoginForm({ handleLogin }) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const router = useRouter();
-
-  const handleLogin = async () => {
-    console.log("Login attempt with:", email, password);
-    router.push("/");
-  };
+  console.log("Login attempt with:", username, password);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin();
+        handleLogin(username, password);
       }}
     >
       <div className="input-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label>
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
