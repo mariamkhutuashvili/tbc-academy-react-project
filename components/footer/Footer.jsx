@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "./Footer.css";
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-section">
@@ -44,5 +44,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

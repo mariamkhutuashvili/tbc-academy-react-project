@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Article from "../../components/article/Article";
-import blogImage from "../../public/assets/blog.jpg";
-import "../../styles/blog.css";
+import Article from "../../../components/article/Article";
+import blogImage from "../../../public/assets/blog.jpg";
+import "../../../styles/blog.css";
 
-function Blog() {
+export default function Blog() {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
 
@@ -62,5 +62,3 @@ function Blog() {
     </div>
   );
 }
-
-export default Blog;

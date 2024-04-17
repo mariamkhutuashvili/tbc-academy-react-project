@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Search from "../components/search/Search";
-import "../styles/Page.css";
+import Search from "../../components/search/Search";
+import "../../styles/Page.css";
 
 function debounce(func, wait) {
   let timeout;

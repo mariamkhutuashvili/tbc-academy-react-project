@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Article({ id, title, date, photo, onReadMore }) {
+export default function Article({ id, title, date, photo, onReadMore }) {
   return (
     <div className="article-container">
       <div className="article-image-container">
@@ -16,5 +16,3 @@ function Article({ id, title, date, photo, onReadMore }) {
     </div>
   );
 }
-
-export default Article;

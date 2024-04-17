@@ -1,8 +1,15 @@
 import Link from "next/link";
 import ToggleThemeButton from "../toggleTheme/ToggleTheme";
+import LogoutButton from "../UI/LogoutButton";
+import { logout } from "../../app/actions";
 import "./Header.css";
 
-function Header() {
+export default function Header() {
+  const handleLogout = async () => {
+    "use server";
+    await logout();
+  };
+
   return (
     <header className="header">
       <ToggleThemeButton />
@@ -36,9 +43,8 @@ function Header() {
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </Link>
+        <LogoutButton handleLogout={handleLogout} />
       </nav>
     </header>
   );
 }
-
-export default Header;

@@ -1,6 +1,6 @@
 import "./Search.css";
 
-function Search({ onChange }) {
+export default function Search({ onChange }) {
   return (
     <div className="search-container">
       <input
@@ -13,5 +13,3 @@ function Search({ onChange }) {
     </div>
   );
 }
-
-export default Search;

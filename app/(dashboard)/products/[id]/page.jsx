@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import "../../../styles/Product.css";
+import "../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
 
