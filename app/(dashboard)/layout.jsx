@@ -11,8 +11,6 @@ export default function DashboardLayout({ children }) {
   if (!cookie?.value) redirect("/login");
 
   return (
-    // <html lang="en">
-    //   <body>
     <div className="App">
       <div className="container">
         <Header />
@@ -20,7 +18,5 @@ export default function DashboardLayout({ children }) {
         <Footer />
       </div>
     </div>
-    //   </body>
-    // </html>
   );
 }
