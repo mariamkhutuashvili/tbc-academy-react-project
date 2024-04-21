@@ -12,7 +12,9 @@ export default function LoginForm({ handleLogin }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin(username, password);
+        handleLogin(username, password).then(() => {
+          window.location.reload();
+        });
       }}
     >
       <div className="input-group">

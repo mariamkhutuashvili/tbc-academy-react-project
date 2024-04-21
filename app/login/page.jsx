@@ -1,21 +1,21 @@
 "use server";
 
-import { AUTH_COOKIE_KEY } from "../../constants";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+// import { AUTH_COOKIE_KEY } from "../../constants";
+// import { redirect } from "next/navigation";
+// import { cookies } from "next/headers";
 import { login } from "../actions";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "../../styles/Login.css";
 
 export default async function Login() {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get(AUTH_COOKIE_KEY);
+  // const cookieStore = cookies();
+  // const cookie = cookieStore.get(AUTH_COOKIE_KEY);
 
-  console.log("cookie:", cookie);
+  // console.log("cookie:", cookie);
 
-  if (cookie?.value) {
-    redirect("/");
-  }
+  // if (cookie?.value) {
+  //   redirect("/");
+  // }
 
   const handleLogin = async (username, password) => {
     "use server";
