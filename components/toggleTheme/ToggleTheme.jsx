@@ -82,7 +82,6 @@ export default function ToggleThemeButton() {
           }`}
           onClick={() => toggleTheme("system")}
         >
-          <span className="system-mode-icon"> </span>
           System
         </button>
       </div>

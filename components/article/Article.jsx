@@ -1,6 +1,7 @@
+import Link from "next/link";
 import Image from "next/image";
 
-export default function Article({ id, title, date, photo, onReadMore }) {
+export default function Article({ id, title, date, photo }) {
   return (
     <div className="article-container">
       <div className="article-image-container">
@@ -9,9 +10,9 @@ export default function Article({ id, title, date, photo, onReadMore }) {
       <div className="article-details">
         <h2 className="article-title">{title}</h2>
         <p className="article-date">{date}</p>
-        <button className="button" onClick={() => onReadMore(id)}>
+        <Link href={`/blog/${id}`} className="button">
           Read More
-        </button>
+        </Link>
       </div>
     </div>
   );
