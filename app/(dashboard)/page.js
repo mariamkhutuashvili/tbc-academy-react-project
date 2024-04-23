@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Search from "../../components/search/Search";
+import AddToCartButton from "../../components/UI/AddToCartButton";
 import "../../styles/Page.css";
 
 function debounce(func, wait) {
@@ -66,7 +67,7 @@ function Products() {
               <h2>{title}</h2>
               <p>{description}</p>
               <p className="product-price">${price.toFixed(2)}</p>
-              <button className="button">Add to Cart</button>
+              <AddToCartButton />
             </div>
           )
         )}

@@ -1,5 +1,6 @@
 import Article from "../../../components/article/Article";
 import blogImage from "../../../public/assets/blog.jpg";
+import Title from "../../../components/UI/Title";
 import "../../../styles/blog.css";
 
 const fetchPosts = async () => {
@@ -25,7 +26,7 @@ export default async function Blog() {
         ))}
       </div>
       <div className="blog-archives">
-        <h3>Archives</h3>
+        <Title titleName="Archive" />
         <ul>
           {postData.map((post) => (
             <li key={post.id} style={{ cursor: "pointer" }}>

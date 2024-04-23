@@ -1,10 +1,11 @@
 import ContactForm from "../../../components/contactForm/ContactForm";
+import Title from "../../../components/UI/Title";
 import "../../../styles/Contact.css";
 
 export default function Contact() {
   return (
     <div className="contact-container">
-      <h1>Contact Us</h1>
+      <Title titleName="Contact Us" />
       <div className="contact-info">
         <p>
           <strong>Email:</strong> contact@example.com

@@ -8,7 +8,7 @@ export async function generateStaticParams() {
   const response = await fetch("https://dummyjson.com/posts");
   const data = await response.json();
   const path = data.posts.map((post) => ({
-    params: { id: post.id },
+    params: { id: `${post.id}` },
   }));
   return path;
 }

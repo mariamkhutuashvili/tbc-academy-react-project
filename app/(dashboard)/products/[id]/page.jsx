@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AddToCartButton from "../../../../components/UI/AddToCartButton";
 import "../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
@@ -36,7 +37,7 @@ export default async function Product({ params }) {
       <h4>Category: {productData.category}</h4>
       <p>{productData.description}</p>
       <p className="product-price">${productData.price}</p>
-      <button className="button">Add to Cart</button>
+      <AddToCartButton />
     </div>
   );
 }

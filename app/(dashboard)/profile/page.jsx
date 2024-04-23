@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import Title from "../../../components/UI/Title";
 import "../../../styles/Profile.css";
 
 export default function Profile() {
@@ -21,7 +22,7 @@ export default function Profile() {
 
   return (
     <div className="profile-container">
-      <h1>User Information</h1>
+      <Title titleName="User Information" />
       <div className="user-info">
         <p>
           <strong>Name:</strong> Mariam Khutuashvili
