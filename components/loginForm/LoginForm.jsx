@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { handleLogin } from "../../scripts/login";
 
-export default function LoginForm({ handleLogin }) {
+export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +13,9 @@ export default function LoginForm({ handleLogin }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin(username, password);
+        handleLogin(username, password).then(() => {
+          window.location.reload();
+        });
       }}
     >
       <div className="input-group">

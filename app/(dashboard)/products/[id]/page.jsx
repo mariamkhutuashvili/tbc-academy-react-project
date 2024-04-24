@@ -1,40 +1,43 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import AddToCartButton from "../../../../components/UI/AddToCartButton";
 import "../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
 
-export default function Product({ params }) {
-  const [product, setProduct] = useState([]);
+export async function generateStaticParams() {
+  const response = await fetch("https://dummyjson.com/products");
+  const data = await response.json();
+  const path = data.products.map((product) => ({
+    params: { id: product.id },
+  }));
+  return path;
+}
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch(`${URL}/${params.id}`);
-      const data = await response.json();
-      setProduct(data);
-      console.log(data);
-    };
+const fetchProducts = async (productId) => {
+  const response = await fetch(`${URL}/${productId}`);
+  const data = await response.json();
+  return data;
+};
 
-    fetchProducts();
-  }, [params.id, setProduct]);
+export default async function Product({ params }) {
+  const productId = params.id;
+  const productData = await fetchProducts(productId);
 
   return (
-    <div key={product.index} className="product-page">
+    <div key={productData.index} className="product-page">
       <Image
-        src={product.thumbnail}
+        src={productData.thumbnail}
         alt="product"
         width={400}
         height={400}
         priority
       />
-      <h2>{product.title}</h2>
-      <h4>Brand: {product.brand}</h4>
-      <h4>Category: {product.category}</h4>
-      <p>{product.description}</p>
-      <p className="product-price">${product.price}</p>
-      <button className="button">Add to Cart</button>
+      <h2>{productData.title}</h2>
+      <h4>Brand: {productData.brand}</h4>
+      <h4>Category: {productData.category}</h4>
+      <p>{productData.description}</p>
+      <p className="product-price">${productData.price}</p>
+      <AddToCartButton />
     </div>
   );
 }

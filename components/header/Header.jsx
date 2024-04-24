@@ -1,13 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import ToggleThemeButton from "../toggleTheme/ToggleTheme";
 import LogoutButton from "../UI/LogoutButton";
-import { logout } from "../../app/actions";
+import { useTranslation } from "react-i18next";
+import i18n from "../../app/i18n";
 import "./Header.css";
 
 export default function Header() {
-  const handleLogout = async () => {
-    "use server";
-    await logout();
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const currentLanguage = i18n.language;
+    const nextLanguage = currentLanguage === "en" ? "ge" : "en";
+    i18n.changeLanguage(nextLanguage);
   };
 
   return (
@@ -15,17 +21,20 @@ export default function Header() {
       <ToggleThemeButton />
       <nav className="nav">
         <Link href="/" className="nav-link">
-          Home
+          {t("home")}
         </Link>
         <Link href="/about" className="nav-link">
-          About
+          {t("about")}
         </Link>
         <Link href="/blog" className="nav-link">
-          Blog
+          {t("blog")}
         </Link>
         <Link href="/contact" className="nav-link">
-          Contact
+          {t("contact")}
         </Link>
+        <button onClick={toggleLanguage} className="button translate-button">
+          {i18n.language === "en" ? "Geo" : "Eng"}
+        </button>
         <Link href="/profile" className="nav-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +52,7 @@ export default function Header() {
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </Link>
-        <LogoutButton handleLogout={handleLogout} />
+        <LogoutButton />
       </nav>
     </header>
   );

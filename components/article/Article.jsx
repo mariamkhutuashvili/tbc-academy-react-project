@@ -1,6 +1,11 @@
-import Image from "next/image";
+"use client";
 
-export default function Article({ id, title, date, photo, onReadMore }) {
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
+export default function Article({ id, title, date, photo }) {
+  const { t } = useTranslation();
   return (
     <div className="article-container">
       <div className="article-image-container">
@@ -9,9 +14,9 @@ export default function Article({ id, title, date, photo, onReadMore }) {
       <div className="article-details">
         <h2 className="article-title">{title}</h2>
         <p className="article-date">{date}</p>
-        <button className="button" onClick={() => onReadMore(id)}>
-          Read More
-        </button>
+        <Link href={`/blog/${id}`} className="button">
+          {t("readMore")}
+        </Link>
       </div>
     </div>
   );

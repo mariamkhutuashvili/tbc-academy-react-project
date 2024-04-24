@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Search from "../../components/search/Search";
+import Sort from "../../components/sort/Sort";
+import AddToCartButton from "../../components/UI/AddToCartButton";
+import Title from "../../components/UI/Title";
 import "../../styles/Page.css";
 
 function debounce(func, wait) {
@@ -49,11 +52,9 @@ function Products() {
 
   return (
     <div className="store">
-      <h1>Online Store</h1>
+      <Title titleName="onlineStore" />
       <Search onChange={(e) => debouncedSetSearchTerm(e.target.value)} />
-      <button onClick={() => setIsSorted(!isSorted)} className="button">
-        {isSorted ? "Reset" : "Sort by Price"}
-      </button>
+      <Sort isSorted={isSorted} onToggleSort={() => setIsSorted(!isSorted)} />
       <div className="products-grid">
         {filteredAndSortedProducts.map(
           ({ id, title, description, thumbnail, price }) => (
@@ -66,7 +67,7 @@ function Products() {
               <h2>{title}</h2>
               <p>{description}</p>
               <p className="product-price">${price.toFixed(2)}</p>
-              <button className="button">Add to Cart</button>
+              <AddToCartButton />
             </div>
           )
         )}
