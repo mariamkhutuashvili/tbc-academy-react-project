@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./ToggleTheme.css";
 
 export default function ToggleThemeButton() {
+  const { t } = useTranslation();
+
   // Initialize theme state from localStorage or default to 'system'
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
@@ -62,19 +65,19 @@ export default function ToggleThemeButton() {
 
   return (
     <div className="theme-switcher">
-      <button className="button">Theme </button>
+      <button className="button"> {t("theme")} </button>
       <div className="theme-switcher-content">
         <button
           className={`button ${theme === "light" ? "active" : ""}`}
           onClick={() => toggleTheme("light")}
         >
-          Light
+          {t("light")}
         </button>
         <button
           className={`button ${theme === "dark" ? "active" : ""}`}
           onClick={() => toggleTheme("dark")}
         >
-          Dark
+          {t("dark")}
         </button>
         <button
           className={`button system-mode-button ${
@@ -82,7 +85,7 @@ export default function ToggleThemeButton() {
           }`}
           onClick={() => toggleTheme("system")}
         >
-          System
+          {t("system")}
         </button>
       </div>
     </div>

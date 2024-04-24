@@ -26,7 +26,7 @@ export default async function Blog() {
         ))}
       </div>
       <div className="blog-archives">
-        <Title titleName="Archive" />
+        <Title titleName="archive" />
         <ul>
           {postData.map((post) => (
             <li key={post.id} style={{ cursor: "pointer" }}>

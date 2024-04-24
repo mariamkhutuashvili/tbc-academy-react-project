@@ -1,8 +1,11 @@
 "use client";
 
 import { handleLogout } from "../../scripts/logout";
+import { useTranslation } from "react-i18next";
 
 export default function LogoutButton() {
+  const { t } = useTranslation();
+
   return (
     <button
       onClick={() =>
@@ -12,7 +15,7 @@ export default function LogoutButton() {
       }
       className="button logout-button"
     >
-      Logout
+      {t("logOut")}
     </button>
   );
 }

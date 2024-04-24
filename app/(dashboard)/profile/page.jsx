@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Title from "../../../components/UI/Title";
 import "../../../styles/Profile.css";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -22,26 +24,26 @@ export default function Profile() {
 
   return (
     <div className="profile-container">
-      <Title titleName="User Information" />
+      <Title titleName="userInformation" />
       <div className="user-info">
         <p>
-          <strong>Name:</strong> Mariam Khutuashvili
+          <strong>{t("name")}:</strong> Mariam Khutuashvili
         </p>
         <p>
-          <strong>Email:</strong> khutuashvili.mariam@gmail.com
+          <strong>{t("email")}:</strong> khutuashvili.mariam@gmail.com
         </p>
       </div>
       <div className="password-update">
-        <h2>Change Password</h2>
+        <h2>{t("changePassword")}</h2>
         <input
           type="password"
-          placeholder="New Password"
+          placeholder={t("newPassword")}
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Confirm New Password"
+          placeholder={t("confirmNewPassword")}
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
@@ -50,7 +52,7 @@ export default function Profile() {
           className="button save-button"
           onClick={handleSave}
         >
-          Save
+          {t("save")}
         </button>
       </div>
     </div>

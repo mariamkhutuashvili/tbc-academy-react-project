@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function Article({ id, title, date, photo }) {
+  const { t } = useTranslation();
   return (
     <div className="article-container">
       <div className="article-image-container">
@@ -11,7 +15,7 @@ export default function Article({ id, title, date, photo }) {
         <h2 className="article-title">{title}</h2>
         <p className="article-date">{date}</p>
         <Link href={`/blog/${id}`} className="button">
-          Read More
+          {t("readMore")}
         </Link>
       </div>
     </div>
