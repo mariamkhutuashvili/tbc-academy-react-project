@@ -16,6 +16,9 @@
   padding: 20px;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product img {
@@ -25,11 +28,18 @@
   margin-bottom: 10px;
 }
 
+.product-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price-container {
+  margin-top: auto;
+}
+
 .product-price {
   font-weight: bold;
   margin: 10px 0;
-}
-
-.sort-button {
-  margin-top: 20px;
 }

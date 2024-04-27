@@ -64,10 +64,14 @@ function Products() {
               onClick={() => handleProductClick(id)}
             >
               <Image src={thumbnail} alt={title} width={500} height={500} />
-              <h2>{title}</h2>
-              <p>{description}</p>
-              <p className="product-price">${price.toFixed(2)}</p>
-              <AddToCartButton />
+              <div className="product-content">
+                <h2>{title}</h2>
+                <p>{description}</p>
+                <div className="price-container">
+                  <p className="product-price">${price.toFixed(2)}</p>
+                  <AddToCartButton />
+                </div>
+              </div>
             </div>
           )
         )}

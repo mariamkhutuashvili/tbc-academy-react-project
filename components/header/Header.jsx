@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ToggleThemeButton from "../toggleTheme/ToggleTheme";
+import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
 import LogoutButton from "../UI/LogoutButton";
 import { useTranslation } from "react-i18next";

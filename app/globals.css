@@ -50,3 +50,17 @@ a {
   color: white;
   transform: scale(1.05);
 }
+
+.light-theme {
+  background: linear-gradient(135deg, white 0%, purple 100%);
+  color: black;
+}
+
+.dark-theme {
+  background: linear-gradient(135deg, #2c3e50 0%, purple 100%);
+  color: white;
+}
+
+.dark-theme h1 {
+  color: white;
+}
