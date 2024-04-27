@@ -7,22 +7,25 @@ import "./ToggleTheme.css";
 export default function ToggleThemeButton() {
   const { t } = useTranslation();
 
-  // Initialize theme state from localStorage or default to 'system'
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "system";
+  // Initialize theme state to 'system' by default which matches initial server render
+  const [theme, setTheme] = useState("system");
+
+  useEffect(() => {
+    // Check if theme is stored in localStorage and update state if so
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
     }
-    return "system";
-  });
+  }, []);
 
   useEffect(() => {
     // Define function to apply the theme
-    const applyTheme = (theme) => {
+    const applyTheme = (themeValue) => {
       const pageContent = document.querySelector(".pages");
       pageContent.classList.remove("light-theme", "dark-theme");
-      if (theme === "light") {
+      if (themeValue === "light") {
         pageContent.classList.add("light-theme");
-      } else if (theme === "dark") {
+      } else if (themeValue === "dark") {
         pageContent.classList.add("dark-theme");
       }
     };
@@ -35,26 +38,18 @@ export default function ToggleThemeButton() {
     };
 
     // Apply the current theme
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     if (theme !== "system") {
       applyTheme(theme);
     } else {
-      const isDarkMode = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      applyTheme(isDarkMode ? "dark" : "light");
+      applyTheme(mediaQuery.matches ? "dark" : "light");
     }
 
     // Listen for system theme changes
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", handleSystemThemeChange);
-
-    // Cleanup event listener on unmount
-    return () => {
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .removeEventListener("change", handleSystemThemeChange);
-    };
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    return () =>
+      // Cleanup event listener on unmount
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
   }, [theme]);
 
   // Handler to toggle theme state and persist to localStorage
@@ -62,6 +57,8 @@ export default function ToggleThemeButton() {
     setTheme(selectedTheme);
     localStorage.setItem("theme", selectedTheme);
   };
+
+  console.log(`Applying theme: ${theme}`);
 
   return (
     <div className="theme-switcher">
