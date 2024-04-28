@@ -7,6 +7,7 @@ import "../../../styles/Contact.css";
 
 export default function Contact() {
   const { t } = useTranslation();
+
   return (
     <div className="contact-container">
       <Title titleName="contactUs" />

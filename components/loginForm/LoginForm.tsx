@@ -4,8 +4,8 @@ import { useState } from "react";
 import { handleLogin } from "../../scripts/login";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   console.log("Login attempt with:", username, password);
 

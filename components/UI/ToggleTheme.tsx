@@ -7,7 +7,7 @@ export default function ToggleThemeButton() {
   const { t } = useTranslation();
 
   // Initialize theme state to 'system' by default which matches initial server render
-  const [theme, setTheme] = useState("system");
+  const [theme, setTheme] = useState<string>("system");
 
   useEffect(() => {
     // Check if theme is stored in localStorage and update state if so
@@ -19,8 +19,8 @@ export default function ToggleThemeButton() {
 
   useEffect(() => {
     // Define function to apply the theme
-    const applyTheme = (themeValue) => {
-      const pageContent = document.querySelector(".pages");
+    const applyTheme = (themeValue: string) => {
+      const pageContent = document.querySelector(".pages") as HTMLElement;
       pageContent.classList.remove("light-theme", "dark-theme");
       if (themeValue === "light") {
         pageContent.classList.add("light-theme");
@@ -30,7 +30,7 @@ export default function ToggleThemeButton() {
     };
 
     // Define function to handle system theme changes
-    const handleSystemThemeChange = (e) => {
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
       if (theme === "system") {
         applyTheme(e.matches ? "dark" : "light");
       }
@@ -52,7 +52,7 @@ export default function ToggleThemeButton() {
   }, [theme]);
 
   // Handler to toggle theme state and persist to localStorage
-  const toggleTheme = (selectedTheme) => {
+  const toggleTheme = (selectedTheme: string) => {
     setTheme(selectedTheme);
     localStorage.setItem("theme", selectedTheme);
   };
@@ -61,7 +61,7 @@ export default function ToggleThemeButton() {
 
   return (
     <div className="theme-switcher">
-      <button className="button"> {t("theme")} </button>
+      <button className="button">{t("theme")}</button>
       <div className="theme-switcher-content">
         <button
           className={`button ${theme === "light" ? "active" : ""}`}

@@ -4,27 +4,41 @@ import "../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
 
+interface Product {
+  id: number;
+  title: string;
+  brand: string;
+  category: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+}
+
+interface ProductsResponse {
+  products: Product[];
+}
+
 export async function generateStaticParams() {
   const response = await fetch("https://dummyjson.com/products");
-  const data = await response.json();
+  const data: ProductsResponse = await response.json();
   const path = data.products.map((product) => ({
     id: `${product.id}`,
   }));
   return path;
 }
 
-const fetchProducts = async (productId) => {
+const fetchProducts = async (productId: string): Promise<Product> => {
   const response = await fetch(`${URL}/${productId}`);
-  const data = await response.json();
+  const data: Product = await response.json();
   return data;
 };
 
-export default async function Product({ params }) {
+export default async function Product({ params }: { params: { id: string } }) {
   const productId = params.id;
   const productData = await fetchProducts(productId);
 
   return (
-    <div key={productData.index} className="product-page">
+    <div key={productData.id} className="product-page">
       <Image
         src={productData.thumbnail}
         alt="product"

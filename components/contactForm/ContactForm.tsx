@@ -5,6 +5,7 @@ import "./ContactForm.css";
 
 export default function ContactForm() {
   const { t } = useTranslation();
+
   return (
     <form className="contact-form">
       <label htmlFor="name">{t("name")}</label>

@@ -7,8 +7,8 @@ import "../../../styles/Profile.css";
 
 export default function Profile() {
   const { t } = useTranslation();
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleSave = () => {
     if (newPassword !== confirmPassword) {
