@@ -2,7 +2,11 @@
 
 import { useTranslation } from "react-i18next";
 
-export default function Title({ titleName }) {
+interface TitleProps {
+  titleName: string;
+}
+
+export default function Title({ titleName }: TitleProps) {
   const { t } = useTranslation();
   return (
     <div>

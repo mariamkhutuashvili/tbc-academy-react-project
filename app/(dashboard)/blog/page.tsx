@@ -1,12 +1,16 @@
 import Article from "../../../components/article/Article";
-import blogImage from "../../../public/assets/blog.jpg";
 import Title from "../../../components/UI/Title";
 import "../../../styles/blog.css";
 
-const fetchPosts = async () => {
+interface Post {
+  id: number;
+  title: string;
+}
+
+const fetchPosts = async (): Promise<Post[]> => {
   const response = await fetch("https://dummyjson.com/posts");
   const data = await response.json();
-  return data.posts;
+  return data.posts as Post[];
 };
 
 export default async function Blog() {
@@ -21,7 +25,6 @@ export default async function Blog() {
             id={post.id}
             title={post.title}
             date={new Date().toLocaleDateString()}
-            photo={blogImage}
           />
         ))}
       </div>

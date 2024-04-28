@@ -9,20 +9,30 @@ import AddToCartButton from "../../components/UI/AddToCartButton";
 import Title from "../../components/UI/Title";
 import "../../styles/Page.css";
 
-function debounce(func, wait) {
-  let timeout;
-  return function () {
+interface Product {
+  id: number | string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  price: number;
+}
+
+function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout>;
+  return function (this: any, ...args: Parameters<T>) {
     const context = this;
-    const args = arguments;
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(context, args), wait);
   };
 }
 
-function Products() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isSorted, setIsSorted] = useState(false);
-  const [products, setProducts] = useState([]);
+export default function Products() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isSorted, setIsSorted] = useState<boolean>(false);
+  const [products, setProducts] = useState<Product[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,12 +40,14 @@ function Products() {
       const response = await fetch("https://dummyjson.com/products");
       const data = await response.json();
       setProducts(data.products);
-      console.log(data.products);
     };
     fetchProducts();
   }, []);
 
-  const debouncedSetSearchTerm = debounce(setSearchTerm, 300);
+  const debouncedSetSearchTerm = debounce(
+    (value: string) => setSearchTerm(value),
+    300
+  );
 
   const filteredAndSortedProducts = products
     .filter(
@@ -46,7 +58,7 @@ function Products() {
     )
     .sort((a, b) => (isSorted ? a.price - b.price : 0));
 
-  const handleProductClick = (id) => {
+  const handleProductClick = (id: number | string) => {
     router.push(`/products/${id}`);
   };
 
@@ -79,5 +91,3 @@ function Products() {
     </div>
   );
 }
-
-export default Products;

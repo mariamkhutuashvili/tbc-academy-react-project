@@ -2,8 +2,13 @@
 
 import { useTranslation } from "react-i18next";
 import "./Search.css";
+import { ChangeEvent } from "react";
 
-export default function Search({ onChange }) {
+interface SearchProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function Search({ onChange }: SearchProps) {
   const { t } = useTranslation();
   return (
     <div className="search-container">
