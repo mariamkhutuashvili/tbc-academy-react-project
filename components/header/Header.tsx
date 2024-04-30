@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
 import LogoutButton from "../UI/LogoutButton";
@@ -12,7 +13,11 @@ export default function Header() {
 
   return (
     <header className="header">
-      <ToggleThemeButton />
+      <div className="left-section">
+        <Link href="/">
+          <Image src="/assets/logo.png" alt="Logo" width={50} height={50} />
+        </Link>
+      </div>
       <nav className="nav">
         <Link href="/" className="nav-link">
           {t("home")}
@@ -26,8 +31,11 @@ export default function Header() {
         <Link href="/contact" className="nav-link">
           {t("contact")}
         </Link>
+      </nav>
+      <div className="right-section">
+        <ToggleThemeButton />
         <ToggleLanguage />
-        <Link href="/profile" className="nav-link">
+        <Link href="/profile" className="profile-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -45,7 +53,7 @@ export default function Header() {
           </svg>
         </Link>
         <LogoutButton />
-      </nav>
+      </div>
     </header>
   );
 }

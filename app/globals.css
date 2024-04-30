@@ -68,16 +68,11 @@ a {
 .theme-switcher {
   position: relative;
   display: inline-block;
-  margin-right: 10px;
 }
 
 .theme-switcher button.active {
   background-color: #e0e0e0;
   color: #000;
-}
-
-.theme-switcher button:not(:last-child) {
-  border-bottom: none;
 }
 
 .theme-switcher-content {
