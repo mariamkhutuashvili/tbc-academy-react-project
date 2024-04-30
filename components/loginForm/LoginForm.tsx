@@ -19,26 +19,26 @@ export default function LoginForm() {
       }}
     >
       <div className="input-group">
-        <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
       <div className="input-group">
-        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
-      <button type="submit" className="button">
+      <button type="submit" className="button login-button">
         Login
       </button>
     </form>

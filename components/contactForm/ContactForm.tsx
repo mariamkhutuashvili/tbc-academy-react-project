@@ -35,7 +35,7 @@ export default function ContactForm() {
         style={{ height: "200px" }}
       ></textarea>
 
-      <button type="submit" className="button">
+      <button type="submit" className="button submit-button">
         {t("send")}
       </button>
     </form>

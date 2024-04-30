@@ -61,7 +61,7 @@ export default function ToggleThemeButton() {
 
   return (
     <div className="theme-switcher">
-      <button className="button">{t("theme")}</button>
+      <button className="button theme-button">{t("theme")}</button>
       <div className="theme-switcher-content">
         <button
           className={`button ${theme === "light" ? "active" : ""}`}
