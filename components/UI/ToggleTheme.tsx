@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useI18n } from "../../locales/client";
 
 export default function ToggleThemeButton() {
-  const { t } = useTranslation();
+  const t = useI18n();
 
   // Initialize theme state to 'system' by default which matches initial server render
   const [theme, setTheme] = useState<string>("system");
@@ -61,7 +61,7 @@ export default function ToggleThemeButton() {
 
   return (
     <div className="theme-switcher">
-      <button className="button">{t("theme")}</button>
+      <button className="button theme-button">{t("theme")}</button>
       <div className="theme-switcher-content">
         <button
           className={`button ${theme === "light" ? "active" : ""}`}

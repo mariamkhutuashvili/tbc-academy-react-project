@@ -1,15 +1,19 @@
-import i18n from "../../app/i18n";
+"use client";
+
+import { useChangeLocale, useCurrentLocale } from "../../locales/client";
 
 export default function ToggleLanguage() {
+  const currentLocale = useCurrentLocale();
+  const changeLocale = useChangeLocale();
+
   const toggleLanguage = () => {
-    const nextLanguage = i18n.language === "en" ? "ge" : "en";
-    i18n.changeLanguage(nextLanguage);
-    // localStorage.setItem("i18nextLng", nextLanguage); // Storing the selected language
+    const nextLanguage = currentLocale === "en" ? "ka" : "en";
+    changeLocale(nextLanguage);
   };
 
   return (
     <button onClick={toggleLanguage} className="button translate-button">
-      {i18n.language === "en" ? "Geo" : "Eng"}
+      {currentLocale === "en" ? "KA" : "ENG"}
     </button>
   );
 }

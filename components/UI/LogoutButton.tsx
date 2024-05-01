@@ -1,10 +1,10 @@
 "use client";
 
+import { useI18n } from "../../locales/client";
 import { handleLogout } from "../../scripts/logout";
-import { useTranslation } from "react-i18next";
 
 export default function LogoutButton() {
-  const { t } = useTranslation();
+  const t = useI18n();
 
   return (
     <button

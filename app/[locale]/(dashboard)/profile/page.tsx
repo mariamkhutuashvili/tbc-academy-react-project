@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import Title from "../../../components/UI/Title";
-import "../../../styles/Profile.css";
+import { useI18n } from "../../../../locales/client";
+import Title from "../../../../components/UI/Title";
+import "../../../../styles/Profile.css";
 
 export default function Profile() {
-  const { t } = useTranslation();
+  const t = useI18n();
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
@@ -24,7 +24,7 @@ export default function Profile() {
 
   return (
     <div className="profile-container">
-      <Title titleName="userInformation" />
+      <Title titleName={t("userInformation")} />
       <div className="user-info">
         <p>
           <strong>{t("name")}:</strong> Mariam Khutuashvili

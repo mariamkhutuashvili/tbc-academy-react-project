@@ -1,9 +1,12 @@
 "use client";
 
+import { useI18n } from "../../locales/client";
 import { useState } from "react";
 import { handleLogin } from "../../scripts/login";
 
 export default function LoginForm() {
+  const t = useI18n();
+
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -19,27 +22,27 @@ export default function LoginForm() {
       }}
     >
       <div className="input-group">
-        <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
+          placeholder={t("username")}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
       <div className="input-group">
-        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
+          placeholder={t("password")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
-      <button type="submit" className="button">
-        Login
+      <button type="submit" className="button login-button">
+        {t("login")}
       </button>
     </form>
   );

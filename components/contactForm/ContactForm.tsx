@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
+import { getI18n } from "../../locales/server";
 import "./ContactForm.css";
 
-export default function ContactForm() {
-  const { t } = useTranslation();
+export default async function ContactForm() {
+  const t = await getI18n();
 
   return (
     <form className="contact-form">
@@ -35,7 +33,7 @@ export default function ContactForm() {
         style={{ height: "200px" }}
       ></textarea>
 
-      <button type="submit" className="button">
+      <button type="submit" className="button submit-button">
         {t("send")}
       </button>
     </form>

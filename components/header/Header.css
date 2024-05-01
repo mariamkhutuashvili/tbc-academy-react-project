@@ -2,25 +2,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 40px;
   background-color: #f3f3f3;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.left-section {
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.right-section {
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .nav {
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-grow: 1;
   align-items: center;
 }
 
 .nav-link {
-  margin-right: 20px;
+  margin: 0 20px;
   color: #333;
   font-weight: bold;
-}
-
-.nav-link:last-child {
-  margin-right: 0;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link:hover,
@@ -28,4 +42,3 @@
   color: purple;
   text-decoration: underline;
 }
-
