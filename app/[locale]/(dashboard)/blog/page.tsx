@@ -1,6 +1,7 @@
-import Article from "../../../components/article/Article";
-import Title from "../../../components/UI/Title";
-import "../../../styles/blog.css";
+import Article from "../../../../components/article/Article";
+import { getI18n } from "../../../../locales/server";
+import Title from "../../../../components/UI/Title";
+import "../../../../styles/blog.css";
 
 interface Post {
   id: number;
@@ -14,6 +15,8 @@ const fetchPosts = async (): Promise<Post[]> => {
 };
 
 export default async function Blog() {
+  const t = await getI18n();
+
   const postData = await fetchPosts();
 
   return (
@@ -29,7 +32,7 @@ export default async function Blog() {
         ))}
       </div>
       <div className="blog-archives">
-        <Title titleName="archive" />
+        <Title titleName={t("archive")} />
         <ul>
           {postData.map((post) => (
             <li key={post.id} style={{ cursor: "pointer" }}>

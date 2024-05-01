@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
+import { getI18n } from "../../locales/server";
 import "./Footer.css";
 
-export default function Footer() {
-  const { t } = useTranslation();
+export default async function Footer() {
+  const t = await getI18n();
   return (
     <footer className="footer">
       <div className="footer-section">

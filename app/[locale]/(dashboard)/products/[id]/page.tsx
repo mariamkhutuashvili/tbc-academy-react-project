@@ -1,6 +1,6 @@
 import Image from "next/image";
-import AddToCartButton from "../../../../components/UI/AddToCartButton";
-import "../../../../styles/Product.css";
+import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+import "../../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
 

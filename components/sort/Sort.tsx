@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useI18n } from "../../locales/client";
 import "./Sort.css";
 
 interface SortProps {
@@ -9,7 +9,7 @@ interface SortProps {
 }
 
 export default function Sort({ isSorted, onToggleSort }: SortProps) {
-  const { t } = useTranslation();
+  const t = useI18n();
   return (
     <button onClick={onToggleSort} className="button sort-button">
       {isSorted ? t("reset") : t("sortByPrice")}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useI18n } from "../../locales/client";
 import "./Search.css";
 import { ChangeEvent } from "react";
 
@@ -9,7 +9,7 @@ interface SearchProps {
 }
 
 export default function Search({ onChange }: SearchProps) {
-  const { t } = useTranslation();
+  const t = useI18n();
   return (
     <div className="search-container">
       <input

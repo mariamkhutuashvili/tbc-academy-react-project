@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
+import { getI18n } from "../../locales/server";
 import "./ContactForm.css";
 
-export default function ContactForm() {
-  const { t } = useTranslation();
+export default async function ContactForm() {
+  const t = await getI18n();
 
   return (
     <form className="contact-form">

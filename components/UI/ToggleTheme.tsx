@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useI18n } from "../../locales/client";
 
 export default function ToggleThemeButton() {
-  const { t } = useTranslation();
+  const t = useI18n();
 
   // Initialize theme state to 'system' by default which matches initial server render
   const [theme, setTheme] = useState<string>("system");

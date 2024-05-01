@@ -1,15 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
 import LogoutButton from "../UI/LogoutButton";
-import { useTranslation } from "react-i18next";
+import { getI18n } from "../../locales/server";
 import "./Header.css";
 
-export default function Header() {
-  const { t } = useTranslation();
+export default async function Header() {
+  const t = await getI18n();
 
   return (
     <header className="header">

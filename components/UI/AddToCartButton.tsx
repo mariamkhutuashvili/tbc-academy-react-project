@@ -1,9 +1,9 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useI18n } from "../../locales/client";
 
 export default function AddToCartButton() {
-  const { t } = useTranslation();
+  const t = useI18n();
   return (
     <button
       className="button cart-button"

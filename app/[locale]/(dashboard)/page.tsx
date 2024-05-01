@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Search from "../../components/search/Search";
-import Sort from "../../components/sort/Sort";
-import AddToCartButton from "../../components/UI/AddToCartButton";
-import Title from "../../components/UI/Title";
-import "../../styles/Page.css";
+import Search from "../../../components/search/Search";
+import Sort from "../../../components/sort/Sort";
+import AddToCartButton from "../../../components/UI/AddToCartButton";
+import { useI18n } from "../../../locales/client";
+import Title from "../../../components/UI/Title";
+import "../../../styles/Page.css";
 
 interface Product {
   id: number | string;
@@ -30,6 +31,8 @@ function debounce<T extends (...args: any[]) => void>(
 }
 
 export default function Products() {
+  const t = useI18n();
+
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSorted, setIsSorted] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
@@ -64,7 +67,7 @@ export default function Products() {
 
   return (
     <div className="store">
-      <Title titleName="onlineStore" />
+      <Title titleName={t("onlineStore")} />
       <Search onChange={(e) => debouncedSetSearchTerm(e.target.value)} />
       <Sort isSorted={isSorted} onToggleSort={() => setIsSorted(!isSorted)} />
       <div className="products-grid">

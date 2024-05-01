@@ -1,16 +1,14 @@
-"use client";
+import { getI18n } from "../../../../locales/server";
+import ContactForm from "../../../../components/contactForm/ContactForm";
+import Title from "../../../../components/UI/Title";
+import "../../../../styles/Contact.css";
 
-import { useTranslation } from "react-i18next";
-import ContactForm from "../../../components/contactForm/ContactForm";
-import Title from "../../../components/UI/Title";
-import "../../../styles/Contact.css";
-
-export default function Contact() {
-  const { t } = useTranslation();
+export default async function Contact() {
+  const t = await getI18n();
 
   return (
     <div className="contact-container">
-      <Title titleName="contactUs" />
+      <Title titleName={t("contactUs")} />
       <div className="contact-info">
         <p>
           <strong>{t("email")}:</strong> contact@example.com

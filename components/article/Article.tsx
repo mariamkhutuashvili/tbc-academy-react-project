@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import blogImage from "../../public/assets/blog.jpg";
-import { useTranslation } from "react-i18next";
+import { getI18n } from "../../locales/server";
 import "./Article.css";
 
 interface ArticleProps {
@@ -12,8 +10,8 @@ interface ArticleProps {
   date: string;
 }
 
-export default function Article({ id, title, date }: ArticleProps) {
-  const { t } = useTranslation();
+export default async function Article({ id, title, date }: ArticleProps) {
+  const t = await getI18n();
 
   return (
     <div className="article-container">

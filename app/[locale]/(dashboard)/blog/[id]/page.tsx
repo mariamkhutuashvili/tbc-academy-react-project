@@ -1,6 +1,6 @@
 import Image from "next/image";
-import blogImage from "../../../../public/assets/blog.jpg";
-import "../../../../styles/Post.css";
+import blogImage from "../../../../../public/assets/blog.jpg";
+import "../../../../../styles/Post.css";
 
 const URL = "https://dummyjson.com/posts";
 
