@@ -11,9 +11,11 @@ export default function LoginLayout({
   const curr = cookieStore.get("Next-Locale");
 
   return (
-    <div className="pages">
-      <ToggleThemeButton />
-      <ToggleLanguage curr={curr?.value} />
+    <div className="pages login-container">
+      <div className="button-row">
+        <ToggleThemeButton />
+        <ToggleLanguage curr={curr?.value} />
+      </div>
       {children}
     </div>
   );

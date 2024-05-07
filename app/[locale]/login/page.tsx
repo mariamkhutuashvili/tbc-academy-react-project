@@ -6,7 +6,7 @@ export default async function Login() {
   const t = await getI18n();
 
   return (
-    <div className="login-container">
+    <div className="login-form">
       <h1>{t("login")}</h1>
       <LoginForm />
     </div>
