@@ -1,19 +1,23 @@
 "use client";
 
-import { useChangeLocale, useCurrentLocale } from "../../locales/client";
+import { useEffect, useState } from "react";
+import { changeLanguage } from "../../scripts/changeLang";
 
-export default function ToggleLanguage() {
-  const currentLocale = useCurrentLocale();
-  const changeLocale = useChangeLocale();
+export default function ToggleLanguage({ curr }: { curr: any }) {
+  const [locale, setLocale] = useState(curr || "en");
 
-  const toggleLanguage = () => {
-    const nextLanguage = currentLocale === "en" ? "ka" : "en";
-    changeLocale(nextLanguage);
+  const toggleLanguage = async () => {
+    await changeLanguage();
+    window.location.reload();
   };
+
+  useEffect(() => {
+    setLocale(curr || "en");
+  }, [curr]);
 
   return (
     <button onClick={toggleLanguage} className="button translate-button">
-      {currentLocale === "en" ? "KA" : "ENG"}
+      {locale === "en" ? "KA" : "ENG"}
     </button>
   );
 }
