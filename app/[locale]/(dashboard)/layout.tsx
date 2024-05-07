@@ -4,7 +4,7 @@ import Footer from "../../../components/footer/Footer";
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }) {
   return (
     <div className="App">
