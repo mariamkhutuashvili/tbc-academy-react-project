@@ -1,5 +1,6 @@
 import Image from "next/image";
 import blogImage from "../../../../../public/assets/blog.jpg";
+import { setStaticParamsLocale } from "next-international/server";
 import "../../../../../styles/Post.css";
 
 const URL = "https://dummyjson.com/posts";
@@ -12,10 +13,6 @@ interface Post {
 
 interface PostsResponse {
   posts: Post[];
-}
-
-interface Params {
-  id: string;
 }
 
 export async function generateStaticParams() {
@@ -33,13 +30,14 @@ const fetchPosts = async (postId: string): Promise<Post> => {
   return postData;
 };
 
-interface PostProps {
-  params: Params;
-}
+export default async function Post({
+  params: { id, locale },
+}: {
+  params: { id: string; locale: string };
+}) {
+  setStaticParamsLocale(locale);
 
-export default async function Post({ params }: PostProps) {
-  const postId = params.id;
-  const postData = await fetchPosts(postId);
+  const postData = await fetchPosts(id);
 
   return (
     <div key={postData.id} className="post-page">
