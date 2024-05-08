@@ -8,7 +8,7 @@ import Sort from "../../../components/sort/Sort";
 import AddToCartButton from "../../../components/UI/AddToCartButton";
 import { useI18n } from "../../../locales/client";
 import Title from "../../../components/UI/Title";
-import "../../../styles/Page.css";
+import "../../../styles/page.css";
 
 interface Product {
   id: number | string;

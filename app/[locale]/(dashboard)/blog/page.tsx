@@ -1,7 +1,7 @@
 import Article from "../../../../components/article/Article";
 import { getI18n } from "../../../../locales/server";
 import Title from "../../../../components/UI/Title";
-import "../../../../styles/blog.css";
+import "../../../../styles/Blog.css";
 
 interface Post {
   id: number;
