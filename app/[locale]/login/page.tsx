@@ -1,14 +1,12 @@
-"use client";
-
-import { useI18n } from "../../../locales/client";
 import LoginForm from "../../../components/loginForm/LoginForm";
+import { getI18n } from "../../../locales/server";
 import "../../../styles/Login.css";
 
-export default function Login() {
-  const t = useI18n();
+export default async function Login() {
+  const t = await getI18n();
 
   return (
-    <div className="login-container">
+    <div className="login-form">
       <h1>{t("login")}</h1>
       <LoginForm />
     </div>

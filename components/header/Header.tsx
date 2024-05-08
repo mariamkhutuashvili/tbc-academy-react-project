@@ -4,10 +4,14 @@ import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
 import LogoutButton from "../UI/LogoutButton";
 import { getI18n } from "../../locales/server";
+import { cookies } from "next/headers";
 import "./Header.css";
 
 export default async function Header() {
   const t = await getI18n();
+
+  const cookieStore = cookies();
+  const curr = cookieStore.get("Next-Locale");
 
   return (
     <header className="header">
@@ -32,7 +36,7 @@ export default async function Header() {
       </nav>
       <div className="right-section">
         <ToggleThemeButton />
-        <ToggleLanguage />
+        <ToggleLanguage curr={curr?.value} />
         <Link href="/profile" className="profile-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"

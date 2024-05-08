@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+import { setStaticParamsLocale } from "next-international/server";
 import "../../../../../styles/Product.css";
 
 const URL = "https://dummyjson.com/products";
@@ -33,9 +34,13 @@ const fetchProducts = async (productId: string): Promise<Product> => {
   return data;
 };
 
-export default async function Product({ params }: { params: { id: string } }) {
-  const productId = params.id;
-  const productData = await fetchProducts(productId);
+export default async function Product({
+  params: { id, locale },
+}: {
+  params: { id: string; locale: string };
+}) {
+  setStaticParamsLocale(locale);
+  const productData = await fetchProducts(id);
 
   return (
     <div key={productData.id} className="product-page">
