@@ -1,27 +1,25 @@
-import { BASE_URL } from "../constants";
-
 export async function getUsers() {
-    const response = await fetch(BASE_URL + '/api/get-users');
+    const response = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/get-users');
     const { users } = await response.json();
     return users?.rows;
   }
 
 export async function createUser(name: string, email: string,age:number) {
-    return await fetch(BASE_URL + '/api/create-user', {
+    return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/create-user', {
       method: 'POST',
       body: JSON.stringify({ name, email,age }),
     });
   }
 
 export async function deleteUserById(id:number){
-    return await fetch(`${BASE_URL}/api/delete-user/${id}`,{
+    return await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/delete-user/${id}`,{
         method:"DELETE"
     })
 }
 
 export async function updateUserById(id: number,  name: string, email: string, age: number) {
     try {
-        const response = await fetch(`${BASE_URL}/api/update-user/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/update-user/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
