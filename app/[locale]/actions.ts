@@ -31,3 +31,32 @@
 //   cookieStore.delete(AUTH_COOKIE_KEY);
 //   redirect("/login");
 // }
+
+"use server"
+
+import { revalidatePath } from "next/cache";
+import { deleteUserById, createUser, updateUserById } from "../api";
+
+interface UserData {
+    name: string;
+    email: string;
+    age: number;
+  }
+
+export async function createUserAction(userData: UserData) {
+  const {name,email,age} = userData
+  revalidatePath("/admin")
+   createUser(name,email,age)
+}
+
+export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
+  await deleteUserById(id);
+  revalidatePath("/admin");
+};
+
+export async function updateUserAction(id:number,userData:UserData){
+  const {name,email,age} = userData
+  revalidatePath("/admin")
+  updateUserById(id,name,email,age)
+
+}
