@@ -60,4 +60,11 @@ export default {
   username: "Username",
   password: "Password",
   login: "Login",
+
+  // ADMIN PAGE
+  admin: "admin",
+  users: "Users",
+  actions: "Actions",
+  age: "Age",
+  addUser: "Add User",
 } as const;

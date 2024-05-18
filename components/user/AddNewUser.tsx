@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "../../locales/client";
 import { createUserAction } from "../../app/[locale]/actions";
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
@@ -12,6 +13,7 @@ interface UserData {
 }
 
 export default function AddNewUser() {
+  const t = useI18n();
   const [open, setOpen] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -38,88 +40,61 @@ export default function AddNewUser() {
     router.refresh();
   };
 
+ 
   return (
     <>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="button add-user-button"
         onClick={handleOpen}
       >
-        Add New User
+       {t("addUser")}
       </button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className="flex items-center justify-center"
+        className="modal-center"
       >
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="modal-form"
         >
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Name
-            </label>
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">{t("name")}</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="name"
               type="text"
-              placeholder="Name"
+              placeholder={t("name")}
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="form-input"
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">{t("email")}</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="text"
-              placeholder="Email"
+              placeholder={t("email")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="form-input"
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="age"
-            >
-              Age
-            </label>
+          <div className="form-group">
+            <label htmlFor="age" className="form-label">{t("age")}</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="age"
               type="number"
-              placeholder="Age"
+              placeholder={t("age")}
               value={age}
               onChange={(e) => setAge(parseInt(e.target.value))}
+              className="form-input"
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="isAdmin"
-            >
-              Role
-            </label>
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Submit
-            </button>
+          <div className="form-actions">
+          <button type="submit" className="button submit-button">{t("save")}</button>
           </div>
         </form>
       </Modal>
