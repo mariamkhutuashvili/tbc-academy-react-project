@@ -22,6 +22,7 @@ export default async function Blog() {
   return (
     <div className="blog-container">
       <div className="blog-articles">
+      <Title titleName={t("blog")} />
         {postData.map((post) => (
           <Article
             key={post.id}

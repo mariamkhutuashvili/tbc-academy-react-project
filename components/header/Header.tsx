@@ -33,6 +33,9 @@ export default async function Header() {
         <Link href="/contact" className="nav-link">
           {t("contact")}
         </Link>
+        <Link href="/admin" className="nav-link">
+          {t("admin")}
+        </Link>
       </nav>
       <div className="right-section">
         <ToggleThemeButton />

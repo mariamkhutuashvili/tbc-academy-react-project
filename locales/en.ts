@@ -4,7 +4,7 @@ export default {
   about: "About",
   blog: "Blog",
   contact: "Contact",
-  logOut: "Log Out",
+  logOut: "LOG OUT",
   theme: "Theme",
   light: "Light",
   dark: "Dark",
@@ -60,4 +60,11 @@ export default {
   username: "Username",
   password: "Password",
   login: "Login",
+
+  // ADMIN PAGE
+  admin: "admin",
+  users: "Users",
+  actions: "Actions",
+  age: "Age",
+  addUser: "Add User",
 } as const;

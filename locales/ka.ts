@@ -60,4 +60,11 @@ export default {
   username: "მომხმარებელი",
   password: "პაროლი",
   login: "შესვლა",
+
+  // ADMIN PAGE
+  admin: "ადმინისტრატორი",
+  users: "მომხმარებლები",
+  actions: "კონტროლი",
+  age: "ასაკი",
+  addUser: "მომხმარებლის დამატება",
 } as const;

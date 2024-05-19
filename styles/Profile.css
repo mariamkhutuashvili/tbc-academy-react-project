@@ -10,6 +10,12 @@
   gap: 30px;
 }
 
+.profile-container h1 {
+  margin: 20px 0 20px 0;
+  color: purple;
+  font-size: 3vw;
+}
+
 input[type="password"],
 .save-button {
   width: calc(100% - 20px);

@@ -6,9 +6,13 @@
 .blog-articles {
   flex: 3;
 }
+.blog-articles h1 {
+  margin: 20px 0 20px 0;
+  color: purple;
+  font-size: 3vw;
+}
 
 .blog-archives {
   flex: 1;
-  margin: 50px;
+  margin: 0 50px;
 }
-

@@ -1,7 +1,9 @@
 import { getUsers } from "../../../api";
-import AddNewUser from "../../../../components/UI/AddNewUser";
-import DeleteUser from "../../../../components/UI/DeleteUser";
-import EditUser from "../../../../components/UI/EditUser";
+import Title from "../../../../components/UI/Title";
+import { getI18n } from "../../../../locales/server";
+import AddNewUser from "../../../../components/user/AddNewUser";
+import DeleteUser from "../../../../components/user/DeleteUser";
+import EditUser from "../../../../components/user/EditUser";
 import "../../../../styles/Admin.css";
 
 interface User {
@@ -12,28 +14,33 @@ interface User {
 }
 
 export default async function Admin() {
+  const t = await getI18n();
+
   const users = await getUsers();
 
   return (
     <div className="admin-container">
-      <AddNewUser />
+      <div className="admin-header">
+      <Title titleName={t("users")} />
+        <AddNewUser />
+      </div>
       <div className="admin-table-container">
         <table className="admin-table">
           <thead>
             <tr>
-              <th className="admin-table-cell">Name</th>
-              <th className="admin-table-cell">Email</th>
-              <th className="admin-table-cell">Age</th>
-              <th className="admin-table-cell">Actions</th>
+              <th>{t("name")}</th>
+              <th>{t("email")}</th>
+              <th>{t("age")}</th>
+              <th>{t("actions")}</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user: User) => (
-              <tr key={user.id} className="admin-table-row">
-                <td className="admin-table-cell-bordered">{user.name}</td>
-                <td className="admin-table-cell-bordered">{user.email}</td>
-                <td className="admin-table-cell-bordered">{user.age}</td>
-                <td className="admin-table-cell-bordered admin-actions-cell">
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.age}</td>
+                <td className="admin-table-cell-actions">
                   <div className="admin-actions-container">
                     <EditUser userData={user} id={user.id} />
                     <DeleteUser id={user.id} />
