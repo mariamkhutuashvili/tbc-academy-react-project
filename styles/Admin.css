@@ -12,13 +12,22 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.admin-header h1 {
+  margin: 20px 0 20px 0;
+  color: purple;
+  font-size: 3vw;
 }
 
 .admin-table-container {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(203, 147, 214, 0.2);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   overflow: hidden;
+  margin-top: 1rem;
 }
 
 .admin-table {
@@ -28,7 +37,7 @@
 
 .admin-table th, .admin-table td {
   text-align: left;
-  padding: 22px 26px;
+  padding: 15px 20px;
 }
 
 .admin-table th {
@@ -36,8 +45,12 @@
   color: white;
 }
 
-.admin-table-row:nth-child(even) {
-  background-color: #f3f3f3;
+.admin-table tr:nth-child(even) {
+  background-color: rgba(128, 0, 128, 0.3);
+}
+
+.admin-table tr:hover {
+  background-color: #e1bee7;
 }
 
 .admin-table-cell-actions {
@@ -91,23 +104,25 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .edit-icon:hover {
   transform: scale(1.1);
+  color: #7b1fa2;
 }
-
 
 .delete-icon {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .delete-icon:hover {
   transform: scale(1.1);
+  color: #d32f2f;
 }
 
 .delete-icon svg {

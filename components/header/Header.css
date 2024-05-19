@@ -42,3 +42,21 @@
   color: purple;
   text-decoration: underline;
 }
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}

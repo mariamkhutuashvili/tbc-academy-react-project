@@ -4,7 +4,7 @@ export default {
   about: "About",
   blog: "Blog",
   contact: "Contact",
-  logOut: "Log Out",
+  logOut: "LOG OUT",
   theme: "Theme",
   light: "Light",
   dark: "Dark",
