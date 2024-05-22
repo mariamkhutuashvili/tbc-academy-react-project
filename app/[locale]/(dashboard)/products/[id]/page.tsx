@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+// import AddToCartButton from "../../../../../components/UI/AddToCartButton";
 import { setStaticParamsLocale } from "next-international/server";
 import "../../../../../styles/Product.css";
 
@@ -56,7 +56,7 @@ export default async function Product({
       <h4>Category: {productData.category}</h4>
       <p>{productData.description}</p>
       <p className="product-price">${productData.price}</p>
-      <AddToCartButton />
+      {/* <AddToCartButton /> */}
     </div>
   );
 }

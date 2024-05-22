@@ -60,3 +60,7 @@
   height: 24px;
   stroke: currentColor;
 }
+
+.right-section svg {
+  margin-right: 10px;
+}
