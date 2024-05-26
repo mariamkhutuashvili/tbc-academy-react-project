@@ -14,11 +14,11 @@ export async function GET(
       throw new Error("User ID is required");
     }
 
-    const carts = await sql`SELECT * FROM cart WHERE user_id = ${Number(id)}`;
+    const cart = await sql`SELECT * FROM cart WHERE user_id = ${Number(id)}`;
 
-    return NextResponse.json({ carts }, { status: 200 });
+    return NextResponse.json({ cart }, { status: 200 });
   } catch (error: any) {
-    console.error("Error fetching carts:", error.message);
+    console.error("Error fetching cart:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
