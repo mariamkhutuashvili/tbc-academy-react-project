@@ -2,16 +2,18 @@
 // import { useEffect, useReducer, useState } from "react";
 // import { useLocalStorage } from "../../../useLocalStorageHook";
 // import { reducer } from "../../../useReducerHook";
-import "../../../../styles/Cart.css";
+import ChangeQuantityButton from "../../../../components/UI/ChangeQuantityButton";
+import ClearCart from "../../../../components/UI/ClearCart";
 import { getProducts, getUserCart } from "../../../api";
+import "../../../../styles/Cart.css";
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-  price: number;
-}
+// interface Product {
+//   id: number;
+//   title: string;
+//   description: string;
+//   thumbnail: string;
+//   price: number;
+// }
 
 export default async function Cart() {
   // const [isClient, setIsClient] = useState(false);
@@ -32,7 +34,7 @@ export default async function Cart() {
       quantity: cartProductMap.get(product.id.toString()),
     }));
 
-  // console.log(filteredProducts);
+  console.log(filteredProducts);
   // useEffect(() => {
   //   setCachedValue(SelectedProducts);
   // }, [SelectedProducts, setCachedValue]);
@@ -53,62 +55,28 @@ export default async function Cart() {
   // };
 
   return (
-    // <div className="cart-container">
-    //   <button
-    //     onClick={() => handleProductRemove("RESET")}
-    //     className="button clear-cart-button"
-    //   >
-    //     Clear Cart
-    //   </button>
-    //   <div>
-    //     {isClient &&
-    //       cardsData.map((item: any) => (
-    //         <div key={item.id} className="product-card">
-    //           <div className="product-image">
-    //             <Image
-    //               src={item.selectedCard.thumbnail}
-    //               width={300}
-    //               height={300}
-    //               alt={item.selectedCard.title}
-    //             />
-    //           </div>
-    //           <div className="product-details">
-    //             <h2>{item.selectedCard.title}</h2>
-    //             <p>{item.selectedCard.brand}</p>
-    //             <p>{item.selectedCard.description}</p>
-    //             <p className="prod-price">${item.selectedCard.price}</p>
-    //           </div>
-    //           <div className="quantity-control">
-    //             {item.count > 1 ? (
-    //               <button
-    //                 className="decrease-button"
-    //                 onClick={() =>
-    //                   changeQuantity("DECREMENT", item.selectedCard)
-    //                 }
-    //               >
-    //                 -
-    //               </button>
-    //             ) : (
-    //               <button disabled>-</button>
-    //             )}
-    //             <span>{item.count}</span>
-    //             <button
-    //               className="increase-button"
-    //               onClick={() => changeQuantity("INCREMENT", item.selectedCard)}
-    //             >
-    //               +
-    //             </button>
-    //             <button
-    //               className="remove-button"
-    //               onClick={() => changeQuantity("REMOVE", item.selectedCard)}
-    //             >
-    //               Remove
-    //             </button>
-    //           </div>
-    //         </div>
-    //       ))}
-    //   </div>
-    // </div>
-    <div>ss</div>
+    <div className="cart-container">
+      <ClearCart />
+      <div className="cart-items">
+        {filteredProducts.map((item: any) => (
+          <div key={item.id} className="product-card">
+            {/* <div className="product-image">
+                <Image
+                  src={item.selectedCard.thumbnail}
+                  width={300}
+                  height={300}
+                  alt={item.selectedCard.title}
+                />
+              </div> */}
+            <div className="product-details">
+              <h2>{item.title}</h2>
+              <p>{item.brand}</p>
+              <p className="prod-price">${item.price}</p>
+            </div>
+            <ChangeQuantityButton id={item.id} quantity={item.quantity} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
