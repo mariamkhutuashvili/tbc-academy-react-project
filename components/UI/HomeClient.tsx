@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { handleAddToCart } from "../../app/[locale]/actions";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
 import AddToCartButton from "./AddToCartButton";
@@ -85,12 +84,7 @@ export default function Products({ product }: { product: HomeClientProps }) {
               <p>{p.description}</p>
               <div className="price-container">
                 <p className="product-price">${p.price}</p>
-                <AddToCartButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToCart(p.id.toString());
-                  }}
-                />
+                <AddToCartButton id={p.id.toString()} />
               </div>
             </div>
           </div>
