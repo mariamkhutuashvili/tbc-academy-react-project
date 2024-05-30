@@ -43,6 +43,21 @@
   text-decoration: underline;
 }
 
+.cart-link {
+  position: relative;
+}
+
+.cart-quantity {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  background: purple;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
 .logout-button {
   display: flex;
   align-items: center;
@@ -55,12 +70,13 @@
   border-radius: 4px;
 }
 
+.right-section svg {
+  margin-right: 10px;
+}
+
 .logout-button svg {
   width: 24px;
   height: 24px;
   stroke: currentColor;
-}
-
-.right-section svg {
-  margin-right: 10px;
+  margin-right: 0;
 }

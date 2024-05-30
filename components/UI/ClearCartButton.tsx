@@ -2,7 +2,7 @@
 
 import { handleClearCart } from "../../app/[locale]/actions";
 
-export default function clearCart() {
+export default function ClearCartButton() {
   return (
     <button
       onClick={() => handleClearCart()}

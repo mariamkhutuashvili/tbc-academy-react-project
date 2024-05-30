@@ -3,7 +3,7 @@
 // import { useLocalStorage } from "../../../useLocalStorageHook";
 // import { reducer } from "../../../useReducerHook";
 import ChangeQuantityButton from "../../../../components/UI/ChangeQuantityButton";
-import ClearCart from "../../../../components/UI/ClearCart";
+import ClearCartButton from "../../../../components/UI/ClearCartButton";
 import { getProducts, getUserCart } from "../../../api";
 import "../../../../styles/Cart.css";
 
@@ -56,7 +56,7 @@ export default async function Cart() {
 
   return (
     <div className="cart-container">
-      <ClearCart />
+      <ClearCartButton />
       <div className="cart-items">
         {filteredProducts.map((item: any) => (
           <div key={item.id} className="product-card">
