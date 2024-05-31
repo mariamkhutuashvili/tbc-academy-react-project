@@ -1,3 +1,9 @@
+.cart h1 {
+  margin: 20px 0 20px 0;
+  color: purple;
+  font-size: 3vw;
+}
+
 .cart-container {
   margin: 20px;
   padding: 20px;
@@ -53,6 +59,7 @@
 
 .quantity-control button:hover {
   background-color: #ddd;
+  transform: none;
 }
 
 .quantity-control button:disabled {

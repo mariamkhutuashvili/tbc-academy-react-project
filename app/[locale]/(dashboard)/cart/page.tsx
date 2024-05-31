@@ -2,6 +2,8 @@
 // import { useEffect, useReducer, useState } from "react";
 // import { useLocalStorage } from "../../../useLocalStorageHook";
 // import { reducer } from "../../../useReducerHook";
+import Title from "../../../../components/UI/Title";
+import { getI18n } from "../../../../locales/server";
 import ChangeQuantityButton from "../../../../components/UI/ChangeQuantityButton";
 import ClearCartButton from "../../../../components/UI/ClearCartButton";
 import { getProducts, getUserCart } from "../../../api";
@@ -16,6 +18,7 @@ import "../../../../styles/Cart.css";
 // }
 
 export default async function Cart() {
+  const t = await getI18n();
   // const [isClient, setIsClient] = useState(false);
   // const [cardsData, setCachedValue] = useLocalStorage("selectedProducts", []);
   // const [SelectedProducts, dispatch] = useReducer(reducer, cardsData);
@@ -55,12 +58,14 @@ export default async function Cart() {
   // };
 
   return (
-    <div className="cart-container">
-      <ClearCartButton />
-      <div className="cart-items">
-        {filteredProducts.map((item: any) => (
-          <div key={item.id} className="product-card">
-            {/* <div className="product-image">
+    <div className="cart">
+      <Title titleName={t("cart")} />
+      <div className="cart-container">
+        <ClearCartButton />
+        <div className="cart-items">
+          {filteredProducts.map((item: any) => (
+            <div key={item.id} className="product-card">
+              {/* <div className="product-image">
                 <Image
                   src={item.selectedCard.thumbnail}
                   width={300}
@@ -68,14 +73,15 @@ export default async function Cart() {
                   alt={item.selectedCard.title}
                 />
               </div> */}
-            <div className="product-details">
-              <h2>{item.title}</h2>
-              <p>{item.brand}</p>
-              <p className="prod-price">${item.price}</p>
+              <div className="product-details">
+                <h2>{item.title}</h2>
+                <p>{item.brand}</p>
+                <p className="prod-price">${item.price}</p>
+              </div>
+              <ChangeQuantityButton id={item.id} quantity={item.quantity} />
             </div>
-            <ChangeQuantityButton id={item.id} quantity={item.quantity} />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -26,7 +26,6 @@ export default {
   search: "ძიება",
   sortByPrice: "ფასით დალაგება",
   reset: "დალაგების გაუქმება",
-  addToCart: "კალათაში დამატება",
 
   //ABOUT PAGE
   headline: "შენი მოგზაურობა იწყება აქ.",
@@ -67,4 +66,10 @@ export default {
   actions: "კონტროლი",
   age: "ასაკი",
   addUser: "მომხმარებლის დამატება",
+
+  //CART PAGE
+  cart: "კალათა",
+  addToCart: "კალათაში დამატება",
+  clearCart: "კალათის გასუფთავება",
+  remove: "წაშლა",
 } as const;
