@@ -26,7 +26,6 @@ export default {
   search: "Search",
   sortByPrice: "Sort by Price",
   reset: "Reset",
-  addToCart: "Add to Cart",
 
   //ABOUT PAGE
   headline: "Your Story Starts With Us.",
@@ -67,4 +66,10 @@ export default {
   actions: "Actions",
   age: "Age",
   addUser: "Add User",
+
+  //CART PAGE
+  cart: "Cart",
+  addToCart: "Add to Cart",
+  clearCart: "Clear Cart",
+  remove: "Remove",
 } as const;
