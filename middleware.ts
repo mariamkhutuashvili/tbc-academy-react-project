@@ -7,9 +7,7 @@ export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (
     !appSessionCookie &&
-    (pathname.startsWith("/profile") ||
-      pathname.startsWith("/admin") ||
-      pathname.startsWith("/cart"))
+    (pathname.startsWith("/profile") || pathname.startsWith("/admin"))
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
