@@ -1,12 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useI18n } from "../../../../locales/client";
+import Image from "next/image";
 import Title from "../../../../components/UI/Title";
+import { useI18n } from "../../../../locales/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import "../../../../styles/Profile.css";
 
 export default function Profile() {
   const t = useI18n();
+
+  const { user } = useUser();
+  console.log(user);
+
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
@@ -26,11 +32,20 @@ export default function Profile() {
     <div className="profile-container">
       <Title titleName={t("userInformation")} />
       <div className="user-info">
+        <Image
+          src={user?.picture ? user?.picture : ""}
+          alt="Profile picture"
+          width={200}
+          height={200}
+          priority
+        />
         <p>
-          <strong>{t("name")}:</strong> Mariam Khutuashvili
+          <strong>{t("name")}:</strong>
+          {user?.nickname}
         </p>
         <p>
-          <strong>{t("email")}:</strong> khutuashvili.mariam@gmail.com
+          <strong>{t("email")}:</strong>
+          {user?.email}
         </p>
       </div>
       <div className="password-update">
