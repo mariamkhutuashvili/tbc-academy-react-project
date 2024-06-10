@@ -58,7 +58,8 @@
   font-size: 12px;
 }
 
-.logout-button {
+.logout-button,
+.login-button {
   display: flex;
   align-items: center;
   justify-content: center;

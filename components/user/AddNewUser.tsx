@@ -9,7 +9,6 @@ import { useState } from "react";
 interface UserData {
   name: string;
   email: string;
-  age: number;
 }
 
 export default function AddNewUser() {
@@ -17,7 +16,6 @@ export default function AddNewUser() {
   const [open, setOpen] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
   const router = useRouter();
 
   const handleOpen = () => setOpen(true);
@@ -28,7 +26,6 @@ export default function AddNewUser() {
     const userData: UserData = {
       name,
       email,
-      age
     };
 
     try {
@@ -40,14 +37,10 @@ export default function AddNewUser() {
     router.refresh();
   };
 
- 
   return (
     <>
-      <button
-        className="button add-user-button"
-        onClick={handleOpen}
-      >
-       {t("addUser")}
+      <button className="button add-user-button" onClick={handleOpen}>
+        {t("addUser")}
       </button>
       <Modal
         open={open}
@@ -56,12 +49,11 @@ export default function AddNewUser() {
         aria-describedby="modal-modal-description"
         className="modal-center"
       >
-        <form
-          onSubmit={handleSubmit}
-          className="modal-form"
-        >
+        <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
-            <label htmlFor="name" className="form-label">{t("name")}</label>
+            <label htmlFor="name" className="form-label">
+              {t("name")}
+            </label>
             <input
               id="name"
               type="text"
@@ -72,7 +64,9 @@ export default function AddNewUser() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email" className="form-label">{t("email")}</label>
+            <label htmlFor="email" className="form-label">
+              {t("email")}
+            </label>
             <input
               id="email"
               type="text"
@@ -82,19 +76,10 @@ export default function AddNewUser() {
               className="form-input"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="age" className="form-label">{t("age")}</label>
-            <input
-              id="age"
-              type="number"
-              placeholder={t("age")}
-              value={age}
-              onChange={(e) => setAge(parseInt(e.target.value))}
-              className="form-input"
-            />
-          </div>
           <div className="form-actions">
-          <button type="submit" className="button submit-button">{t("save")}</button>
+            <button type="submit" className="button submit-button">
+              {t("save")}
+            </button>
           </div>
         </form>
       </Modal>

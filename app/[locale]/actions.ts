@@ -32,21 +32,20 @@
 //   redirect("/login");
 // }
 
-"use server"
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { deleteUserById, createUser, updateUserById } from "../api";
 
 interface UserData {
-    name: string;
-    email: string;
-    age: number;
-  }
+  name: string;
+  email: string;
+}
 
 export async function createUserAction(userData: UserData) {
-  const {name,email,age} = userData
-  revalidatePath("/admin")
-   createUser(name,email,age)
+  const { name, email } = userData;
+  revalidatePath("/admin");
+  createUser(name, email);
 }
 
 export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
@@ -54,11 +53,10 @@ export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
   revalidatePath("/admin");
 };
 
-export async function updateUserAction(id:number,userData:UserData){
-  const {name,email,age} = userData
-  revalidatePath("/admin")
-  updateUserById(id,name,email,age)
-
+export async function updateUserAction(id: number, userData: UserData) {
+  const { name, email } = userData;
+  revalidatePath("/admin");
+  updateUserById(id, name, email);
 }
 
 export const handleAddToCart = async (productId: string) => {

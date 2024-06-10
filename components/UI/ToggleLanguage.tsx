@@ -17,7 +17,7 @@ export default function ToggleLanguage({ curr }: { curr: any }) {
 
   return (
     <button onClick={toggleLanguage} className="button translate-button">
-      {locale === "en" ? "KA" : "ENG"}
+      {locale === "en" ? "KA" : "EN"}
     </button>
   );
 }

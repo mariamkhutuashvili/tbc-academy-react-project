@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createI18nMiddleware } from "next-international/middleware";
-import { AUTH_COOKIE_KEY } from "./constants";
 
 export default async function middleware(request: NextRequest) {
   const cookieStore = request.cookies;
-  const cookie = cookieStore.get(AUTH_COOKIE_KEY);
-
-  console.log("cookie:", cookie);
-
+  const appSessionCookie = cookieStore.get("appSession");
   const { pathname } = request.nextUrl;
-
-  if (!cookie && !pathname.startsWith(`/login`)) {
-    return NextResponse.redirect(new URL(`/login`, request.url));
+  if (
+    !appSessionCookie &&
+    (pathname.startsWith("/profile") ||
+      pathname.startsWith("/admin") ||
+      pathname.startsWith("/cart"))
+  ) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (cookie && pathname.startsWith(`/login`)) {
-    return NextResponse.redirect(new URL(`/`, request.url));
+  if (appSessionCookie && pathname.startsWith("/login")) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   const I18nMiddleware = createI18nMiddleware({

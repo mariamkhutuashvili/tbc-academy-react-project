@@ -64,7 +64,6 @@ export default {
   admin: "ადმინისტრატორი",
   users: "მომხმარებლები",
   actions: "კონტროლი",
-  age: "ასაკი",
   addUser: "მომხმარებლის დამატება",
 
   //CART PAGE

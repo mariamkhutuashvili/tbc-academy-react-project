@@ -64,7 +64,6 @@ export default {
   admin: "admin",
   users: "Users",
   actions: "Actions",
-  age: "Age",
   addUser: "Add User",
 
   //CART PAGE

@@ -1,27 +1,41 @@
 import { sql } from "@vercel/postgres";
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
-export async function POST(request: Request) {
-  const { name, email, age } = await request.json();
-
+export async function GET(_: NextRequest) {
   try {
-    if (!name || !email || !age)
-      throw new Error("name, email and age are required");
+    const session = await getSession();
 
-    // Insert user into the users table
-    await sql`INSERT INTO users (Name, Email, Age) VALUES (${name}, ${email}, ${age});`;
+    if (session?.user) {
+      const { sub, name, email } = session.user;
 
-    const users = await sql`SELECT id FROM users ORDER BY id DESC LIMIT 1;`;
-    const id = users.rows[0].id;
+      const user = await sql`SELECT * FROM users WHERE sub = ${sub}`;
 
-    await sql`
-      INSERT INTO cart (user_id, products) 
-      VALUES (${id}, '{}');
-    `;
+      if (!user.rows.length) {
+        await sql`
+          INSERT INTO users (sub, name, email)
+          VALUES (${sub}, ${name}, ${email} );
+        `;
+      }
+
+      const users = await sql`SELECT id FROM users WHERE sub = ${sub} LIMIT 1;`;
+      const userId = users.rows[0].id;
+
+      const cartCheck = await sql`SELECT * FROM cart WHERE user_id = ${userId}`;
+      if (!cartCheck.rows.length) {
+        await sql`
+          INSERT INTO cart (user_id, products)
+          VALUES (${userId}, '{}');
+        `;
+      }
+    } else {
+      return redirect("/api/auth/logout");
+    }
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    console.error(error);
+    return redirect("/api/auth/logout");
   }
-  const users = await sql`SELECT * FROM users;`;
 
-  return NextResponse.json({ users }, { status: 200 });
+  return redirect("/");
 }
