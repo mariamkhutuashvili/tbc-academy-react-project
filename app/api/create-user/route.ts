@@ -8,14 +8,14 @@ export async function GET(_: NextRequest) {
     const session = await getSession();
 
     if (session?.user) {
-      const { sub, name, email } = session.user;
+      const { sub, name, email, picture } = session.user;
 
       const user = await sql`SELECT * FROM users WHERE sub = ${sub}`;
 
       if (!user.rows.length) {
         await sql`
-          INSERT INTO users (sub, name, email)
-          VALUES (${sub}, ${name}, ${email} );
+          INSERT INTO users (sub, name, email, picture)
+          VALUES (${sub}, ${name}, ${email}, ${picture} );
         `;
       }
 

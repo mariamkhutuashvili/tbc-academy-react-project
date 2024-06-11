@@ -1,3 +1,5 @@
+import { getSession } from "@auth0/nextjs-auth0";
+
 export async function getUsers() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-users"
@@ -76,4 +78,19 @@ export async function getUserCart(userId: number) {
   const [cart] = carts.cart.rows;
 
   return cart;
+}
+
+export async function getUserPicture() {
+  const session = await getSession();
+  const user = session?.user;
+  const subId = user?.sub;
+  const userPicture = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-user-picture/${subId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const userPictureInfo = await userPicture.json();
+  const imageUrl = userPictureInfo.userPicture.rows[0].picture;
+  return imageUrl;
 }
