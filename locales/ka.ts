@@ -50,6 +50,8 @@ export default {
 
   // PROFILE PAGE
   userInformation: "მომხმარებლის ინფორმაცია",
+  upload: "ატვირთვა",
+  loading: "იტვირთება",
   changePassword: "შეცვალე პაროლი",
   newPassword: "ახალი პაროლი",
   confirmNewPassword: "გაიმეორეთ ახალი პაროლი",

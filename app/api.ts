@@ -94,3 +94,19 @@ export async function getUserPicture() {
   const imageUrl = userPictureInfo.userPicture.rows[0].picture;
   return imageUrl;
 }
+
+export async function uploadUserPicture(url: string, sub: string) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/upload-user-picture`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        blobUrl: url,
+        userSub: sub,
+      }),
+    }
+  );
+}

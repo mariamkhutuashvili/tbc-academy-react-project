@@ -50,6 +50,8 @@ export default {
 
   // PROFILE PAGE
   userInformation: "User Information",
+  upload: "Upload",
+  loading: "Loading",
   changePassword: "Change Password",
   newPassword: "New Password",
   confirmNewPassword: "Confirm New Password",

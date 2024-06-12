@@ -36,7 +36,7 @@ export default async function Profile() {
     <div className="profile-container">
       <Title titleName={t("userInformation")} />
       <div className="user-info">
-        <ProfilePicture userPicture={userPicture} />
+        <ProfilePicture userImage={userPicture} />
         {/* <Image
           src={user?.picture ? user?.picture : ""}
           alt="Profile picture"
@@ -45,11 +45,11 @@ export default async function Profile() {
           priority
         /> */}
         <p>
-          <strong>{t("name")}:</strong>
+          <strong>{t("name")}: </strong>
           {user?.nickname}
         </p>
         <p>
-          <strong>{t("email")}:</strong>
+          <strong>{t("email")}: </strong>
           {user?.email}
         </p>
       </div>
