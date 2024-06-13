@@ -7,10 +7,9 @@ import EditUser from "../../../../components/user/EditUser";
 import "../../../../styles/Admin.css";
 
 interface User {
-  id:number;
-  name:string,
-  age:number,
-  email:string,
+  id: number;
+  name: string;
+  email: string;
 }
 
 export default async function Admin() {
@@ -21,7 +20,7 @@ export default async function Admin() {
   return (
     <div className="admin-container">
       <div className="admin-header">
-      <Title titleName={t("users")} />
+        <Title titleName={t("users")} />
         <AddNewUser />
       </div>
       <div className="admin-table-container">
@@ -30,7 +29,6 @@ export default async function Admin() {
             <tr>
               <th>{t("name")}</th>
               <th>{t("email")}</th>
-              <th>{t("age")}</th>
               <th>{t("actions")}</th>
             </tr>
           </thead>
@@ -39,7 +37,6 @@ export default async function Admin() {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.age}</td>
                 <td className="admin-table-cell-actions">
                   <div className="admin-actions-container">
                     <EditUser userData={user} id={user.id} />

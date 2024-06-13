@@ -50,6 +50,8 @@ export default {
 
   // PROFILE PAGE
   userInformation: "User Information",
+  upload: "Upload",
+  loading: "Loading",
   changePassword: "Change Password",
   newPassword: "New Password",
   confirmNewPassword: "Confirm New Password",
@@ -64,7 +66,6 @@ export default {
   admin: "admin",
   users: "Users",
   actions: "Actions",
-  age: "Age",
   addUser: "Add User",
 
   //CART PAGE
@@ -72,4 +73,6 @@ export default {
   addToCart: "Add to Cart",
   clearCart: "Clear Cart",
   remove: "Remove",
+  totalPrice: "Total Price",
+  backToShop: "Back to Shop",
 } as const;

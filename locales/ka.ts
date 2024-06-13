@@ -50,6 +50,8 @@ export default {
 
   // PROFILE PAGE
   userInformation: "მომხმარებლის ინფორმაცია",
+  upload: "ატვირთვა",
+  loading: "იტვირთება",
   changePassword: "შეცვალე პაროლი",
   newPassword: "ახალი პაროლი",
   confirmNewPassword: "გაიმეორეთ ახალი პაროლი",
@@ -64,7 +66,6 @@ export default {
   admin: "ადმინისტრატორი",
   users: "მომხმარებლები",
   actions: "კონტროლი",
-  age: "ასაკი",
   addUser: "მომხმარებლის დამატება",
 
   //CART PAGE
@@ -72,4 +73,6 @@ export default {
   addToCart: "კალათაში დამატება",
   clearCart: "კალათის გასუფთავება",
   remove: "წაშლა",
+  totalPrice: "სულ ფასი",
+  backToShop: "მაღაზიაში დაბრუნება",
 } as const;

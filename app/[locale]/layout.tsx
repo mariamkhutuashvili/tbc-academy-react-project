@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../locales/client";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 
 export const metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
+        <I18nProviderClient locale={locale}>
+          <UserProvider>{children}</UserProvider>
+        </I18nProviderClient>
       </body>
     </html>
   );

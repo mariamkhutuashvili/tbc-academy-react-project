@@ -32,21 +32,20 @@
 //   redirect("/login");
 // }
 
-"use server"
+"use server";
 
 import { revalidatePath } from "next/cache";
-import { deleteUserById, createUser, updateUserById } from "../api";
+import { deleteUserById, createUser, updateUserById, getUserId } from "../api";
 
 interface UserData {
-    name: string;
-    email: string;
-    age: number;
-  }
+  name: string;
+  email: string;
+}
 
 export async function createUserAction(userData: UserData) {
-  const {name,email,age} = userData
-  revalidatePath("/admin")
-   createUser(name,email,age)
+  const { name, email } = userData;
+  revalidatePath("/admin");
+  createUser(name, email);
 }
 
 export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
@@ -54,15 +53,17 @@ export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
   revalidatePath("/admin");
 };
 
-export async function updateUserAction(id:number,userData:UserData){
-  const {name,email,age} = userData
-  revalidatePath("/admin")
-  updateUserById(id,name,email,age)
-
+export async function updateUserAction(id: number, userData: UserData) {
+  const { name, email } = userData;
+  revalidatePath("/admin");
+  updateUserById(id, name, email);
 }
 
 export const handleAddToCart = async (productId: string) => {
   "use server";
+
+  const userId = await getUserId();
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/add-to-cart`,
@@ -72,7 +73,7 @@ export const handleAddToCart = async (productId: string) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 7,
+          userId: userId,
           productId: productId,
           quantity: 1,
         }),
@@ -89,6 +90,9 @@ export const handleAddToCart = async (productId: string) => {
 
 export const handleDecrement = async (productId: string) => {
   "use server";
+
+  const userId = await getUserId();
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/decrement-product`,
@@ -98,7 +102,7 @@ export const handleDecrement = async (productId: string) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 7,
+          userId: userId,
           productId: productId,
           quantity: 1,
         }),
@@ -117,6 +121,9 @@ export const handleDecrement = async (productId: string) => {
 
 export const handleRemoveProductFromCart = async (productId: string) => {
   "use server";
+
+  const userId = await getUserId();
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/remove-product`,
@@ -126,7 +133,7 @@ export const handleRemoveProductFromCart = async (productId: string) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 7,
+          userId: userId,
           productId: productId,
         }),
       }
@@ -144,6 +151,9 @@ export const handleRemoveProductFromCart = async (productId: string) => {
 
 export const handleClearCart = async () => {
   "use server";
+
+  const userId = await getUserId();
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/empty-cart`,
@@ -153,7 +163,7 @@ export const handleClearCart = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 7,
+          userId: userId,
         }),
       }
     );

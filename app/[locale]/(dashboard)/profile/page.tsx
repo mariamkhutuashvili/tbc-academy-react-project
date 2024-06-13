@@ -1,36 +1,56 @@
-"use client";
-
-import { useState } from "react";
-import { useI18n } from "../../../../locales/client";
+// import { useState } from "react";
+// import Image from "next/image";
 import Title from "../../../../components/UI/Title";
+import ProfilePicture from "../../../../components/profilePicture/ProfilePicture";
+import { getI18n } from "../../../../locales/server";
+import { getSession } from "@auth0/nextjs-auth0";
+import { getUserPicture } from "../../../api";
 import "../../../../styles/Profile.css";
 
-export default function Profile() {
-  const t = useI18n();
-  const [newPassword, setNewPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+export default async function Profile() {
+  const t = await getI18n();
 
-  const handleSave = () => {
-    if (newPassword !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
+  const session = await getSession();
+  const user = session?.user;
+  console.log(user);
 
-    console.log("New password saved:", newPassword);
+  const userPicture = await getUserPicture();
+  console.log(userPicture);
 
-    setNewPassword("");
-    setConfirmPassword("");
-  };
+  // const [newPassword, setNewPassword] = useState<string>("");
+  // const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  // const handleSave = () => {
+  //   if (newPassword !== confirmPassword) {
+  //     alert("Passwords do not match.");
+  //     return;
+  //   }
+
+  //   console.log("New password saved:", newPassword);
+
+  //   setNewPassword("");
+  //   setConfirmPassword("");
+  // };
 
   return (
     <div className="profile-container">
       <Title titleName={t("userInformation")} />
       <div className="user-info">
+        <ProfilePicture userImage={userPicture} />
+        {/* <Image
+          src={user?.picture ? user?.picture : ""}
+          alt="Profile picture"
+          width={200}
+          height={200}
+          priority
+        /> */}
         <p>
-          <strong>{t("name")}:</strong> Mariam Khutuashvili
+          <strong>{t("name")}: </strong>
+          {user?.nickname}
         </p>
         <p>
-          <strong>{t("email")}:</strong> khutuashvili.mariam@gmail.com
+          <strong>{t("email")}: </strong>
+          {user?.email}
         </p>
       </div>
       <div className="password-update">
@@ -38,19 +58,19 @@ export default function Profile() {
         <input
           type="password"
           placeholder={t("newPassword")}
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
+          // value={newPassword}
+          // onChange={(e) => setNewPassword(e.target.value)}
         />
         <input
           type="password"
           placeholder={t("confirmNewPassword")}
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          // value={confirmPassword}
+          // onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <button
           type="button"
           className="button save-button"
-          onClick={handleSave}
+          // onClick={handleSave}
         >
           {t("save")}
         </button>

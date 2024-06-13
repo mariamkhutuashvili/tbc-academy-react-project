@@ -10,14 +10,16 @@ import { useI18n } from "../../locales/client";
 export default function ChangeQuantityButton({
   id,
   quantity,
+  price,
 }: {
   id: string;
   quantity: number;
+  price: number;
 }) {
   const t = useI18n();
 
   return (
-    <div className="quantity-control">
+    <div className="cart-control">
       <button
         className="button decrease-button"
         onClick={() => handleDecrement(id)}
@@ -37,6 +39,7 @@ export default function ChangeQuantityButton({
       >
         {t("remove")}
       </button>
+      <span>${price * quantity}</span>
     </div>
   );
 }

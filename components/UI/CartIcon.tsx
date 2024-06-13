@@ -1,13 +1,22 @@
 import Link from "next/link";
 import { getUserCart } from "../../app/api";
 
+export interface Cart {
+  id: number;
+  user_id: number;
+  products: {
+    [key: string]: number;
+  };
+  added_on: string;
+}
+
 export default async function CartIcon() {
-  const cart = await getUserCart(7);
-  const productValues = Object.values(cart.products) as number[];
-  const totalQuantity = productValues.reduce(
-    (total, quantity) => total + quantity,
-    0
-  );
+  const cart: Cart = await getUserCart();
+
+  const num = cart ? Object.values(cart.products) : [];
+  const totalQuantity = num.reduce((total: number, quantity: number) => {
+    return total + quantity;
+  }, 0);
 
   return (
     <Link href="/cart" className="cart-link">
