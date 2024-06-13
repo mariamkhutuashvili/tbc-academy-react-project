@@ -4,10 +4,11 @@
 // import { reducer } from "../../../useReducerHook";
 import Title from "../../../../components/UI/Title";
 import { getI18n } from "../../../../locales/server";
-import ChangeQuantityButton from "../../../../components/UI/ChangeQuantityButton";
+import ChangeQuantityButton from "../../../../components/UI/CartItemControl";
 import ClearCartButton from "../../../../components/UI/ClearCartButton";
 import { getProducts, getUserCart } from "../../../api";
 import "../../../../styles/Cart.css";
+import Link from "next/link";
 
 // interface Product {
 //   id: number;
@@ -37,6 +38,10 @@ export default async function Cart() {
       quantity: cartProductMap.get(product.id.toString()),
     }));
 
+  const totalPrice = filteredProducts.reduce((acc: number, item: any) => {
+    return acc + parseFloat(item.price) * item.quantity;
+  }, 0);
+
   console.log(filteredProducts);
   // useEffect(() => {
   //   setCachedValue(SelectedProducts);
@@ -61,6 +66,9 @@ export default async function Cart() {
     <div className="cart">
       <Title titleName={t("cart")} />
       <div className="cart-container">
+        <Link href="/" className="button back-to-shop-button">
+          {t("backToShop")}
+        </Link>
         <ClearCartButton />
         <div className="cart-items">
           {filteredProducts.map((item: any) => (
@@ -78,9 +86,16 @@ export default async function Cart() {
                 <p>{item.brand}</p>
                 <p className="prod-price">${item.price}</p>
               </div>
-              <ChangeQuantityButton id={item.id} quantity={item.quantity} />
+              <ChangeQuantityButton
+                id={item.id}
+                quantity={item.quantity}
+                price={item.price}
+              />
             </div>
           ))}
+          <span>
+            {t("totalPrice")}: ${totalPrice}
+          </span>
         </div>
       </div>
     </div>

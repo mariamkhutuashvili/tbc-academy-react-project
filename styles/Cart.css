@@ -45,29 +45,29 @@
   font-weight: bold;
 }
 
-.quantity-control {
+.cart-control {
   display: flex;
   align-items: center;
 }
 
-.quantity-control button {
+.cart-control button {
   background-color: #f0f0f0;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
 }
 
-.quantity-control button:hover {
+.cart-control button:hover {
   background-color: #ddd;
   transform: none;
 }
 
-.quantity-control button:disabled {
+.cart-control button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.quantity-control span {
+.cart-control span {
   margin: 0 10px;
   font-weight: bold;
 }

@@ -73,4 +73,6 @@ export default {
   addToCart: "კალათაში დამატება",
   clearCart: "კალათის გასუფთავება",
   remove: "წაშლა",
+  totalPrice: "სულ ფასი",
+  backToShop: "მაღაზიაში დაბრუნება",
 } as const;

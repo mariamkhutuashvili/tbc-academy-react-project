@@ -73,4 +73,6 @@ export default {
   addToCart: "Add to Cart",
   clearCart: "Clear Cart",
   remove: "Remove",
+  totalPrice: "Total Price",
+  backToShop: "Back to Shop",
 } as const;
