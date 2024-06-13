@@ -23,8 +23,8 @@ export default async function Cart() {
   // const [cardsData, setCachedValue] = useLocalStorage("selectedProducts", []);
   // const [SelectedProducts, dispatch] = useReducer(reducer, cardsData);
 
-  const cart = await getUserCart(7);
-  const cartProductsArray = Object.entries(cart?.products);
+  const cart = await getUserCart();
+  const cartProductsArray = cart ? Object.entries(cart?.products) : [];
   console.log(cartProductsArray);
   const cartProducts = await getProducts();
 

@@ -66,9 +66,11 @@ export async function getProducts() {
   return products?.rows;
 }
 
-export async function getUserCart(userId: number) {
+export async function getUserCart() {
+  const id = await getUserId();
+  if (!id) return null;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-cart/${userId}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-cart/${id}`,
     {
       cache: "no-store",
     }
@@ -78,6 +80,24 @@ export async function getUserCart(userId: number) {
   const [cart] = carts.cart.rows;
 
   return cart;
+}
+
+export async function getUserId() {
+  const session = await getSession();
+  const user = session?.user;
+  const subId = user?.sub;
+
+  const userSubId = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-user-id/${subId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const userSerialId = await userSubId.json();
+  const userId = userSerialId.usersId;
+  console.log(userId);
+
+  return userId;
 }
 
 export async function getUserPicture() {
