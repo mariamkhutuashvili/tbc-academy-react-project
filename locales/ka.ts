@@ -43,6 +43,7 @@ export default {
   name: "სახელი",
   yourName: "შენი სახელი...",
   yourEmail: "შენი მეილი...",
+  yourPhone: "შენი ტელეფონი...",
   writeSomething: "დაწერე ტექსტი...",
   subject: "თემა",
   message: "წერილი",

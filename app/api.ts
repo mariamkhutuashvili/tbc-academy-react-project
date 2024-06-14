@@ -1,4 +1,5 @@
 import { getSession } from "@auth0/nextjs-auth0";
+import { ContactData } from "../components/contactForm/ContactForm";
 
 export async function getUsers() {
   const response = await fetch(
@@ -158,4 +159,16 @@ export async function getUserInfo() {
   const userInfo = await userSubId.json();
   const userDetail = userInfo.user.rows[0];
   return userDetail;
+}
+
+export async function createContactForm(formData: ContactData) {
+  const { name, email, phone, message } = formData;
+
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/add-contact-form",
+    {
+      method: "POST",
+      body: JSON.stringify({ name, email, phone, message }),
+    }
+  );
 }

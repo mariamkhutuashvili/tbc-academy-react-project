@@ -43,6 +43,7 @@ export default {
   name: "Name",
   yourName: "Your name...",
   yourEmail: "Your email...",
+  yourPhone: "Your phone...",
   writeSomething: "Write something...",
   subject: "Subject",
   message: "Message",
