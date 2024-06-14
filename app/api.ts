@@ -172,3 +172,11 @@ export async function createContactForm(formData: ContactData) {
     }
   );
 }
+
+export async function getBlogs() {
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-blogs"
+  );
+  const { blogs } = await response.json();
+  return blogs?.rows;
+}
