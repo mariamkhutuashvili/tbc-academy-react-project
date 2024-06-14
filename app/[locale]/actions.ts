@@ -35,7 +35,14 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { deleteUserById, createUser, updateUserById, getUserId } from "../api";
+import {
+  deleteUserById,
+  createUser,
+  updateUserById,
+  getUserId,
+  EditProfile,
+} from "../api";
+import { ProfileData } from "../../components/profileInfo/ProfileInfo";
 
 interface UserData {
   name: string;
@@ -177,3 +184,9 @@ export const handleClearCart = async () => {
     console.error("Error clearing cart:", error);
   }
 };
+
+export async function editProfileInfo(formData: ProfileData) {
+  const { userSub, nickname, phone, address } = formData;
+  revalidatePath("/profile");
+  EditProfile(userSub, nickname, phone, address);
+}

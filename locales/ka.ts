@@ -52,9 +52,7 @@ export default {
   userInformation: "მომხმარებლის ინფორმაცია",
   upload: "ატვირთვა",
   loading: "იტვირთება",
-  changePassword: "შეცვალე პაროლი",
-  newPassword: "ახალი პაროლი",
-  confirmNewPassword: "გაიმეორეთ ახალი პაროლი",
+  change: "შეცვლა",
   save: "შენახვა",
 
   // LOGIN PAGE

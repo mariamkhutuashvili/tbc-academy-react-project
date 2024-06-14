@@ -130,3 +130,32 @@ export async function uploadUserPicture(url: string, sub: string) {
     }
   );
 }
+
+export async function EditProfile(
+  userSub: string,
+  nickname: string,
+  phone: string,
+  address: string
+) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/edit-profile-info",
+    {
+      method: "POST",
+      body: JSON.stringify({ userSub, nickname, phone, address }),
+    }
+  );
+}
+
+export async function getUserInfo() {
+  const id = await getUserId();
+  const userSubId = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-users/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  const userInfo = await userSubId.json();
+  const userDetail = userInfo.user.rows[0];
+  return userDetail;
+}

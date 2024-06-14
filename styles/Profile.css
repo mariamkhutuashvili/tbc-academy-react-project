@@ -16,8 +16,8 @@
   font-size: 3vw;
 }
 
-input[type="password"],
-.save-button {
+input[type="text"],
+.submit-button {
   width: calc(100% - 20px);
   padding: 12px;
   margin-top: 10px;

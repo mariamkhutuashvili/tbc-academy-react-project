@@ -52,9 +52,7 @@ export default {
   userInformation: "User Information",
   upload: "Upload",
   loading: "Loading",
-  changePassword: "Change Password",
-  newPassword: "New Password",
-  confirmNewPassword: "Confirm New Password",
+  change: "Change",
   save: "Save",
 
   // LOGIN PAGE
