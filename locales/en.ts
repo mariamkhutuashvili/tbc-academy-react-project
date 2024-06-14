@@ -67,6 +67,7 @@ export default {
   users: "Users",
   actions: "Actions",
   addUser: "Add User",
+  role: "Role",
 
   //CART PAGE
   cart: "Cart",

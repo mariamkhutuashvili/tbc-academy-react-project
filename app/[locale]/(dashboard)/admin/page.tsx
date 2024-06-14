@@ -10,6 +10,7 @@ interface User {
   id: number;
   name: string;
   email: string;
+  role: string;
 }
 
 export default async function Admin() {
@@ -29,6 +30,7 @@ export default async function Admin() {
             <tr>
               <th>{t("name")}</th>
               <th>{t("email")}</th>
+              <th>{t("role")}</th>
               <th>{t("actions")}</th>
             </tr>
           </thead>
@@ -37,6 +39,7 @@ export default async function Admin() {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.role}</td>
                 <td className="admin-table-cell-actions">
                   <div className="admin-actions-container">
                     <EditUser userData={user} id={user.id} />

@@ -19,6 +19,7 @@ export default async function Header() {
 
   const session = await getSession();
   const user = session?.user;
+  const isAdmin = Array.isArray(user?.role) && user.role.includes("Admin");
 
   console.log(user);
 
@@ -42,7 +43,7 @@ export default async function Header() {
         <Link href="/contact" className="nav-link">
           {t("contact")}
         </Link>
-        {user && (
+        {isAdmin && (
           <Link href="/admin" className="nav-link">
             {t("admin")}
           </Link>

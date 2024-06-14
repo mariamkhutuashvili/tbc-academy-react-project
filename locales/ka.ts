@@ -67,6 +67,7 @@ export default {
   users: "მომხმარებლები",
   actions: "კონტროლი",
   addUser: "მომხმარებლის დამატება",
+  role: "როლი",
 
   //CART PAGE
   cart: "კალათა",
