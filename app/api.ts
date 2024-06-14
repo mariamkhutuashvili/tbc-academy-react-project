@@ -180,3 +180,13 @@ export async function getBlogs() {
   const { blogs } = await response.json();
   return blogs?.rows;
 }
+
+export async function getBlogDetail(id: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-blogs/${id}`
+  );
+  const data = await response.json();
+  const blogDetail = data.blogs?.rows ? data.blogs.rows[0] : null;
+
+  return blogDetail;
+}
