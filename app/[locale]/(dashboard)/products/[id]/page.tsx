@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getProductDetail, getProducts } from "../../../../api";
 import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+import ShareButtons from "../../../../../components/UI/ShareButtons";
 import "../../../../../styles/Product.css";
 
 export interface Gallery {
@@ -56,6 +57,7 @@ export default async function Product({
         height={400}
         priority
       />
+      <ShareButtons product={product} />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="product-price">Price: ${product.price}</p>

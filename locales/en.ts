@@ -26,6 +26,9 @@ export default {
   search: "Search",
   sortByPrice: "Sort by Price",
   reset: "Reset",
+  shareOnFacebook: "Share on Facebook",
+  shareOnTwitter: "Share on Twitter",
+  shareOnLinkedIn: "Share on LinkedIn",
 
   //ABOUT PAGE
   headline: "Your Story Starts With Us.",

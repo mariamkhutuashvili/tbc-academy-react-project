@@ -26,6 +26,9 @@ export default {
   search: "ძიება",
   sortByPrice: "ფასით დალაგება",
   reset: "დალაგების გაუქმება",
+  shareOnFacebook: "გააზიარე Facebook-ზე",
+  shareOnTwitter: "გააზიარე Twitter-ზე",
+  shareOnLinkedIn: "გააზიარე LinkedIn-ზე",
 
   //ABOUT PAGE
   headline: "შენი მოგზაურობა იწყება აქ.",
