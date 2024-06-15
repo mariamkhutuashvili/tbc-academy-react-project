@@ -2,12 +2,18 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
-import AddToCartButton from "./AddToCartButton";
+import AddToCartButton from "../UI/AddToCartButton";
+import Title from "../UI/Title";
 import { useI18n } from "../../locales/client";
-import Title from "./Title";
 import "../../styles/page.css";
+
+export interface Gallery {
+  id: number;
+  img_url: string;
+}
 
 interface ProductFromVercel {
   id: number;
@@ -15,7 +21,9 @@ interface ProductFromVercel {
   description: string;
   price: number;
   category: string;
+  photo_gallery: Gallery[];
 }
+
 interface HomeClientProps {
   filter: any;
   product: ProductFromVercel[];
@@ -73,12 +81,16 @@ export default function Products({ product }: { product: HomeClientProps }) {
             className="product"
             onClick={() => handleProductClick(p.id)}
           >
-            {/* <Image
-              src={product.thumbnail}
-              alt={product.title}
-              width={500}
-              height={500}
-            /> */}
+            {p.photo_gallery && p.photo_gallery.length > 0 ? (
+              <Image
+                src={p.photo_gallery[0].img_url}
+                alt={p.title}
+                width={500}
+                height={500}
+              />
+            ) : (
+              <div className="placeholder-image">No Image Available</div>
+            )}
             <div className="product-content">
               <h2>{p.title}</h2>
               <p>{p.description}</p>

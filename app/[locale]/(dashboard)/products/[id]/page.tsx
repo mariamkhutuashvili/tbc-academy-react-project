@@ -1,7 +1,12 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { getProductDetail, getProducts } from "../../../../api";
 import AddToCartButton from "../../../../../components/UI/AddToCartButton";
 import "../../../../../styles/Product.css";
+
+export interface Gallery {
+  id: number;
+  img_url: string;
+}
 
 interface ProductFromVercel {
   id: number;
@@ -12,6 +17,7 @@ interface ProductFromVercel {
   category: string;
   stock: number;
   brand: string;
+  photo_gallery: Gallery[];
 }
 
 interface ProductsDetailsProps {
@@ -43,13 +49,13 @@ export default async function Product({
 
   return (
     <div key={product.id} className="product-page">
-      {/* <Image
-        src={productData.thumbnail}
+      <Image
+        src={product.photo_gallery[0].img_url}
         alt="product"
         width={400}
         height={400}
         priority
-      /> */}
+      />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="product-price">Price: ${product.price}</p>

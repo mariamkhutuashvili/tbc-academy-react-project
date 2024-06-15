@@ -1,9 +1,8 @@
-import { sql } from '@vercel/postgres';
-import { NextRequest, NextResponse } from 'next/server';
-
+import { sql } from "@vercel/postgres";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-    const id = request.nextUrl.pathname.replace('/api/get-products/', '');
+  const id = request.nextUrl.pathname.replace("/api/get-products/", "");
 
   try {
     const products = await sql`SELECT * FROM products WHERE id = ${Number(id)}`;

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import blogImage from "../../../../../public/assets/blog.jpg";
 import { getBlogDetail, getBlogs } from "../../../../api";
 import { BlogData } from "../page";
 import "../../../../../styles/Post.css";
@@ -31,7 +30,13 @@ export default async function Post({
 
   return (
     <div key={blogData.id} className="post-page">
-      <Image src={blogImage} alt="Blog Image" priority />
+      <Image
+        src={blogData.photo}
+        alt="Blog Image"
+        width={500}
+        height={300}
+        priority
+      />
       <p>{dateAdded}</p>
       <h1>{blogData.title}</h1>
       <p>{blogData.description}</p>

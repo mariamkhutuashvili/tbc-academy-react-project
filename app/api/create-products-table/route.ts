@@ -12,7 +12,8 @@ export async function GET() {
       price NUMERIC(10, 2) NOT NULL,
       discountPrice NUMERIC(10, 2),
       stock INTEGER,
-      brand VARCHAR(255)
+      brand VARCHAR(255),
+      photo_gallery JSONB DEFAULT '[]'::jsonb;
     )
     `;
     return NextResponse.json({ result }, { status: 200 });

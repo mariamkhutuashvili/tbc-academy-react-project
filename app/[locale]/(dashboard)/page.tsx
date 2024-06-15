@@ -1,5 +1,5 @@
 import React from "react";
-import HomeClient from "../../../components/UI/HomeClient";
+import HomeClient from "../../../components/homeClient/HomeClient";
 import { getProducts } from "../../api";
 
 export const metadata = {

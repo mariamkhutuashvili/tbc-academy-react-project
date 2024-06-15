@@ -34,6 +34,7 @@ export default async function Blog() {
               id={post.id}
               title={post.title}
               date={dateAdded.toLocaleDateString()}
+              photo={post.photo}
             />
           );
         })}
