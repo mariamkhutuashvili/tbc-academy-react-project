@@ -34,6 +34,10 @@ export default {
   // BLOG PAGE
   readMore: "წაიკითხე მეტი",
   archive: "არქივი",
+  title: "სათაური",
+  description: "აღწერა",
+  image: "სურათი",
+  addBlog: "ბლოგის დამატება",
 
   // CONTACT PAGE
   contactUs: "დაგვიკავშირდი",

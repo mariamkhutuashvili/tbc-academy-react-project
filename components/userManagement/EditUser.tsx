@@ -1,21 +1,26 @@
 "use client";
 
-import { useI18n } from "../../locales/client";
-import { createUserAction } from "../../app/[locale]/actions";
 import Modal from "@mui/material/Modal";
-import { useRouter } from "next/navigation";
+import { useI18n } from "../../locales/client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { updateUserAction } from "../../app/[locale]/actions";
 
 interface UserData {
   name: string;
   email: string;
 }
 
-export default function AddNewUser() {
+export default function EditUser({
+  id,
+  userData,
+}: {
+  id: number;
+  userData: UserData;
+}) {
   const t = useI18n();
   const [open, setOpen] = useState<boolean>(false);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [user, setUser] = useState<UserData>(userData);
   const router = useRouter();
 
   const handleOpen = () => setOpen(true);
@@ -23,25 +28,43 @@ export default function AddNewUser() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userData: UserData = {
-      name,
-      email,
-    };
-
     try {
-      await createUserAction(userData);
+      await updateUserAction(id, user);
+      console.log("User updated successfully");
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Failed to update user:", error);
     }
-    handleClose();
     router.refresh();
+    handleClose();
+  };
+
+  const handleChange = (
+    field: keyof UserData,
+    value: string | number | boolean
+  ) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      [field]: value,
+    }));
   };
 
   return (
-    <>
-      <button className="button add-user-button" onClick={handleOpen}>
-        {t("addUser")}
-      </button>
+    <div>
+      <svg
+        onClick={handleOpen}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="edit-icon w-6 h-6 cursor-pointer"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+        />
+      </svg>
       <Modal
         open={open}
         onClose={handleClose}
@@ -58,8 +81,8 @@ export default function AddNewUser() {
               id="name"
               type="text"
               placeholder={t("name")}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={user.name}
+              onChange={(e) => handleChange("name", e.target.value)}
               className="form-input"
             />
           </div>
@@ -71,8 +94,8 @@ export default function AddNewUser() {
               id="email"
               type="text"
               placeholder={t("email")}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              onChange={(e) => handleChange("email", e.target.value)}
               className="form-input"
             />
           </div>
@@ -83,6 +106,6 @@ export default function AddNewUser() {
           </div>
         </form>
       </Modal>
-    </>
+    </div>
   );
 }

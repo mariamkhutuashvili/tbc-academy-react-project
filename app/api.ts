@@ -50,6 +50,56 @@ export async function updateUserById(id: number, name: string, email: string) {
   }
 }
 
+export async function createBlog(
+  title: string,
+  description: string,
+  photo: string | undefined
+) {
+  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/create-blog", {
+    method: "POST",
+    body: JSON.stringify({ title, description, photo }),
+  });
+}
+
+export async function deleteBlogById(id: number) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/delete-blog/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+}
+
+export async function updateBlogById(
+  id: number,
+  title: string,
+  description: string,
+  photo: string | undefined
+) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/update-blog/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, description, photo }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error);
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+}
+
 export async function getProductDetail(id: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-products/${id}`

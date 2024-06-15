@@ -34,6 +34,10 @@ export default {
   // BLOG PAGE
   readMore: "Read More",
   archive: "Archive",
+  title: "Title",
+  description: "Description",
+  image: "Image",
+  addBlog: "Add Blog",
 
   // CONTACT PAGE
   contactUs: "Contact Us",

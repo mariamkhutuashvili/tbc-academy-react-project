@@ -1,9 +1,14 @@
-import { getUsers } from "../../../api";
 import Title from "../../../../components/UI/Title";
+import Image from "next/image";
 import { getI18n } from "../../../../locales/server";
-import AddNewUser from "../../../../components/user/AddNewUser";
-import DeleteUser from "../../../../components/user/DeleteUser";
-import EditUser from "../../../../components/user/EditUser";
+import { getBlogs, getUsers } from "../../../api";
+import AddNewUser from "../../../../components/userManagement/AddNewUser";
+import DeleteUser from "../../../../components/userManagement/DeleteUser";
+import EditUser from "../../../../components/userManagement/EditUser";
+import AddNewBlog from "../../../../components/blogManagement/AddNewBlog";
+import DeleteBlog from "../../../../components/blogManagement/DeleteBlog";
+import EditBlog from "../../../../components/blogManagement/EditBlog";
+import { BlogData } from "../blog/page";
 import "../../../../styles/Admin.css";
 
 export const metadata = {
@@ -22,14 +27,15 @@ export default async function Admin() {
   const t = await getI18n();
 
   const users = await getUsers();
+  const blogs = await getBlogs();
 
   return (
     <div className="admin-container">
-      <div className="admin-header">
-        <Title titleName={t("users")} />
-        <AddNewUser />
-      </div>
-      <div className="admin-table-container">
+      <div className="users-management">
+        <div className="admin-header">
+          <Title titleName={t("users")} />
+          <AddNewUser />
+        </div>
         <table className="admin-table">
           <thead>
             <tr>
@@ -49,6 +55,45 @@ export default async function Admin() {
                   <div className="admin-actions-container">
                     <EditUser userData={user} id={user.id} />
                     <DeleteUser id={user.id} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="blogs-management">
+        <div className="admin-header">
+          <Title titleName={t("blog")} />
+          <AddNewBlog />
+        </div>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>{t("title")}</th>
+              <th>{t("description")}</th>
+              <th>{t("image")}</th>
+              <th>{t("actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {blogs.map((blog: BlogData) => (
+              <tr key={blog.id}>
+                <td>{blog.title}</td>
+                <td>{blog.description}</td>
+                <td>
+                  <Image
+                    src={blog.photo}
+                    alt="Blog Image"
+                    width={50}
+                    height={50}
+                    priority
+                  />
+                </td>
+                <td className="admin-table-cell-actions">
+                  <div className="admin-actions-container">
+                    <EditBlog blogData={blog} />
+                    <DeleteBlog id={blog.id} />
                   </div>
                 </td>
               </tr>

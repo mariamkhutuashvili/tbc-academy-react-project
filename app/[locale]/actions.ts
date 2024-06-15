@@ -41,8 +41,13 @@ import {
   updateUserById,
   getUserId,
   EditProfile,
+  deleteBlogById,
+  createBlog,
+  updateBlogById,
 } from "../api";
 import { ProfileData } from "../../components/profileInfo/ProfileInfo";
+import { AddBlogData } from "../../components/blogManagement/AddNewBlog";
+import { PostData } from "../../components/blogManagement/EditBlog";
 
 interface UserData {
   name: string;
@@ -64,6 +69,26 @@ export async function updateUserAction(id: number, userData: UserData) {
   const { name, email } = userData;
   revalidatePath("/admin");
   updateUserById(id, name, email);
+}
+
+export async function createAddBlogAction(blogData: AddBlogData) {
+  const { title, description, photo } = blogData;
+  revalidatePath("/blog");
+  revalidatePath("/admin");
+  createBlog(title, description, photo);
+}
+
+export const deleteBlog: (id: number) => Promise<void> = async (id: number) => {
+  await deleteBlogById(id);
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+};
+
+export async function updateBlog(blog: PostData) {
+  const { id, title, description, photo } = blog;
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+  updateBlogById(id, title, description, photo);
 }
 
 export const handleAddToCart = async (productId: string) => {
