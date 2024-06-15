@@ -1,5 +1,4 @@
 import { getSession } from "@auth0/nextjs-auth0";
-import { ContactData } from "../components/contactForm/ContactForm";
 
 export async function getUsers() {
   const response = await fetch(
@@ -211,14 +210,37 @@ export async function getUserInfo() {
   return userDetail;
 }
 
-export async function createContactForm(formData: ContactData) {
-  const { name, email, phone, message } = formData;
-
+export async function createContactForm(
+  name: string,
+  email: string,
+  phone: string,
+  message: string
+) {
   return await fetch(
     process.env.NEXT_PUBLIC_VERCEL_URL + "/api/add-contact-form",
     {
       method: "POST",
       body: JSON.stringify({ name, email, phone, message }),
+    }
+  );
+}
+
+export const getFormEntries = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-form-entries`,
+    {
+      cache: "no-store",
+    }
+  );
+  const entries = await res.json();
+  return entries?.formEntries?.rows;
+};
+
+export async function deleteEntryById(id: number) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/delete-form-entries/${id}`,
+    {
+      method: "DELETE",
     }
   );
 }

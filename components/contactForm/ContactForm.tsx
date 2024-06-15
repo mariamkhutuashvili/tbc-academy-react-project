@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useI18n } from "../../locales/client";
+import { createContactAction } from "../../app/[locale]/actions";
 import "./ContactForm.css";
-import { createContactForm } from "../../app/api";
 
 export interface ContactData {
   name: string;
@@ -19,6 +19,7 @@ export default function ContactForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [messageSent, setMessageSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,8 +30,12 @@ export default function ContactForm() {
       message,
     };
     try {
-      await createContactForm(formData);
-      // setInfoUpdated(true);
+      await createContactAction(formData);
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setMessageSent(true);
     } catch (error) {
       console.error("Error creating user:", error);
     }
@@ -81,6 +86,7 @@ export default function ContactForm() {
       <button type="submit" className="button submit-button">
         {t("send")}
       </button>
+      {messageSent && <p>{t("messageIsSent")}!</p>}
     </form>
   );
 }

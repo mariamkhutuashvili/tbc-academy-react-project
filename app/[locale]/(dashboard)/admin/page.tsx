@@ -1,7 +1,7 @@
 import Title from "../../../../components/UI/Title";
 import Image from "next/image";
 import { getI18n } from "../../../../locales/server";
-import { getBlogs, getUsers } from "../../../api";
+import { getBlogs, getFormEntries, getUsers } from "../../../api";
 import AddNewUser from "../../../../components/userManagement/AddNewUser";
 import DeleteUser from "../../../../components/userManagement/DeleteUser";
 import EditUser from "../../../../components/userManagement/EditUser";
@@ -10,6 +10,7 @@ import DeleteBlog from "../../../../components/blogManagement/DeleteBlog";
 import EditBlog from "../../../../components/blogManagement/EditBlog";
 import { BlogData } from "../blog/page";
 import "../../../../styles/Admin.css";
+import DeleteEntry from "../../../../components/entryManagement/DeleteEntry";
 
 export const metadata = {
   title: "Admin Panel",
@@ -23,11 +24,20 @@ interface User {
   role: string;
 }
 
+export interface EntryData {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 export default async function Admin() {
   const t = await getI18n();
 
   const users = await getUsers();
   const blogs = await getBlogs();
+  const formEntries = await getFormEntries();
 
   return (
     <div className="admin-container">
@@ -94,6 +104,38 @@ export default async function Admin() {
                   <div className="admin-actions-container">
                     <EditBlog blogData={blog} />
                     <DeleteBlog id={blog.id} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="entries-management">
+        <div className="admin-header">
+          <Title titleName={t("formEntries")} />
+        </div>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>{t("name")}</th>
+              <th>{t("email")}</th>
+              <th>{t("phone")}</th>
+              <th>{t("message")}</th>
+              <th>{t("actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {formEntries.map((entry: EntryData) => (
+              <tr key={entry.id}>
+                <td>{entry.name}</td>
+                <td>{entry.email}</td>
+                <td>{entry.phone}</td>
+                <td>{entry.message}</td>
+                <td className="admin-table-cell-actions">
+                  <div className="admin-actions-container">
+                    <DeleteEntry id={entry.id} />
                   </div>
                 </td>
               </tr>

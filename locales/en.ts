@@ -52,6 +52,8 @@ export default {
   subject: "Subject",
   message: "Message",
   send: "Send",
+  formEntries: "Form Entries",
+  messageIsSent: "Message is sent",
 
   // PROFILE PAGE
   userInformation: "User Information",

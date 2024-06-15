@@ -52,6 +52,8 @@ export default {
   subject: "თემა",
   message: "წერილი",
   send: "გაგზავნა",
+  formEntries: "ფორმის ჩანაწერები",
+  messageIsSent: "შეტყობინება გაიგზავნა",
 
   // PROFILE PAGE
   userInformation: "მომხმარებლის ინფორმაცია",

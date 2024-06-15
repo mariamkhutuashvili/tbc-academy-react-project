@@ -44,10 +44,13 @@ import {
   deleteBlogById,
   createBlog,
   updateBlogById,
+  deleteEntryById,
+  createContactForm,
 } from "../api";
 import { ProfileData } from "../../components/profileInfo/ProfileInfo";
 import { AddBlogData } from "../../components/blogManagement/AddNewBlog";
 import { PostData } from "../../components/blogManagement/EditBlog";
+import { ContactData } from "../../components/contactForm/ContactForm";
 
 interface UserData {
   name: string;
@@ -215,3 +218,16 @@ export async function editProfileInfo(formData: ProfileData) {
   revalidatePath("/profile");
   EditProfile(userSub, nickname, phone, address);
 }
+
+export async function createContactAction(formData: ContactData) {
+  const { name, email, phone, message } = formData;
+  revalidatePath("/admin");
+  createContactForm(name, email, phone, message);
+}
+
+export const deleteEntry: (id: number) => Promise<void> = async (
+  id: number
+) => {
+  await deleteEntryById(id);
+  revalidatePath("/admin");
+};
