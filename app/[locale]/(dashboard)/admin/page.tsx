@@ -6,6 +6,11 @@ import DeleteUser from "../../../../components/user/DeleteUser";
 import EditUser from "../../../../components/user/EditUser";
 import "../../../../styles/Admin.css";
 
+export const metadata = {
+  title: "Admin Panel",
+  description: "Admin Panel - Manage Your Content",
+};
+
 interface User {
   id: number;
   name: string;

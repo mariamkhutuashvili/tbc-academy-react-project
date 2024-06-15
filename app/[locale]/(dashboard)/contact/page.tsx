@@ -3,6 +3,11 @@ import ContactForm from "../../../../components/contactForm/ContactForm";
 import Title from "../../../../components/UI/Title";
 import "../../../../styles/Contact.css";
 
+export const metadata = {
+  title: "Contact Us",
+  description: "Contact Us - Get in Touch",
+};
+
 export default async function Contact() {
   const t = await getI18n();
 

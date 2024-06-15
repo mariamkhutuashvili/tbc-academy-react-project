@@ -4,6 +4,11 @@ import { getBlogs } from "../../../api";
 import { getI18n } from "../../../../locales/server";
 import "../../../../styles/Blog.css";
 
+export const metadata = {
+  title: "Blog",
+  description: "Blog - Latest News and Insights",
+};
+
 export interface BlogData {
   id: number;
   title: string;

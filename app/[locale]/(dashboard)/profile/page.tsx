@@ -7,6 +7,11 @@ import { getI18n } from "../../../../locales/server";
 import { getUserInfo, getUserPicture } from "../../../api";
 import "../../../../styles/Profile.css";
 
+export const metadata = {
+  title: "Your Profile",
+  description: "Your Profile - Manage Your Account",
+};
+
 export default async function Profile() {
   const t = await getI18n();
 

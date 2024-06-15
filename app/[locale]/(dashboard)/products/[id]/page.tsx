@@ -1,7 +1,37 @@
 // import Image from "next/image";
-import { getProductDetail } from "../../../../api";
+import { getProductDetail, getProducts } from "../../../../api";
 import AddToCartButton from "../../../../../components/UI/AddToCartButton";
 import "../../../../../styles/Product.css";
+
+interface ProductFromVercel {
+  id: number;
+  description: string;
+  price: number;
+  title: string;
+  discount: string;
+  category: string;
+  stock: number;
+  brand: string;
+}
+
+interface ProductsDetailsProps {
+  params: {
+    id: number;
+    locale: string;
+  };
+}
+
+export async function generateMetadata({ params }: ProductsDetailsProps) {
+  const productsData = await getProducts();
+  const product = productsData.find(
+    (product: ProductFromVercel) => product.id == params.id
+  );
+
+  return {
+    title: `${product.title}`,
+    description: `${product.description}`,
+  };
+}
 
 export default async function Product({
   params: { id },

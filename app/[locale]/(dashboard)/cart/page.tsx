@@ -10,6 +10,11 @@ import { getProducts, getUserCart } from "../../../api";
 import "../../../../styles/Cart.css";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Cart",
+  description: "Shopping Cart - Review Your Items",
+};
+
 // interface Product {
 //   id: number;
 //   title: string;
