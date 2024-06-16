@@ -1,17 +1,11 @@
 "use client";
 
 import Modal from "@mui/material/Modal";
-import { useI18n } from "../../locales/client";
+import { useI18n } from "../../../locales/client";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { PutBlobResult } from "@vercel/blob";
-import { createAddBlogAction } from "../../app/[locale]/actions";
-
-export interface AddBlogData {
-  title: string;
-  description: string;
-  photo: string | undefined;
-}
+import { createAddBlogAction } from "../../../app/actions";
 
 export default function AddNewBlog() {
   const t = useI18n();

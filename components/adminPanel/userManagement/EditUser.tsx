@@ -1,15 +1,10 @@
 "use client";
 
 import Modal from "@mui/material/Modal";
-import { useI18n } from "../../locales/client";
+import { useI18n } from "../../../locales/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { updateUserAction } from "../../app/[locale]/actions";
-
-interface UserData {
-  name: string;
-  email: string;
-}
+import { updateUserAction } from "../../../app/actions";
 
 export default function EditUser({
   id,

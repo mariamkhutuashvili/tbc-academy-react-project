@@ -1,12 +1,8 @@
 "use client";
 
-import { deleteBlog } from "../../app/[locale]/actions";
+import { deleteBlog } from "../../../app/actions";
 
-interface DeleteBlogProps {
-  id: number;
-}
-
-export default function DeleteBlog({ id }: DeleteBlogProps) {
+export default function DeleteBlog({ id }: { id: number }) {
   return (
     <div className="delete-icon" onClick={() => deleteBlog(id)}>
       <svg

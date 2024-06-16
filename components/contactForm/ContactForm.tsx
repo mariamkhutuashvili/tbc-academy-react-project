@@ -2,15 +2,8 @@
 
 import { useState } from "react";
 import { useI18n } from "../../locales/client";
-import { createContactAction } from "../../app/[locale]/actions";
+import { createContactAction } from "../../app/actions";
 import "./ContactForm.css";
-
-export interface ContactData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
 
 export default function ContactForm() {
   const t = useI18n();

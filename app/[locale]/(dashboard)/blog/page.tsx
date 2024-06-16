@@ -9,14 +9,6 @@ export const metadata = {
   description: "Blog - Latest News and Insights",
 };
 
-export interface BlogData {
-  id: number;
-  title: string;
-  description: string;
-  photo: string;
-  date_added: string;
-}
-
 export default async function Blog() {
   const t = await getI18n();
 

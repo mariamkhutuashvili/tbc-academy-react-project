@@ -1,16 +1,8 @@
 import Image from "next/image";
 import { getBlogDetail, getBlogs } from "../../../../api";
-import { BlogData } from "../page";
 import "../../../../../styles/Post.css";
 
-interface ProductsDetailsProps {
-  params: {
-    id: number;
-    locale: string;
-  };
-}
-
-export async function generateMetadata({ params }: ProductsDetailsProps) {
+export async function generateMetadata({ params }: MetaDataProps) {
   const blogData = await getBlogs();
   const blog = blogData.find((blog: BlogData) => blog.id == params.id);
 

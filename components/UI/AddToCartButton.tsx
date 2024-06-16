@@ -1,13 +1,9 @@
 "use client";
 
-import { handleAddToCart } from "../../app/[locale]/actions";
+import { handleAddToCart } from "../../app/actions";
 import { useI18n } from "../../locales/client";
 
-interface AddToCartButtonProps {
-  id: string;
-}
-
-export default function AddToCartButton({ id }: AddToCartButtonProps) {
+export default function AddToCartButton({ id }: { id: string }) {
   const t = useI18n();
 
   return (

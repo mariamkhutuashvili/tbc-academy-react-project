@@ -2,35 +2,19 @@ import Title from "../../../../components/UI/Title";
 import Image from "next/image";
 import { getI18n } from "../../../../locales/server";
 import { getBlogs, getFormEntries, getUsers } from "../../../api";
-import AddNewUser from "../../../../components/userManagement/AddNewUser";
-import DeleteUser from "../../../../components/userManagement/DeleteUser";
-import EditUser from "../../../../components/userManagement/EditUser";
-import AddNewBlog from "../../../../components/blogManagement/AddNewBlog";
-import DeleteBlog from "../../../../components/blogManagement/DeleteBlog";
-import EditBlog from "../../../../components/blogManagement/EditBlog";
-import { BlogData } from "../blog/page";
+import AddNewUser from "../../../../components/adminPanel/userManagement/AddNewUser";
+import DeleteUser from "../../../../components/adminPanel/userManagement/DeleteUser";
+import EditUser from "../../../../components/adminPanel/userManagement/EditUser";
+import AddNewBlog from "../../../../components/adminPanel/blogManagement/AddNewBlog";
+import DeleteBlog from "../../../../components/adminPanel/blogManagement/DeleteBlog";
+import EditBlog from "../../../../components/adminPanel/blogManagement/EditBlog";
+import DeleteEntry from "../../../../components/adminPanel/entryManagement/DeleteEntry";
 import "../../../../styles/Admin.css";
-import DeleteEntry from "../../../../components/entryManagement/DeleteEntry";
 
 export const metadata = {
   title: "Admin Panel",
   description: "Admin Panel - Manage Your Content",
 };
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
-
-export interface EntryData {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
 
 export default async function Admin() {
   const t = await getI18n();

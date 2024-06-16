@@ -3,13 +3,6 @@ import Image from "next/image";
 import { getI18n } from "../../locales/server";
 import "./Article.css";
 
-interface ArticleProps {
-  id: number;
-  title: string;
-  date: string;
-  photo: string;
-}
-
 export default async function Article({
   id,
   title,

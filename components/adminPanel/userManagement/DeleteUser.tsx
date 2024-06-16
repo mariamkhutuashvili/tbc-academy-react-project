@@ -1,12 +1,8 @@
 "use client";
 
-import { deleteUser } from "../../app/[locale]/actions";
+import { deleteUser } from "../../../app/actions";
 
-interface DeleteUserProps {
-  id: number;
-}
-
-export default function DeleteUser({ id }: DeleteUserProps) {
+export default function DeleteUser({ id }: { id: number }) {
   return (
     <div className="delete-icon" onClick={() => deleteUser(id)}>
       <svg

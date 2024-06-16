@@ -2,23 +2,12 @@
 
 import Modal from "@mui/material/Modal";
 import Image from "next/image";
-import { useI18n } from "../../locales/client";
+import { useI18n } from "../../../locales/client";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { updateBlog } from "../../app/[locale]/actions";
+import { updateBlog } from "../../../app/actions";
 
-interface BlogClientProps {
-  blogData: PostData;
-}
-
-export interface PostData {
-  id: number;
-  title: string;
-  description: string;
-  photo: string;
-}
-
-export default function EditBlog({ blogData }: BlogClientProps) {
+export default function EditBlog({ blogData }: { blogData: PostData }) {
   const t = useI18n();
 
   const [open, setOpen] = useState<boolean>(false);

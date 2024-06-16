@@ -4,11 +4,11 @@ import { useI18n } from "../../locales/client";
 import "./Search.css";
 import { ChangeEvent } from "react";
 
-interface SearchProps {
+export default function Search({
+  onChange,
+}: {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-export default function Search({ onChange }: SearchProps) {
+}) {
   const t = useI18n();
   return (
     <div className="search-container">

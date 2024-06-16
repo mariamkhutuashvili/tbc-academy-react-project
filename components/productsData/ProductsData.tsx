@@ -10,25 +10,6 @@ import Title from "../UI/Title";
 import { useI18n } from "../../locales/client";
 import "../../styles/Products.css";
 
-export interface Gallery {
-  id: number;
-  img_url: string;
-}
-
-interface ProductFromVercel {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  photo_gallery: Gallery[];
-}
-
-interface HomeClientProps {
-  filter: any;
-  product: ProductFromVercel[];
-}
-
 function debounce<T extends (...args: any[]) => void>(
   func: T,
   wait: number
@@ -44,7 +25,7 @@ function debounce<T extends (...args: any[]) => void>(
 export default function ProductsData({
   product,
 }: {
-  product: HomeClientProps;
+  product: ProductsDataProps;
 }) {
   const t = useI18n();
 

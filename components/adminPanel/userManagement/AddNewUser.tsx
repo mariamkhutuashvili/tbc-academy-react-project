@@ -1,15 +1,10 @@
 "use client";
 
 import Modal from "@mui/material/Modal";
-import { useI18n } from "../../locales/client";
+import { useI18n } from "../../../locales/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { createUserAction } from "../../app/[locale]/actions";
-
-interface UserData {
-  name: string;
-  email: string;
-}
+import { createUserAction } from "../../../app/actions";
 
 export default function AddNewUser() {
   const t = useI18n();

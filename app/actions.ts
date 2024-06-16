@@ -46,17 +46,16 @@ import {
   updateBlogById,
   deleteEntryById,
   createContactForm,
-} from "../api";
-import { ProfileData } from "../../components/profileInfo/ProfileInfo";
-import { AddBlogData } from "../../components/blogManagement/AddNewBlog";
-import { PostData } from "../../components/blogManagement/EditBlog";
-import { ContactData } from "../../components/contactForm/ContactForm";
+} from "./api";
+import { cookies } from "next/headers";
 
-interface UserData {
-  name: string;
-  email: string;
+export async function changeLanguage() {
+  const cookieStore = cookies();
+  let curr = cookieStore.get("Next-Locale")?.value || "en";
+
+  const newLocale = curr === "en" ? "ka" : "en";
+  cookieStore.set("Next-Locale", newLocale);
 }
-
 export async function createUserAction(userData: UserData) {
   const { name, email } = userData;
   revalidatePath("/admin");

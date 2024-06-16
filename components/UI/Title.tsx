@@ -1,8 +1,4 @@
-interface TitleProps {
-  titleName: string;
-}
-
-export default function Title({ titleName }: TitleProps) {
+export default function Title({ titleName }: { titleName: string }) {
   console.log(titleName);
   return (
     <div>

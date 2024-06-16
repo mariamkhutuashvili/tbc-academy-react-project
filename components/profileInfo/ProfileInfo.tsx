@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "../../locales/client";
-import { editProfileInfo } from "../../app/[locale]/actions";
-
-export interface ProfileData {
-  userSub: string;
-  nickname: string;
-  phone: string;
-  address: string;
-}
+import { editProfileInfo } from "../../app/actions";
 
 export default function ProfileInfo({ user }: any) {
   const t = useI18n();

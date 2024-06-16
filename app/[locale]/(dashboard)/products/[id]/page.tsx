@@ -4,31 +4,7 @@ import AddToCartButton from "../../../../../components/UI/AddToCartButton";
 import ShareButtons from "../../../../../components/UI/ShareButtons";
 import "../../../../../styles/Product.css";
 
-export interface Gallery {
-  id: number;
-  img_url: string;
-}
-
-interface ProductFromVercel {
-  id: number;
-  description: string;
-  price: number;
-  title: string;
-  discount: string;
-  category: string;
-  stock: number;
-  brand: string;
-  photo_gallery: Gallery[];
-}
-
-interface ProductsDetailsProps {
-  params: {
-    id: number;
-    locale: string;
-  };
-}
-
-export async function generateMetadata({ params }: ProductsDetailsProps) {
+export async function generateMetadata({ params }: MetaDataProps) {
   const productsData = await getProducts();
   const product = productsData.find(
     (product: ProductFromVercel) => product.id == params.id

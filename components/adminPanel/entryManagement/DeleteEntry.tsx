@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteEntry } from "../../app/[locale]/actions";
+import { deleteEntry } from "../../../app/actions";
 
 export default function DeleteEntry({ id }: { id: number }) {
   return (

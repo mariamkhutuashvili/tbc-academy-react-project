@@ -4,18 +4,14 @@ import {
   handleAddToCart,
   handleDecrement,
   handleRemoveProductFromCart,
-} from "../../app/[locale]/actions";
+} from "../../app/actions";
 import { useI18n } from "../../locales/client";
 
 export default function ChangeQuantityButton({
   id,
   quantity,
   price,
-}: {
-  id: string;
-  quantity: number;
-  price: number;
-}) {
+}: QuantityProps) {
   const t = useI18n();
 
   return (

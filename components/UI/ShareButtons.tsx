@@ -11,16 +11,7 @@ import {
 } from "react-share";
 import { useI18n } from "../../locales/client";
 
-interface Product {
-  id: string;
-  title: string;
-}
-
-interface ShareButtonsProps {
-  product: Product;
-}
-
-export default function ShareButtons({ product }: ShareButtonsProps) {
+export default function ShareButtons({ product }: { product: Product }) {
   const t = useI18n();
 
   const [isClient, setIsClient] = useState(false);
