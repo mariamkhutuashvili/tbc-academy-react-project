@@ -1,6 +1,7 @@
 export default {
   // HEADER
   home: "მთავარი",
+  products: "პროდუქტები",
   about: "ჩვენ შესახებ",
   blog: "ბლოგი",
   contact: "კონტაქტი",
@@ -20,6 +21,9 @@ export default {
   enterYourEmail: "შეიყვანეთ თქვენი მეილი",
   subscribe: "გამოწერა",
 
+  // HOME PAGE
+  headline: "შენი მოგზაურობა იწყება აქ.",
+
   // PRODUCTS PAGE
   onlineStore: "ონლაინ მაღაზია",
   searchProducts: "მოძებნე პროდუქტები...",
@@ -31,7 +35,6 @@ export default {
   shareOnLinkedIn: "გააზიარე LinkedIn-ზე",
 
   //ABOUT PAGE
-  headline: "შენი მოგზაურობა იწყება აქ.",
   learnMore: "გაიგე მეტი",
 
   // BLOG PAGE

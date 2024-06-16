@@ -9,6 +9,9 @@ export default async function Footer() {
       <div className="footer-section">
         <h3>{t("quickLinks")}</h3>
         <div className="footer-nav">
+          <Link href="/products" className="footer-link">
+            {t("products")}
+          </Link>
           <Link href="/about" className="footer-link">
             {t("about")}
           </Link>

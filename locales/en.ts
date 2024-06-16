@@ -1,6 +1,7 @@
 export default {
   // HEADER
   home: "Home",
+  products: "Products",
   about: "About",
   blog: "Blog",
   contact: "Contact",
@@ -20,6 +21,9 @@ export default {
   enterYourEmail: "Enter Your Email",
   subscribe: "Subscribe",
 
+  // HOME PAGE
+  headline: "Your Story Starts With Us.",
+
   // PRODUCTS PAGE
   onlineStore: "Online Store",
   searchProducts: "Search Products...",
@@ -31,7 +35,6 @@ export default {
   shareOnLinkedIn: "Share on LinkedIn",
 
   //ABOUT PAGE
-  headline: "Your Story Starts With Us.",
   learnMore: "Learn More",
 
   // BLOG PAGE

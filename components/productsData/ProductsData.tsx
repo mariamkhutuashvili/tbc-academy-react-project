@@ -8,7 +8,7 @@ import Sort from "../sort/Sort";
 import AddToCartButton from "../UI/AddToCartButton";
 import Title from "../UI/Title";
 import { useI18n } from "../../locales/client";
-import "../../styles/page.css";
+import "../../styles/Products.css";
 
 export interface Gallery {
   id: number;
@@ -41,7 +41,11 @@ function debounce<T extends (...args: any[]) => void>(
   };
 }
 
-export default function Products({ product }: { product: HomeClientProps }) {
+export default function ProductsData({
+  product,
+}: {
+  product: HomeClientProps;
+}) {
   const t = useI18n();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
