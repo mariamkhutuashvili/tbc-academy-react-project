@@ -51,6 +51,7 @@ import {
   deleteProductById,
 } from "./api";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function changeLanguage() {
   const cookieStore = cookies();
@@ -274,6 +275,25 @@ export const handleClearCart = async () => {
   } catch (error) {
     console.error("Error clearing cart:", error);
   }
+};
+
+export const checkout = async (filteredProducts: any[], user: any) => {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/checkout`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ products: filteredProducts, user }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      console.log(response);
+      if (response.url) {
+        redirect(response.url);
+      }
+    });
 };
 
 export async function editProfileInfo(formData: ProfileData) {

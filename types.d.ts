@@ -12,6 +12,19 @@ interface ProductFromVercel {
   photo_gallery: Gallery[];
 }
 
+interface ActiveProductFromVercel {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountprice: number;
+  stock: number;
+  category: string;
+  brand: string;
+  photo_gallery: Gallery[];
+  quantity: number;
+}
+
 interface Products {
   title: string;
   description: string;

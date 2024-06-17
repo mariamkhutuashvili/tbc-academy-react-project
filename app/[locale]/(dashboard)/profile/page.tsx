@@ -8,7 +8,7 @@ import { getUserInfo, getUserPicture } from "../../../api";
 import "../../../../styles/Profile.css";
 
 export const metadata = {
-  title: "Your Profile",
+  title: "My Profile",
   description: "Your Profile - Manage Your Account",
 };
 

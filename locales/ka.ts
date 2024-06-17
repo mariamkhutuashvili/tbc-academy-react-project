@@ -61,6 +61,7 @@ export default {
   yourName: "შენი სახელი...",
   yourEmail: "შენი მეილი...",
   yourPhone: "შენი ტელეფონი...",
+  yourAddress: "შენი მისამართი...",
   writeSomething: "დაწერე ტექსტი...",
   subject: "თემა",
   message: "წერილი",
@@ -98,4 +99,5 @@ export default {
   remove: "წაშლა",
   totalPrice: "სულ ფასი",
   backToShop: "მაღაზიაში დაბრუნება",
+  placeAnOrder: "შეკვეთის განთავსება",
 } as const;

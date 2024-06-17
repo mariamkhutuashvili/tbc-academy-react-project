@@ -61,6 +61,7 @@ export default {
   yourName: "Your name...",
   yourEmail: "Your email...",
   yourPhone: "Your phone...",
+  yourAddress: "Your address...",
   writeSomething: "Write something...",
   subject: "Subject",
   message: "Message",
@@ -98,4 +99,5 @@ export default {
   remove: "Remove",
   totalPrice: "Total Price",
   backToShop: "Back to Shop",
+  placeAnOrder: "Place an Order",
 } as const;
