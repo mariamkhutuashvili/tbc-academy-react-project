@@ -1,7 +1,13 @@
 import Title from "../../../../components/UI/Title";
 import Image from "next/image";
 import { getI18n } from "../../../../locales/server";
-import { getBlogs, getFormEntries, getProducts, getUsers } from "../../../api";
+import {
+  getBlogs,
+  getFormEntries,
+  getOrders,
+  getProducts,
+  getUsers,
+} from "../../../api";
 // import AddNewUser from "../../../../components/adminPanel/userManagement/AddNewUser";
 import DeleteUser from "../../../../components/adminPanel/userManagement/DeleteUser";
 import EditUser from "../../../../components/adminPanel/userManagement/EditUser";
@@ -12,6 +18,7 @@ import DeleteEntry from "../../../../components/adminPanel/entryManagement/Delet
 import AddNewProduct from "../../../../components/adminPanel/productManagement/AddNewProduct";
 import EditProduct from "../../../../components/adminPanel/productManagement/EditProduct";
 import DeleteProduct from "../../../../components/adminPanel/productManagement/DeleteProduct";
+import RefundButton from "../../../../components/adminPanel/orderManagement/RefundButton";
 import "../../../../styles/Admin.css";
 
 export const metadata = {
@@ -26,6 +33,9 @@ export default async function Admin() {
   const blogs = await getBlogs();
   const products = await getProducts();
   const formEntries = await getFormEntries();
+  const orders = await getOrders();
+
+  console.log(orders);
 
   return (
     <div className="admin-container">
@@ -177,6 +187,57 @@ export default async function Admin() {
                 <td className="admin-table-cell-actions">
                   <div className="admin-actions-container">
                     <DeleteEntry id={entry.id} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="orders-management">
+        <div className="admin-header">
+          <Title titleName={t("formEntries")} />
+        </div>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>{t("user")}</th>
+              <th>{t("totalPrice")}</th>
+              <th>{t("status")}</th>
+              <th>{t("address")}</th>
+              <th>{t("phone")}</th>
+              <th>{t("receipt")}</th>
+              <th>{t("actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order: Order) => (
+              <tr key={order.latest_charge.id}>
+                <td>{order.metadata.name}</td>
+                <td>${(order.amount / 100).toFixed(2)}</td>
+                <td>
+                  {order.latest_charge.refunded === true ? "Refunded" : "Paid"}
+                </td>
+                <td>{order.metadata.address}</td>
+                <td>{order.metadata.phone}</td>
+                <td>
+                  <a
+                    href={order.latest_charge.receipt_url}
+                    aria-label="Order Receipt"
+                    target="_blank"
+                    className="order-receipt"
+                    rel="noopener noreferrer"
+                  >
+                    {t("viewReceipt")}
+                  </a>
+                </td>
+                <td className="admin-table-cell-actions">
+                  <div className="admin-actions-container">
+                    <RefundButton
+                      id={order.latest_charge.id}
+                      refunded={order.latest_charge.refunded}
+                    />
                   </div>
                 </td>
               </tr>

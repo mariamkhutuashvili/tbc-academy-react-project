@@ -91,6 +91,11 @@ export default {
   delete: "Delete",
   makePrimary: "Make Primary",
   role: "Role",
+  user: "User",
+  status: "Status",
+  refund: "Refund",
+  receipt: "Receipt",
+  viewReceipt: "View Receipt",
 
   //CART PAGE
   cart: "Cart",

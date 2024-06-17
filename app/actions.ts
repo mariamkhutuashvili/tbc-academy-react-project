@@ -296,6 +296,17 @@ export const checkout = async (filteredProducts: any[], user: any) => {
     });
 };
 
+export async function createRefund(charge: string) {
+  revalidatePath("/admin");
+  await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/create-refund", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ charge }),
+  });
+}
+
 export async function editProfileInfo(formData: ProfileData) {
   const { userSub, nickname, phone, address } = formData;
   revalidatePath("/profile");

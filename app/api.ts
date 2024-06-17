@@ -335,3 +335,11 @@ export async function getBlogDetail(id: string) {
 
   return blogDetail;
 }
+
+export const getOrders = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/orders`, {
+    cache: "no-store",
+  });
+  const orders = await res.json();
+  return orders;
+};

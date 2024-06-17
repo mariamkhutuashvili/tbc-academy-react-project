@@ -91,6 +91,11 @@ export default {
   delete: "წაშლა",
   makePrimary: "გახადე მთავარი",
   role: "როლი",
+  user: "მომხმარებელი",
+  status: "სტატუსი",
+  refund: "დაბრუნება",
+  receipt: "ინვოისი",
+  viewReceipt: "ინვოისის ნახვა",
 
   //CART PAGE
   cart: "კალათა",
