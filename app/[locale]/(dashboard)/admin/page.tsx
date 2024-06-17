@@ -35,8 +35,6 @@ export default async function Admin() {
   const formEntries = await getFormEntries();
   const orders = await getOrders();
 
-  console.log(orders);
-
   return (
     <div className="admin-container">
       <div className="users-management">

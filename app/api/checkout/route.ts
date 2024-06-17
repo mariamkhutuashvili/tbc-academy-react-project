@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const getActiveProducts = async () => {
@@ -18,14 +19,19 @@ export const POST = async (request: any) => {
     for (const product of data) {
       const stripeProduct = activeProducts.find(
         (stripeProduct: any) =>
-          stripeProduct?.name?.toLowerCase() == product?.title?.toLowerCase()
+          stripeProduct?.name?.toLowerCase() == product?.title?.toLowerCase() &&
+          stripeProduct?.metadata?.price === product.price
       );
       if (stripeProduct == undefined) {
         await stripe.products.create({
           name: product.title,
+          images: [product.photo_gallery[0].img_url],
           default_price_data: {
             unit_amount: Number(product.price) * 100,
             currency: "usd",
+          },
+          metadata: {
+            price: product.price,
           },
         });
       }
@@ -38,7 +44,9 @@ export const POST = async (request: any) => {
 
   for (const product of data) {
     const stripeProduct = activeProducts?.find(
-      (prod: any) => prod?.name?.toLowerCase() == product?.title?.toLowerCase()
+      (prod: any) =>
+        prod?.name?.toLowerCase() == product?.title?.toLowerCase() &&
+        prod?.metadata?.price === product.price
     );
 
     if (stripeProduct) {
