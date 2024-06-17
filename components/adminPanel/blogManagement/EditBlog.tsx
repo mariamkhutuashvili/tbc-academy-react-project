@@ -76,7 +76,7 @@ export default function EditBlog({ blogData }: { blogData: PostData }) {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="edit-icon w-6 h-6 cursor-pointer"
+        className="edit-icon"
       >
         <path
           strokeLinecap="round"
@@ -92,7 +92,7 @@ export default function EditBlog({ blogData }: { blogData: PostData }) {
         className="modal-center"
       >
         <div className="modal-form">
-          <form onSubmit={handleSubmit} className="w-full">
+          <form onSubmit={handleSubmit} className="edit-form">
             <div className="form-group">
               <label className="form-label" htmlFor="title">
                 {t("title")}
@@ -132,7 +132,7 @@ export default function EditBlog({ blogData }: { blogData: PostData }) {
                 <Image
                   src={blog.photo}
                   alt="Blog Image"
-                  className="max-w-full h-auto"
+                  className="blog-image"
                   width={100}
                   height={100}
                 />

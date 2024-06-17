@@ -34,6 +34,14 @@ export default {
   shareOnTwitter: "Share on Twitter",
   shareOnLinkedIn: "Share on LinkedIn",
 
+  // PRODUCT PAGE
+  price: "Price",
+  discountPrice: "Discount Price",
+  stock: "Stock",
+  brand: "Brand",
+  category: "Category",
+  photoGallery: "Photo Gallery",
+
   //ABOUT PAGE
   learnMore: "Learn More",
 
@@ -43,7 +51,6 @@ export default {
   title: "Title",
   description: "Description",
   image: "Image",
-  addBlog: "Add Blog",
 
   // CONTACT PAGE
   contactUs: "Contact Us",
@@ -78,6 +85,10 @@ export default {
   users: "Users",
   actions: "Actions",
   addUser: "Add User",
+  addBlog: "Add Blog",
+  addProduct: "Add Product",
+  delete: "Delete",
+  makePrimary: "Make Primary",
   role: "Role",
 
   //CART PAGE

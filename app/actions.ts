@@ -46,6 +46,9 @@ import {
   updateBlogById,
   deleteEntryById,
   createContactForm,
+  createProduct,
+  editProduct,
+  deleteProductById,
 } from "./api";
 import { cookies } from "next/headers";
 
@@ -92,6 +95,66 @@ export async function updateBlog(blog: PostData) {
   revalidatePath("/blog");
   updateBlogById(id, title, description, photo);
 }
+
+export async function createAddProductAction(productData: Products) {
+  const {
+    title,
+    description,
+    price,
+    discountprice,
+    stock,
+    category,
+    brand,
+    photo_gallery,
+  } = productData;
+
+  await createProduct(
+    title,
+    description,
+    price,
+    discountprice,
+    stock,
+    category,
+    brand,
+    photo_gallery
+  );
+}
+
+export async function editProductAction(productData: ProductFromVercel) {
+  const {
+    id,
+    title,
+    description,
+    price,
+    discountprice,
+    stock,
+    category,
+    brand,
+    photo_gallery,
+  } = productData;
+  revalidatePath("/products");
+  revalidatePath(`/products/${id}`);
+  revalidatePath("/admin");
+  editProduct(
+    id,
+    title,
+    description,
+    price,
+    discountprice,
+    stock,
+    category,
+    brand,
+    photo_gallery
+  );
+}
+
+export const deleteProduct: (id: number) => Promise<void> = async (
+  id: number
+) => {
+  await deleteProductById(id);
+  revalidatePath("/products");
+  revalidatePath("/admin");
+};
 
 export const handleAddToCart = async (productId: string) => {
   "use server";

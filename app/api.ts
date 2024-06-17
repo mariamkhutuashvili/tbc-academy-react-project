@@ -99,6 +99,79 @@ export async function updateBlogById(
   }
 }
 
+export async function createProduct(
+  title: string,
+  description: string,
+  price: number,
+  discountprice: number,
+  stock: number,
+  category: string,
+  brand: string,
+  photo_gallery: { id: number; img_url: string }[] | undefined
+) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/create-product`,
+    {
+      method: "POST",
+      cache: "no-store",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        price,
+        discountprice,
+        stock,
+        category,
+        brand,
+        photo_gallery,
+      }),
+    }
+  );
+}
+
+export async function editProduct(
+  id: number | undefined,
+  title: string,
+  description: string,
+  price: number,
+  discountprice: number,
+  stock: number,
+  category: string,
+  brand: string,
+  photo_gallery: { id: number; img_url: string }[] | undefined
+) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/update-product/${id}`,
+    {
+      method: "PUT",
+      cache: "no-store",
+      body: JSON.stringify({
+        title,
+        description,
+        price,
+        discountprice,
+        stock,
+        category,
+        brand,
+        photo_gallery,
+      }),
+    }
+  );
+}
+
+export async function deleteProductById(id: number) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/delete-product/${id}`,
+    {
+      method: "DELETE",
+      cache: "no-store",
+    }
+  );
+}
+
 export async function getProductDetail(id: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-products/${id}`

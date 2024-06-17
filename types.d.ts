@@ -2,12 +2,23 @@
 
 interface ProductFromVercel {
   id: number;
+  title: string;
   description: string;
   price: number;
-  title: string;
-  discount: string;
-  category: string;
+  discountprice: number;
   stock: number;
+  category: string;
+  brand: string;
+  photo_gallery: Gallery[];
+}
+
+interface Products {
+  title: string;
+  description: string;
+  price: number;
+  discountprice: number;
+  stock: number;
+  category: string;
   brand: string;
   photo_gallery: Gallery[];
 }
@@ -15,6 +26,7 @@ interface ProductFromVercel {
 interface Gallery {
   id: number;
   img_url: string;
+  name: string;
 }
 
 interface ProductsDataProps {

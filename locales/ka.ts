@@ -34,6 +34,14 @@ export default {
   shareOnTwitter: "გააზიარე Twitter-ზე",
   shareOnLinkedIn: "გააზიარე LinkedIn-ზე",
 
+  // PRODUCT PAGE
+  price: "ფასი",
+  discountPrice: "ფასდაკლებული ფასი",
+  stock: "მარაგი",
+  brand: "ბრენდი",
+  category: "კატეგორია",
+  photoGallery: "ფოტო გალერია",
+
   //ABOUT PAGE
   learnMore: "გაიგე მეტი",
 
@@ -43,7 +51,6 @@ export default {
   title: "სათაური",
   description: "აღწერა",
   image: "სურათი",
-  addBlog: "ბლოგის დამატება",
 
   // CONTACT PAGE
   contactUs: "დაგვიკავშირდი",
@@ -78,6 +85,10 @@ export default {
   users: "მომხმარებლები",
   actions: "კონტროლი",
   addUser: "მომხმარებლის დამატება",
+  addBlog: "ბლოგის დამატება",
+  addProduct: "პროდუქტის დამატება",
+  delete: "წაშლა",
+  makePrimary: "გახადე მთავარი",
   role: "როლი",
 
   //CART PAGE
