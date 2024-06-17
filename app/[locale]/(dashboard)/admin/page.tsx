@@ -197,7 +197,7 @@ export default async function Admin() {
 
       <div className="orders-management">
         <div className="admin-header">
-          <Title titleName={t("formEntries")} />
+          <Title titleName={t("orders")} />
         </div>
         <table className="admin-table">
           <thead>
@@ -217,7 +217,9 @@ export default async function Admin() {
                 <td>{order.metadata.name}</td>
                 <td>${(order.amount / 100).toFixed(2)}</td>
                 <td>
-                  {order.latest_charge.refunded === true ? "Refunded" : "Paid"}
+                  {order.latest_charge.refunded === true
+                    ? t("refunded")
+                    : t("paid")}
                 </td>
                 <td>{order.metadata.address}</td>
                 <td>{order.metadata.phone}</td>

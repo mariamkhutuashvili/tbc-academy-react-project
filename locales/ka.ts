@@ -75,6 +75,7 @@ export default {
   loading: "იტვირთება",
   change: "შეცვლა",
   save: "შენახვა",
+  myOrders: "ჩემი შეკვეთები",
 
   // LOGIN PAGE
   username: "მომხმარებელი",
@@ -96,6 +97,9 @@ export default {
   refund: "დაბრუნება",
   receipt: "ინვოისი",
   viewReceipt: "ინვოისის ნახვა",
+  refunded: "დაბრუნებული",
+  paid: "გადახდილი",
+  orders: "შეკვეთები",
 
   //CART PAGE
   cart: "კალათა",

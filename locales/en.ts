@@ -75,6 +75,7 @@ export default {
   loading: "Loading",
   change: "Change",
   save: "Save",
+  myOrders: "My Orders",
 
   // LOGIN PAGE
   username: "Username",
@@ -96,6 +97,9 @@ export default {
   refund: "Refund",
   receipt: "Receipt",
   viewReceipt: "View Receipt",
+  refunded: "Refunded",
+  paid: "Paid",
+  orders: "Orders",
 
   //CART PAGE
   cart: "Cart",

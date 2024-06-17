@@ -1,5 +1,6 @@
 // import { useState } from "react";
 // import Image from "next/image";
+import Link from "next/link";
 import Title from "../../../../components/UI/Title";
 import ProfilePicture from "../../../../components/profilePicture/ProfilePicture";
 import ProfileInfo from "../../../../components/profileInfo/ProfileInfo";
@@ -25,6 +26,7 @@ export default async function Profile() {
       <div className="user-info">
         <ProfilePicture userImage={userPicture} />
         <ProfileInfo user={user} />
+        <Link href="/profile/orders">{t("myOrders")}</Link>
         {/* <Image
           src={user?.picture ? user?.picture : ""}
           alt="Profile picture"
