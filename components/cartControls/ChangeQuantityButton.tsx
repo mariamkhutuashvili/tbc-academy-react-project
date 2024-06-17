@@ -1,19 +1,12 @@
 "use client";
 
-import {
-  handleAddToCart,
-  handleDecrement,
-  handleRemoveProductFromCart,
-} from "../../app/actions";
-import { useI18n } from "../../locales/client";
+import { handleAddToCart, handleDecrement } from "../../app/actions";
 
 export default function ChangeQuantityButton({
   id,
   quantity,
   price,
 }: QuantityProps) {
-  const t = useI18n();
-
   return (
     <div className="cart-control">
       <button
@@ -28,12 +21,6 @@ export default function ChangeQuantityButton({
         onClick={() => handleAddToCart(id)}
       >
         +
-      </button>
-      <button
-        className="button remove-button"
-        onClick={() => handleRemoveProductFromCart(id)}
-      >
-        {t("remove")}
       </button>
       <span>${price * quantity}</span>
     </div>

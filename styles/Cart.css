@@ -25,6 +25,15 @@
   border-radius: 5px;
 }
 
+.product-image {
+  margin-right: 20px;
+}
+
+.delete-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .product-details {
   flex-grow: 1;
   display: flex;

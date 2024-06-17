@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getProductDetail, getProducts } from "../../../../api";
-import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
 import ShareButtons from "../../../../../components/UI/ShareButtons";
 import "../../../../../styles/Product.css";
 

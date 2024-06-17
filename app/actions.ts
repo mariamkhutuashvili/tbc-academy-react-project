@@ -37,7 +37,7 @@
 import { revalidatePath } from "next/cache";
 import {
   deleteUserById,
-  createUser,
+  // createUser,
   updateUserById,
   getUserId,
   EditProfile,
@@ -59,11 +59,12 @@ export async function changeLanguage() {
   const newLocale = curr === "en" ? "ka" : "en";
   cookieStore.set("Next-Locale", newLocale);
 }
-export async function createUserAction(userData: UserData) {
-  const { name, email } = userData;
-  revalidatePath("/admin");
-  createUser(name, email);
-}
+
+// export async function createUserAction(userData: UserData) {
+//   const { name, email } = userData;
+//   revalidatePath("/admin");
+//   createUser(name, email);
+// }
 
 export const deleteUser: (id: number) => Promise<void> = async (id: number) => {
   await deleteUserById(id);

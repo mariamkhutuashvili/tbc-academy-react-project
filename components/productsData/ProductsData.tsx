@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
-import AddToCartButton from "../UI/AddToCartButton";
+import AddToCartButton from "../cartControls/AddToCartButton";
 import Title from "../UI/Title";
 import { useI18n } from "../../locales/client";
 import "../../styles/Products.css";

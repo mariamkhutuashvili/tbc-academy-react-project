@@ -8,12 +8,12 @@ export async function getUsers() {
   return users?.rows;
 }
 
-export async function createUser(name: string, email: string) {
-  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/create-user", {
-    method: "POST",
-    body: JSON.stringify({ name, email }),
-  });
-}
+// export async function createUser(name: string, email: string) {
+//   return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/create-user", {
+//     method: "POST",
+//     body: JSON.stringify({ name, email }),
+//   });
+// }
 
 export async function deleteUserById(id: number) {
   return await fetch(

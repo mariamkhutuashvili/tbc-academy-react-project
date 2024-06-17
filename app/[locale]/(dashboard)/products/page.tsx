@@ -8,7 +8,6 @@ export const metadata = {
 
 export default async function Products() {
   const products = await getProducts();
-  console.log(products);
 
   return <ProductsData product={products} />;
 }

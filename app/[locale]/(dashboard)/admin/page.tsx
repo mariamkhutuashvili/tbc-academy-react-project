@@ -2,7 +2,7 @@ import Title from "../../../../components/UI/Title";
 import Image from "next/image";
 import { getI18n } from "../../../../locales/server";
 import { getBlogs, getFormEntries, getProducts, getUsers } from "../../../api";
-import AddNewUser from "../../../../components/adminPanel/userManagement/AddNewUser";
+// import AddNewUser from "../../../../components/adminPanel/userManagement/AddNewUser";
 import DeleteUser from "../../../../components/adminPanel/userManagement/DeleteUser";
 import EditUser from "../../../../components/adminPanel/userManagement/EditUser";
 import AddNewBlog from "../../../../components/adminPanel/blogManagement/AddNewBlog";
@@ -32,7 +32,7 @@ export default async function Admin() {
       <div className="users-management">
         <div className="admin-header">
           <Title titleName={t("users")} />
-          <AddNewUser />
+          {/* <AddNewUser /> */}
         </div>
         <table className="admin-table">
           <thead>
