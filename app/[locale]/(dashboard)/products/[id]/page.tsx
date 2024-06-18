@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { getProductDetail, getProducts } from "../../../../api";
+import ProductGallery from "../../../../../components/productGallery/ProductGallery";
 import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
 import ShareButtons from "../../../../../components/UI/ShareButtons";
 import "../../../../../styles/Product.css";
@@ -26,13 +26,7 @@ export default async function Product({
 
   return (
     <div key={product.id} className="product-page">
-      <Image
-        src={product.photo_gallery[0].img_url}
-        alt="product"
-        width={400}
-        height={400}
-        priority
-      />
+      <ProductGallery product={product} />
       <ShareButtons product={product} />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
