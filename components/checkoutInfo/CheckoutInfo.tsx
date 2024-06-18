@@ -19,6 +19,7 @@ export default function CheckoutInfo({
     name: "",
     address: "",
     phone: "",
+    comment: "",
     sub: "",
   });
 
@@ -34,16 +35,19 @@ export default function CheckoutInfo({
         name: authUser.name || "",
         address: authUser.address || "",
         phone: authUser.phone || "",
+        comment: "",
         sub: authUser.sub || "",
       });
     }
   }, [authUser]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
-
+  console.log(profile);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // setLoading(true);
     e.preventDefault();
@@ -51,17 +55,11 @@ export default function CheckoutInfo({
     // setLoading(false);
   };
 
-  // const countSubtotal = cartProducts.reduce((curr: number, acc: any) => {
-  //   return curr + acc.quantity * acc.price;
-  // }, 0);
-
-  // const subtotal = Math.round(countSubtotal * 100) / 100;
-
   return (
     <>
       <div className="container">
         <div className="form-container">
-          <h2 className="form-title">{t("userInformation")}</h2>
+          <h2 className="form-title">{t("orderInformation")}</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name" className="form-label">
@@ -108,8 +106,21 @@ export default function CheckoutInfo({
                 required
               />
             </div>
+            <div className="form-group">
+              <label htmlFor="comment" className="form-label">
+                {t("comment")}
+              </label>
+              <textarea
+                id="comment"
+                name="comment"
+                value={profile.comment}
+                onChange={handleChange}
+                className="form-input"
+                placeholder={t("yourComment")}
+              />
+            </div>
             <button type="submit" className="button submit-button">
-              {t("placeAnOrder")}
+              {t("pay")}
             </button>
           </form>
         </div>

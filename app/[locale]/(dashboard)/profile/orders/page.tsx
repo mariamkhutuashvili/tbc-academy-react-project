@@ -31,6 +31,7 @@ export default async function page() {
             <th>{t("status")}</th>
             <th>{t("address")}</th>
             <th>{t("phone")}</th>
+            <th>{t("comment")}</th>
             <th>{t("receipt")}</th>
           </tr>
         </thead>
@@ -46,6 +47,7 @@ export default async function page() {
               </td>
               <td>{order.metadata.address}</td>
               <td>{order.metadata.phone}</td>
+              <td>{order.metadata.comment}</td>
               <td>
                 <a
                   href={order.latest_charge.receipt_url}

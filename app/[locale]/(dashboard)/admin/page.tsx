@@ -205,6 +205,7 @@ export default async function Admin() {
               <th>{t("status")}</th>
               <th>{t("address")}</th>
               <th>{t("phone")}</th>
+              <th>{t("comment")}</th>
               <th>{t("receipt")}</th>
               <th>{t("actions")}</th>
             </tr>
@@ -221,6 +222,7 @@ export default async function Admin() {
                 </td>
                 <td>{order.metadata.address}</td>
                 <td>{order.metadata.phone}</td>
+                <td>{order.metadata.comment}</td>
                 <td>
                   <a
                     href={order.latest_charge.receipt_url}

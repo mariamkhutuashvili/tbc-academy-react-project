@@ -109,4 +109,10 @@ export default {
   totalPrice: "სულ ფასი",
   backToShop: "მაღაზიაში დაბრუნება",
   placeAnOrder: "შეკვეთის განთავსება",
+
+  //CHECKOUT PAGE
+  orderInformation: "შეკვეთის ინფორმაცია",
+  pay: "გადახდა",
+  comment: "კომენტარი",
+  yourComment: "შენი კომენტარი",
 } as const;

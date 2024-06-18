@@ -67,10 +67,11 @@ export const POST = async (request: any) => {
         name: user.name,
         phone: user.phone,
         address: user.address,
+        comment: user.comment,
       },
     },
     success_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/profile/orders`,
-    cancel_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/cart`,
+    cancel_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/checkout`,
   });
 
   return NextResponse.json({ url: session.url });

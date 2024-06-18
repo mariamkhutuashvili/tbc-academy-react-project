@@ -5,11 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Title from "../../../../components/UI/Title";
 import { getI18n } from "../../../../locales/server";
-import { getProducts, getUserCart, getUserInfo } from "../../../api";
+import { getProducts, getUserCart } from "../../../api";
 import ClearCartButton from "../../../../components/cartControls/ClearCartButton";
 import ChangeQuantityButton from "../../../../components/cartControls/ChangeQuantityButton";
 import RemoveFromCartButton from "../../../../components/cartControls/RemoveFromCartButton";
-import CheckoutInfo from "../../../../components/checkoutInfo/CheckoutInfo";
 import "../../../../styles/Cart.css";
 
 export const metadata = {
@@ -68,8 +67,6 @@ export default async function Cart() {
   //   dispatch({ type: action });
   // };
 
-  const user = await getUserInfo();
-
   return (
     <div className="cart">
       <Title titleName={t("cart")} />
@@ -107,7 +104,9 @@ export default async function Cart() {
           </span>
         </div>
       </div>
-      <CheckoutInfo authUser={user} selectedProducts={filteredProducts} />
+      <Link href="/checkout" className="button submit-button">
+        {t("placeAnOrder")}
+      </Link>
     </div>
   );
 }

@@ -143,6 +143,7 @@ interface Order {
     id: string;
     address: string;
     phone: string;
+    comment: string;
   };
   amount: number;
   latest_charge: {

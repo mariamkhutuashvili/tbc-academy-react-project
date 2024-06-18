@@ -109,4 +109,10 @@ export default {
   totalPrice: "Total Price",
   backToShop: "Back to Shop",
   placeAnOrder: "Place an Order",
+
+  //CHECKOUT PAGE
+  orderInformation: "Order Information",
+  pay: "Pay Now",
+  comment: "Comment",
+  yourComment: "Your Comment",
 } as const;
