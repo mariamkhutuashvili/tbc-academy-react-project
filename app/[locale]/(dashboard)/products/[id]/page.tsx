@@ -21,13 +21,25 @@ export default async function Product({
 }: {
   params: { id: string };
 }) {
-  const product = await getProductDetail(id);
+  const {
+    product,
+    reviews,
+  }: { product: ProductFromVercel; reviews: Review[] } = await getProductDetail(
+    id
+  );
   console.log(product);
 
   return (
     <div key={product.id} className="product-page">
       <ProductGallery product={product} />
       <ShareButtons product={product} />
+      {reviews?.map((review) => (
+        <div key={review.id}>
+          <p>{review.name}</p>
+          <p>{review.star}</p>
+          <p>{review.comment}</p>
+        </div>
+      ))}
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="product-price">Price: ${product.price}</p>

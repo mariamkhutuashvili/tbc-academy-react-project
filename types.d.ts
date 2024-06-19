@@ -66,6 +66,18 @@ interface MetaDataProps {
   };
 }
 
+//product page
+
+interface Review {
+  id: number;
+  name: string;
+  email: string;
+  user_id: number;
+  star: number;
+  comment: string;
+  product_id: number;
+}
+
 // blog page
 
 interface BlogData {

@@ -178,7 +178,8 @@ export async function getProductDetail(id: string) {
   );
   const data = await response.json();
   const product = data.products?.rows ? data.products.rows[0] : null;
-  return product;
+  const reviews = data.reviews?.rows ? data.reviews.rows : null;
+  return { product, reviews };
 }
 
 export async function getProducts() {

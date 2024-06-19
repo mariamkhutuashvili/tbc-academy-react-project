@@ -11,7 +11,11 @@ import {
 } from "react-share";
 import { useI18n } from "../../locales/client";
 
-export default function ShareButtons({ product }: { product: Product }) {
+export default function ShareButtons({
+  product,
+}: {
+  product: ProductFromVercel;
+}) {
   const t = useI18n();
 
   const [isClient, setIsClient] = useState(false);
