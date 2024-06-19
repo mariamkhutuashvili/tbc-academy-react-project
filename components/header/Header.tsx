@@ -2,10 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
-import ProfileIcon from "../UI/ProfileIcon";
+import ProfileDropdown from "../profileDropdown/ProfileDropdown";
 import CartIcon from "../UI/CartIcon";
 import LoginButton from "../UI/LoginButton";
-import LogoutButton from "../UI/LogoutButton";
 import { getI18n } from "../../locales/server";
 import { cookies } from "next/headers";
 import { getSession } from "@auth0/nextjs-auth0";
@@ -20,8 +19,6 @@ export default async function Header() {
   const session = await getSession();
   const user = session?.user;
   const isAdmin = Array.isArray(user?.role) && user.role.includes("Admin");
-
-  console.log(user);
 
   return (
     <header className="header">
@@ -55,9 +52,9 @@ export default async function Header() {
       <div className="right-section">
         <ToggleThemeButton />
         <ToggleLanguage curr={curr?.value} />
-        {user && <ProfileIcon />}
+        {user && <ProfileDropdown />}
         <CartIcon />
-        {user ? <LogoutButton /> : <LoginButton />}
+        {!user && <LoginButton />}
       </div>
     </header>
   );

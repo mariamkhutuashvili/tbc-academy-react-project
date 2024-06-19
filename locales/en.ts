@@ -70,11 +70,15 @@ export default {
   messageIsSent: "Message is sent",
 
   // PROFILE PAGE
+  profile: "Profile",
   userInformation: "User Information",
   upload: "Upload",
   loading: "Loading",
   change: "Change",
   save: "Save",
+  yourInfoIsUpdated: "Your info is updated",
+
+  //ORDERS PAGE
   myOrders: "My Orders",
 
   // LOGIN PAGE

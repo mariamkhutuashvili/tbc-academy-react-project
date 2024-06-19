@@ -70,11 +70,15 @@ export default {
   messageIsSent: "შეტყობინება გაიგზავნა",
 
   // PROFILE PAGE
+  profile: "პროფილი",
   userInformation: "მომხმარებლის ინფორმაცია",
   upload: "ატვირთვა",
   loading: "იტვირთება",
   change: "შეცვლა",
   save: "შენახვა",
+  yourInfoIsUpdated: "თქვენი მონაცემები განახლდა",
+
+  //ORDERS PAGE
   myOrders: "ჩემი შეკვეთები",
 
   // LOGIN PAGE

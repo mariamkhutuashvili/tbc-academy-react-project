@@ -21,7 +21,7 @@ export default async function page() {
   return (
     <div className="orders-management">
       <div className="admin-header">
-        <Title titleName={t("formEntries")} />
+        <Title titleName={t("myOrders")} />
       </div>
       <table className="admin-table">
         <thead>

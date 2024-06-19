@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useI18n } from "../../locales/client";
 import { checkout } from "../../app/actions";
+import Title from "../UI/Title";
 import "./CheckoutInfo.css";
 
 export default function CheckoutInfo({
@@ -59,7 +60,7 @@ export default function CheckoutInfo({
     <>
       <div className="container">
         <div className="form-container">
-          <h2 className="form-title">{t("orderInformation")}</h2>
+          <Title titleName={t("orderInformation")} />
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name" className="form-label">

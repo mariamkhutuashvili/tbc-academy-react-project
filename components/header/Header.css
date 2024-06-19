@@ -58,6 +58,44 @@
   font-size: 12px;
 }
 
+.profile-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-link:hover {
+  background-color: #f0f0f0;
+}
+
 .logout-button,
 .login-button {
   display: flex;
