@@ -174,7 +174,10 @@ export async function deleteProductById(id: number) {
 
 export async function getProductDetail(id: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-products/${id}`
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-products/${id}`,
+    {
+      cache: "no-store",
+    }
   );
   const data = await response.json();
   const product = data.products?.rows ? data.products.rows[0] : null;
@@ -272,6 +275,11 @@ export async function EditProfile(
 
 export async function getUserInfo() {
   const id = await getUserId();
+
+  if (!id) {
+    return null;
+  }
+
   const userSubId = await fetch(
     process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-users/${id}`,
     {
@@ -280,6 +288,16 @@ export async function getUserInfo() {
   );
 
   const userInfo = await userSubId.json();
+
+  if (
+    !userInfo ||
+    !userInfo.user ||
+    !userInfo.user.rows ||
+    userInfo.user.rows.length === 0
+  ) {
+    return null;
+  }
+
   const userDetail = userInfo.user.rows[0];
   return userDetail;
 }
@@ -344,3 +362,20 @@ export const getOrders = async () => {
   const orders = await res.json();
   return orders;
 };
+
+export async function createReview(
+  user_id: number | undefined,
+  product_id: number,
+  star: number,
+  comment: string
+) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/create-review",
+    {
+      method: "POST",
+      cache: "no-store",
+
+      body: JSON.stringify({ user_id, product_id, star, comment }),
+    }
+  );
+}

@@ -41,6 +41,10 @@ export default {
   brand: "Brand",
   category: "Category",
   photoGallery: "Photo Gallery",
+  evaluateTheProduct: "Evaluate the Product",
+  outOf5: "stars out of 5",
+  addReview: "Add review",
+  productReviews: "Product Reviews",
 
   //ABOUT PAGE
   learnMore: "Learn More",

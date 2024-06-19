@@ -41,6 +41,10 @@ export default {
   brand: "ბრენდი",
   category: "კატეგორია",
   photoGallery: "ფოტო გალერია",
+  evaluateTheProduct: "შეაფასე პროდუქტი",
+  outOf5: "ვარსკვლავი 5-დან",
+  addReview: "დაწერე შეფასება",
+  productReviews: "პროდუქტის შეფასებები",
 
   //ABOUT PAGE
   learnMore: "გაიგე მეტი",

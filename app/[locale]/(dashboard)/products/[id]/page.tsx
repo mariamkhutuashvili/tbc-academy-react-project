@@ -1,7 +1,14 @@
-import { getProductDetail, getProducts } from "../../../../api";
+import {
+  getProductDetail,
+  getProducts,
+  getUserId,
+  getUserInfo,
+} from "../../../../api";
 import ProductGallery from "../../../../../components/productGallery/ProductGallery";
 import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
 import ShareButtons from "../../../../../components/UI/ShareButtons";
+import StarRating from "../../../../../components/starRating/StarRating";
+import Reviews from "../../../../../components/reviews/Reviews";
 import "../../../../../styles/Product.css";
 
 export async function generateMetadata({ params }: MetaDataProps) {
@@ -29,17 +36,25 @@ export default async function Product({
   );
   console.log(product);
 
+  const user = await getUserInfo();
+  const userName = user?.name;
+  const user_id = await getUserId();
+
+  const userReviewIds = reviews.map((review: any) => review.user_id);
+  const userAlreadyWroteReview = userReviewIds.includes(user_id);
+
   return (
     <div key={product.id} className="product-page">
       <ProductGallery product={product} />
       <ShareButtons product={product} />
-      {reviews?.map((review) => (
-        <div key={review.id}>
-          <p>{review.name}</p>
-          <p>{review.star}</p>
-          <p>{review.comment}</p>
-        </div>
-      ))}
+      <StarRating
+        user_id={user_id}
+        product_id={product.id}
+        userName={userName}
+        reviews={reviews}
+        userAlreadyWroteReview={userAlreadyWroteReview}
+      />
+
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="product-price">Price: ${product.price}</p>
@@ -48,6 +63,7 @@ export default async function Product({
       <h4>Category: {product.category}</h4>
       <p>Stock: {product.stock}</p>
       <AddToCartButton id={product.id.toString()} />
+      {reviews.length > 0 && <Reviews reviews={reviews} />}
     </div>
   );
 }

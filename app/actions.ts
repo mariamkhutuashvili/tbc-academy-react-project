@@ -49,6 +49,7 @@ import {
   createProduct,
   editProduct,
   deleteProductById,
+  createReview,
 } from "./api";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -325,3 +326,9 @@ export const deleteEntry: (id: number) => Promise<void> = async (
   await deleteEntryById(id);
   revalidatePath("/admin");
 };
+
+export async function createAddReviewAction(reviewData: ReviewData) {
+  const { user_id, product_id, star, comment } = reviewData;
+  revalidatePath(`/products/${product_id}`);
+  createReview(user_id, product_id, star, comment);
+}

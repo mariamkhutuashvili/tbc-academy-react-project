@@ -78,6 +78,13 @@ interface Review {
   product_id: number;
 }
 
+interface ReviewData {
+  user_id: number;
+  product_id: number;
+  star: number;
+  comment: string;
+}
+
 // blog page
 
 interface BlogData {
