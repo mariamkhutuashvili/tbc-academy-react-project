@@ -9,6 +9,7 @@ import { getProducts, getUserCart } from "../../../api";
 import ClearCartButton from "../../../../components/cartControls/ClearCartButton";
 import ChangeQuantityButton from "../../../../components/cartControls/ChangeQuantityButton";
 import RemoveFromCartButton from "../../../../components/cartControls/RemoveFromCartButton";
+import BackToShopButton from "../../../../components/UI/BackToShopButton";
 import "../../../../styles/Cart.css";
 
 export const metadata = {
@@ -69,44 +70,51 @@ export default async function Cart() {
 
   return (
     <div className="cart">
-      <Title titleName={t("cart")} />
-      <div className="cart-container">
-        <Link href="/" className="button back-to-shop-button">
-          {t("backToShop")}
-        </Link>
-        <ClearCartButton />
-        <div className="cart-items">
-          {filteredProducts.map((item: any) => (
-            <div key={item.id} className="product-card">
-              <div className="product-image">
-                <Image
-                  src={item.photo_gallery[0].img_url}
-                  width={50}
-                  height={50}
-                  alt={item.title}
+      {filteredProducts.length > 0 ? (
+        <div className="cart-container">
+          <Title titleName={t("cart")} />
+          <BackToShopButton />
+          <ClearCartButton />
+          <div className="cart-items">
+            {filteredProducts.map((item: any) => (
+              <div key={item.id} className="product-card">
+                <div className="product-image">
+                  <Image
+                    src={item.photo_gallery[0].img_url}
+                    width={50}
+                    height={50}
+                    alt={item.title}
+                  />
+                </div>
+                <div className="product-details">
+                  <h2>{item.title}</h2>
+                  <p>{item.brand}</p>
+                  <p className="prod-price">${item.price}</p>
+                </div>
+                <ChangeQuantityButton
+                  id={item.id}
+                  quantity={item.quantity}
+                  price={item.price}
                 />
+                <RemoveFromCartButton id={item.id} />
               </div>
-              <div className="product-details">
-                <h2>{item.title}</h2>
-                <p>{item.brand}</p>
-                <p className="prod-price">${item.price}</p>
-              </div>
-              <ChangeQuantityButton
-                id={item.id}
-                quantity={item.quantity}
-                price={item.price}
-              />
-              <RemoveFromCartButton id={item.id} />
-            </div>
-          ))}
-          <span>
-            {t("totalPrice")}: ${totalPrice}
-          </span>
+            ))}
+          </div>
+          <div className="cart-summary">
+            <span>
+              {t("totalPrice")}: ${totalPrice}
+            </span>
+            <Link href="/checkout" className="button submit-button">
+              {t("placeAnOrder")}
+            </Link>{" "}
+          </div>
         </div>
-      </div>
-      <Link href="/checkout" className="button submit-button">
-        {t("placeAnOrder")}
-      </Link>
+      ) : (
+        <>
+          <p>{t("cartIsEmpty")}</p>
+          <BackToShopButton />
+        </>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Modal } from "@mui/material";
+import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { useI18n } from "../../../locales/client";

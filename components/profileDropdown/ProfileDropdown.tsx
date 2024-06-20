@@ -60,7 +60,7 @@ export default function ProfileDropdown() {
           <Link href="/profile/reviews" className="dropdown-link">
             {t("reviews")}
           </Link>
-          <Link
+          <a
             href="/api/auth/logout"
             className="button logout-button dropdown-link"
           >
@@ -79,7 +79,7 @@ export default function ProfileDropdown() {
               />
             </svg>
             {t("logOut")}
-          </Link>
+          </a>
         </div>
       )}
     </div>

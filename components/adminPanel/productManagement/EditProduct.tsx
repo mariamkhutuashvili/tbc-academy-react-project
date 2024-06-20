@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@mui/material";
+import Modal from "@mui/material/Modal";
 import Image from "next/image";
 import { useI18n } from "../../../locales/client";
 import { useRouter } from "next/navigation";

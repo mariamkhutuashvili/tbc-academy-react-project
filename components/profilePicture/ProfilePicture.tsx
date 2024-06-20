@@ -38,9 +38,9 @@ export default function ProfilePicture({ userImage }: { userImage: string }) {
     updateUser();
   }, [blob, user]);
 
-  function handleClick() {
+  const handleClick = () => {
     inputFileRef.current?.click();
-  }
+  };
 
   // Adding an Image Preview to the Picker
   function handleImageChange(e: any) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@mui/material";
+import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createAddReviewAction } from "../../app/actions";

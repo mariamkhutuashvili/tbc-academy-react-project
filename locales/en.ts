@@ -118,6 +118,7 @@ export default {
   totalPrice: "Total Price",
   backToShop: "Back to Shop",
   placeAnOrder: "Place an Order",
+  cartIsEmpty: "კალათა ცარიელია",
 
   //CHECKOUT PAGE
   orderInformation: "Order Information",

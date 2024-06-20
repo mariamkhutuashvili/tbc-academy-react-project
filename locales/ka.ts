@@ -118,6 +118,7 @@ export default {
   totalPrice: "სულ ფასი",
   backToShop: "მაღაზიაში დაბრუნება",
   placeAnOrder: "შეკვეთის განთავსება",
+  cartIsEmpty: "კალათა ცარიელია",
 
   //CHECKOUT PAGE
   orderInformation: "შეკვეთის ინფორმაცია",
