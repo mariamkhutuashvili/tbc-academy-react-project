@@ -67,7 +67,7 @@ export default function ProfileInfo({ user }: any) {
         <button type="submit" className="button submit-button">
           {t("change")}
         </button>
-        {infoUpdated && <p>Your info is updated!</p>}
+        {infoUpdated && <p>{t("yourInfoIsUpdated")}!</p>}
       </form>
     </div>
   );

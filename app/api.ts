@@ -379,3 +379,71 @@ export async function createReview(
     }
   );
 }
+
+// Reviews
+
+export const getReviews = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-reviews`,
+    {
+      cache: "no-store",
+    }
+  );
+  const reviews = await res.json();
+  return reviews;
+};
+
+export async function deleteReviewById(id: number) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/delete-review/${id}`,
+    {
+      method: "DELETE",
+      cache: "no-store",
+    }
+  );
+}
+
+export const getReviewsForUser = async () => {
+  const id = await getUserId();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/get-reviews/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const reviews = await res.json();
+  return reviews;
+};
+
+export async function updateReviewById(
+  id: number,
+  user_id: number,
+  product_id: number,
+  star: number,
+  comment: string
+) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/update-review/${id}`,
+      {
+        method: "PUT",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id, product_id, star, comment }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error);
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+}

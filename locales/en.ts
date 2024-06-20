@@ -10,6 +10,7 @@ export default {
   light: "Light",
   dark: "Dark",
   system: "System",
+  reviews: "Reviews",
 
   // FOOTER
   quickLinks: "Quick Links",
@@ -123,4 +124,9 @@ export default {
   pay: "Pay Now",
   comment: "Comment",
   yourComment: "Your Comment",
+
+  //REVIEW PAGE
+  product: "Product",
+  star: "Star",
+  myReviews: "My Reviews",
 } as const;

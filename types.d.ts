@@ -85,6 +85,25 @@ interface ReviewData {
   comment: string;
 }
 
+interface Reviews {
+  review_id: number;
+  user_name: string;
+  email: string;
+  user_id: number;
+  star: number;
+  comment: string;
+  product_id: number;
+  product_name: string;
+}
+
+interface EditReviewData {
+  id: number;
+  user_id: number;
+  product_id: number;
+  star: number;
+  comment: string;
+}
+
 // blog page
 
 interface BlogData {

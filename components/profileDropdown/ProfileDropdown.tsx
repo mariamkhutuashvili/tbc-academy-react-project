@@ -57,6 +57,9 @@ export default function ProfileDropdown() {
           <Link href="/profile/orders" className="dropdown-link">
             {t("orders")}
           </Link>
+          <Link href="/profile/reviews" className="dropdown-link">
+            {t("reviews")}
+          </Link>
           <Link
             href="/api/auth/logout"
             className="button logout-button dropdown-link"

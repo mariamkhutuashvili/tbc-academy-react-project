@@ -10,6 +10,7 @@ export default {
   light: "ღია",
   dark: "მუქი",
   system: "სისტემა",
+  reviews: "შეფასებები",
 
   // FOOTER
   quickLinks: "სწრაფი ლინკები",
@@ -123,4 +124,9 @@ export default {
   pay: "გადახდა",
   comment: "კომენტარი",
   yourComment: "შენი კომენტარი",
+
+  //REVIEW PAGE
+  product: "პროდუქტი",
+  star: "ვარსკვლავი",
+  myReviews: "ჩემი შეფასებები",
 } as const;

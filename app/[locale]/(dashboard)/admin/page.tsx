@@ -6,6 +6,7 @@ import {
   getFormEntries,
   getOrders,
   getProducts,
+  getReviews,
   getUsers,
 } from "../../../api";
 // import AddNewUser from "../../../../components/adminPanel/userManagement/AddNewUser";
@@ -19,6 +20,7 @@ import AddNewProduct from "../../../../components/adminPanel/productManagement/A
 import EditProduct from "../../../../components/adminPanel/productManagement/EditProduct";
 import DeleteProduct from "../../../../components/adminPanel/productManagement/DeleteProduct";
 import RefundButton from "../../../../components/adminPanel/orderManagement/RefundButton";
+import DeleteReview from "../../../../components/adminPanel/reviewManagement/DeleteReview";
 import "../../../../styles/Admin.css";
 
 export const metadata = {
@@ -34,6 +36,7 @@ export default async function Admin() {
   const products = await getProducts();
   const formEntries = await getFormEntries();
   const orders = await getOrders();
+  const reviews = await getReviews();
 
   return (
     <div className="admin-container">
@@ -192,7 +195,6 @@ export default async function Admin() {
           </tbody>
         </table>
       </div>
-
       <div className="orders-management">
         <div className="admin-header">
           <Title titleName={t("orders")} />
@@ -240,6 +242,40 @@ export default async function Admin() {
                       id={order.latest_charge.id}
                       refunded={order.latest_charge.refunded}
                     />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="reviews-management">
+        <div className="admin-header">
+          <Title titleName={t("reviews")} />
+        </div>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>{t("name")}</th>
+              <th>{t("email")}</th>
+              <th>{t("product")}</th>
+              <th>{t("star")}</th>
+              <th>{t("comment")}</th>
+              <th>{t("actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reviews?.reviews?.map((review: Reviews) => (
+              <tr key={review.review_id}>
+                <td>{review.user_name}</td>
+                <td>{review.email}</td>
+                <td>{review.product_name}</td>
+                <td>{review.star}</td>
+                <td>{review.comment}</td>
+                <td className="admin-table-cell-actions">
+                  <div className="admin-actions-container">
+                    <DeleteReview id={review.review_id} />
                   </div>
                 </td>
               </tr>

@@ -50,6 +50,8 @@ import {
   editProduct,
   deleteProductById,
   createReview,
+  deleteReviewById,
+  updateReviewById,
 } from "./api";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -327,8 +329,25 @@ export const deleteEntry: (id: number) => Promise<void> = async (
   revalidatePath("/admin");
 };
 
+// Reviews
+
 export async function createAddReviewAction(reviewData: ReviewData) {
   const { user_id, product_id, star, comment } = reviewData;
   revalidatePath(`/products/${product_id}`);
   createReview(user_id, product_id, star, comment);
+}
+
+export const deleteReview: (id: number) => Promise<void> = async (
+  id: number
+) => {
+  await deleteReviewById(id);
+  revalidatePath("/products");
+  revalidatePath("/admin");
+};
+
+export async function createEditReviewAction(reviewData: EditReviewData) {
+  const { id, user_id, product_id, star, comment } = reviewData;
+  revalidatePath("/admin");
+  revalidatePath("/profile/reviews");
+  updateReviewById(id, user_id, product_id, star, comment);
 }
