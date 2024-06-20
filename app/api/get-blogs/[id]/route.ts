@@ -1,9 +1,10 @@
-import { sql } from '@vercel/postgres';
-import { NextRequest, NextResponse } from 'next/server';
+import { sql } from "@vercel/postgres";
+import { NextRequest, NextResponse } from "next/server";
 
+export const revalidate = 0;
 
 export async function GET(request: NextRequest) {
-    const id = request.nextUrl.pathname.replace('/api/get-blogs/', '');
+  const id = request.nextUrl.pathname.replace("/api/get-blogs/", "");
 
   try {
     const blogs = await sql`SELECT * FROM blogs WHERE id = ${Number(id)}`;
@@ -13,7 +14,3 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }
-
-
-
-

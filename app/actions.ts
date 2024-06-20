@@ -64,6 +64,8 @@ export async function changeLanguage() {
   cookieStore.set("Next-Locale", newLocale);
 }
 
+// Users
+
 // export async function createUserAction(userData: UserData) {
 //   const { name, email } = userData;
 //   revalidatePath("/admin");
@@ -80,6 +82,8 @@ export async function updateUserAction(id: number, userData: UserData) {
   revalidatePath("/admin");
   updateUserById(id, name, email);
 }
+
+// Blogs
 
 export async function createAddBlogAction(blogData: AddBlogData) {
   const { title, description, photo } = blogData;
@@ -100,6 +104,8 @@ export async function updateBlog(blog: PostData) {
   revalidatePath("/blog");
   updateBlogById(id, title, description, photo);
 }
+
+// Products
 
 export async function createAddProductAction(productData: Products) {
   const {
@@ -160,6 +166,8 @@ export const deleteProduct: (id: number) => Promise<void> = async (
   revalidatePath("/products");
   revalidatePath("/admin");
 };
+
+// Cart
 
 export const handleAddToCart = async (productId: string) => {
   "use server";
@@ -280,6 +288,8 @@ export const handleClearCart = async () => {
   }
 };
 
+// Checkout
+
 export const checkout = async (filteredProducts: any[], user: any) => {
   await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/checkout`, {
     method: "POST",
@@ -310,11 +320,15 @@ export async function createRefund(charge: string) {
   });
 }
 
+// Profile
+
 export async function editProfileInfo(formData: ProfileData) {
   const { userSub, nickname, phone, address } = formData;
   revalidatePath("/profile");
   EditProfile(userSub, nickname, phone, address);
 }
+
+// Contact
 
 export async function createContactAction(formData: ContactData) {
   const { name, email, phone, message } = formData;

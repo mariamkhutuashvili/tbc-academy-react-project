@@ -1,5 +1,7 @@
 import { handleAuth, handleLogin } from "@auth0/nextjs-auth0";
 
+export const revalidate = 0;
+
 export const GET = handleAuth({
   login: handleLogin({
     returnTo: "/api/create-user",
