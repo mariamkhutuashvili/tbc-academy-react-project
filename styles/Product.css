@@ -1,5 +1,10 @@
 .product-page {
   margin: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .share-button-wrapper {

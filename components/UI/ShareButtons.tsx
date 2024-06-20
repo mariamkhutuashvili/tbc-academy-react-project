@@ -26,7 +26,7 @@ export default function ShareButtons({
   return (
     <>
       {isClient ? (
-        <>
+        <div>
           <div className="share-button-wrapper">
             <FacebookShareButton
               url={`https://tbc-academy-react-project.vercel.app/products/${product.id}`}
@@ -54,7 +54,7 @@ export default function ShareButtons({
               <LinkedinIcon size={32} round />
             </LinkedinShareButton>
           </div>
-        </>
+        </div>
       ) : (
         ""
       )}

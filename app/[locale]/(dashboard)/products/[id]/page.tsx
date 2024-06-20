@@ -45,7 +45,7 @@ export default async function Product({
 
   return (
     <div key={product.id} className="product-page">
-      <ProductGallery product={product} />
+      <ProductGallery gallery={product.photo_gallery} />
       <ShareButtons product={product} />
       <StarRating
         user_id={user_id}
