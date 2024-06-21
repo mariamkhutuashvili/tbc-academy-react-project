@@ -7,15 +7,18 @@ export default async function middleware(request: NextRequest) {
   const cookieStore = request.cookies;
   const appSessionCookie = cookieStore.get("appSession");
   const { pathname } = request.nextUrl;
-  if (!appSessionCookie && pathname.startsWith("/profile")) {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (
+    !appSessionCookie &&
+    (pathname.startsWith("/profile") || pathname.startsWith("/cart"))
+  ) {
+    return NextResponse.redirect(new URL("/api/auth/login", request.url));
   }
 
   const session = await getSession(request, res);
   const isAdmin =
     Array.isArray(session?.user?.role) && session?.user.role.includes("Admin");
   if (!isAdmin && pathname.startsWith("/admin")) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/api/auth/login", request.url));
   }
 
   const I18nMiddleware = createI18nMiddleware({

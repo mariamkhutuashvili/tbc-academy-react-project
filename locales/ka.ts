@@ -35,6 +35,9 @@ export default {
   shareOnTwitter: "გააზიარე Twitter-ზე",
   shareOnLinkedIn: "გააზიარე LinkedIn-ზე",
   productAddedToCart: "პროდუქტი დამატებულია კალათაში!",
+  authorization: "ავტორიზაცია",
+  redirectToLogin:
+    "შეკვეთის გაფორმება შეუძლია მხოლოდ რეგისტრირებულ მომხმარებელს. გთხოვთ გაიაროთ ავტორიზაცია/რეგისტრაცია.",
 
   // PRODUCT PAGE
   price: "ფასი",

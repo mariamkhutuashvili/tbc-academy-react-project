@@ -35,6 +35,9 @@ export default {
   shareOnTwitter: "Share on Twitter",
   shareOnLinkedIn: "Share on LinkedIn",
   productAddedToCart: "Product Added to Cart!",
+  authorization: "Authorization",
+  redirectToLogin:
+    "Only registered users can place an order. Please log in or register.",
 
   // PRODUCT PAGE
   price: "Price",

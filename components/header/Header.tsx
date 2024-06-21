@@ -53,7 +53,7 @@ export default async function Header() {
         <ToggleThemeButton />
         <ToggleLanguage curr={curr?.value} />
         {user && <ProfileDropdown />}
-        <CartIcon />
+        {user && <CartIcon />}
         {!user && <LoginButton />}
       </div>
     </header>
