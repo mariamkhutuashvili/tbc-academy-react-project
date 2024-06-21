@@ -6,7 +6,7 @@ import {
   TwitterShareButton,
   LinkedinShareButton,
   FacebookIcon,
-  TwitterIcon,
+  XIcon,
   LinkedinIcon,
 } from "react-share";
 import { useI18n } from "../../locales/client";
@@ -41,7 +41,7 @@ export default function ShareButtons({
               url={`https://tbc-academy-react-project.vercel.app/products/${product.id}`}
               title={product.title}
             >
-              <TwitterIcon size={32} round />
+              <XIcon size={32} round />
               <span className="hover-text">{t("shareOnTwitter")}</span>
             </TwitterShareButton>
           </div>

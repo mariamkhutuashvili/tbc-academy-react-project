@@ -56,6 +56,7 @@ export default {
   title: "Title",
   description: "Description",
   image: "Image",
+  searchBlog: "Search Blog",
 
   // CONTACT PAGE
   contactUs: "Contact Us",

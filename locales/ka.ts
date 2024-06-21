@@ -56,6 +56,7 @@ export default {
   title: "სათაური",
   description: "აღწერა",
   image: "სურათი",
+  searchBlog: "მოძებნე ბლოგი...",
 
   // CONTACT PAGE
   contactUs: "დაგვიკავშირდი",

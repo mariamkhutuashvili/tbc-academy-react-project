@@ -3,11 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Search from "../search/Search";
+import DebounceSearch from "../debounceSearch/DebounceSearch";
 import Sort from "../sort/Sort";
 import AddToCartButton from "../cartControls/AddToCartButton";
-import Title from "../UI/Title";
-import { useI18n } from "../../locales/client";
 import "../../styles/Products.css";
 
 function debounce<T extends (...args: any[]) => void>(
@@ -27,8 +25,6 @@ export default function ProductsData({
 }: {
   product: ProductsDataProps;
 }) {
-  const t = useI18n();
-
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSorted, setIsSorted] = useState<boolean>(false);
 
@@ -36,7 +32,7 @@ export default function ProductsData({
 
   const debouncedSetSearchTerm = debounce(
     (value: string) => setSearchTerm(value),
-    300
+    1000
   );
 
   const filteredAndSortedProducts = product
@@ -55,9 +51,10 @@ export default function ProductsData({
   };
 
   return (
-    <div className="store">
-      <Title titleName={t("onlineStore")} />
-      <Search onChange={(e) => debouncedSetSearchTerm(e.target.value)} />
+    <div className="store-data">
+      <DebounceSearch
+        onChange={(e) => debouncedSetSearchTerm(e.target.value)}
+      />
       <Sort isSorted={isSorted} onToggleSort={() => setIsSorted(!isSorted)} />
       <div className="products-grid">
         {filteredAndSortedProducts.map((p: ProductFromVercel) => (

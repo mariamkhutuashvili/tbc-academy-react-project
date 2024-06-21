@@ -1,15 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { getI18n } from "../../locales/server";
+import { useI18n } from "../../locales/client";
 import "./Article.css";
 
-export default async function Article({
-  id,
-  title,
-  date,
-  photo,
-}: ArticleProps) {
-  const t = await getI18n();
+export default function Article({ id, title, date, photo }: ArticleProps) {
+  const t = useI18n();
 
   return (
     <div className="article-container">
