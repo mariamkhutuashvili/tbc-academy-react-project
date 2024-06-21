@@ -34,3 +34,7 @@
   visibility: visible;
   opacity: 1;
 }
+
+.toast-container {
+  top: 90px !important;
+}

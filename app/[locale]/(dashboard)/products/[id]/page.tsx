@@ -9,6 +9,8 @@ import AddToCartButton from "../../../../../components/cartControls/AddToCartBut
 import ShareButtons from "../../../../../components/UI/ShareButtons";
 import StarRating from "../../../../../components/starRating/StarRating";
 import Reviews from "../../../../../components/reviews/Reviews";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../../../../styles/Product.css";
 
 export async function generateMetadata({ params }: MetaDataProps) {
@@ -63,6 +65,7 @@ export default async function Product({
       <h4>Category: {product.category}</h4>
       <p>Stock: {product.stock}</p>
       <AddToCartButton id={product.id.toString()} />
+      <ToastContainer position="top-right" className="toast-container" />
       {reviews.length > 0 && <Reviews reviews={reviews} />}
     </div>
   );

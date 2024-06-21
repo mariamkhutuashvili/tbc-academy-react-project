@@ -34,6 +34,7 @@ export default {
   shareOnFacebook: "Share on Facebook",
   shareOnTwitter: "Share on Twitter",
   shareOnLinkedIn: "Share on LinkedIn",
+  productAddedToCart: "Product Added to Cart!",
 
   // PRODUCT PAGE
   price: "Price",

@@ -34,6 +34,7 @@ export default {
   shareOnFacebook: "გააზიარე Facebook-ზე",
   shareOnTwitter: "გააზიარე Twitter-ზე",
   shareOnLinkedIn: "გააზიარე LinkedIn-ზე",
+  productAddedToCart: "პროდუქტი დამატებულია კალათაში!",
 
   // PRODUCT PAGE
   price: "ფასი",

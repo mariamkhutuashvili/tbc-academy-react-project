@@ -6,6 +6,8 @@ import Image from "next/image";
 import DebounceSearch from "../debounceSearch/DebounceSearch";
 import Sort from "../sort/Sort";
 import AddToCartButton from "../cartControls/AddToCartButton";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Products.css";
 
 function debounce<T extends (...args: any[]) => void>(
@@ -84,6 +86,7 @@ export default function ProductsData({
           </div>
         ))}
       </div>
+      <ToastContainer position="top-right" className="toast-container" />
     </div>
   );
 }
