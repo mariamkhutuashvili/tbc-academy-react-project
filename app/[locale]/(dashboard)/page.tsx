@@ -1,10 +1,18 @@
-import React from "react";
-import HomeClient from "../../../components/UI/HomeClient";
-import { getProducts } from "../../api";
+import Title from "../../../components/UI/Title";
+import { getI18n } from "../../../locales/server";
+import "../../../styles/Home.css";
+
+export const metadata = {
+  title: "Home",
+  description: "Home - Welcome to Our Website",
+};
 
 export default async function Home() {
-  const products = await getProducts();
-  console.log(products);
+  const t = await getI18n();
 
-  return <HomeClient product={products} />;
+  return (
+    <main className="home">
+      <Title titleName={t("headline")} />
+    </main>
+  );
 }

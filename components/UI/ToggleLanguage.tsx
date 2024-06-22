@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { changeLanguage } from "../../scripts/changeLang";
+import { changeLanguage } from "../../app/actions";
 
 export default function ToggleLanguage({ curr }: { curr: any }) {
   const [locale, setLocale] = useState(curr || "en");

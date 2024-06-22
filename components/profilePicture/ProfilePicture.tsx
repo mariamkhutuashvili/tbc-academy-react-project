@@ -17,6 +17,9 @@ export default function ProfilePicture({ userImage }: { userImage: string }) {
   const [loader, setLoader] = useState(false);
   const [pickedImage, setPickedImage] = useState<any>(null);
 
+  const validImageTypes = ["image/jpeg", "image/png", "image/webp"];
+  const maxImageSize = 0.1 * 1024 * 1024; // 100KB file
+
   useEffect(() => {
     setLoader(true);
     const updateUser = async () => {
@@ -38,15 +41,28 @@ export default function ProfilePicture({ userImage }: { userImage: string }) {
     updateUser();
   }, [blob, user]);
 
-  function handleClick() {
+  const handleClick = () => {
     inputFileRef.current?.click();
-  }
+  };
 
   // Adding an Image Preview to the Picker
   function handleImageChange(e: any) {
     const file = e.target.files[0];
     if (!file) {
       setPickedImage(null);
+      return;
+    }
+    // Restrect to upload non image type files
+    if (!validImageTypes.includes(file.type)) {
+      alert(t("invalidImageType"));
+      e.target.value = "";
+      return;
+    }
+
+    // Don't give a possibility to upload image more then 1 MB
+    if (file.size > maxImageSize) {
+      alert(t("imageSizeExceedsLimit"));
+      e.target.value = "";
       return;
     }
     // file reader
@@ -106,6 +122,7 @@ export default function ProfilePicture({ userImage }: { userImage: string }) {
           ref={inputFileRef}
           type="file"
           id="files"
+          accept="image/*"
           required
         />
       </div>

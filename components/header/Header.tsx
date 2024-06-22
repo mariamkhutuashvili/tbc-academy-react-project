@@ -2,10 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
-import ProfileIcon from "../UI/ProfileIcon";
+import ProfileDropdown from "../profileDropdown/ProfileDropdown";
 import CartIcon from "../UI/CartIcon";
 import LoginButton from "../UI/LoginButton";
-import LogoutButton from "../UI/LogoutButton";
 import { getI18n } from "../../locales/server";
 import { cookies } from "next/headers";
 import { getSession } from "@auth0/nextjs-auth0";
@@ -19,8 +18,7 @@ export default async function Header() {
 
   const session = await getSession();
   const user = session?.user;
-
-  console.log(user);
+  const isAdmin = Array.isArray(user?.role) && user.role.includes("Admin");
 
   return (
     <header className="header">
@@ -33,6 +31,9 @@ export default async function Header() {
         <Link href="/" className="nav-link">
           {t("home")}
         </Link>
+        <Link href="/products" className="nav-link">
+          {t("products")}
+        </Link>
         <Link href="/about" className="nav-link">
           {t("about")}
         </Link>
@@ -42,7 +43,7 @@ export default async function Header() {
         <Link href="/contact" className="nav-link">
           {t("contact")}
         </Link>
-        {user && (
+        {isAdmin && (
           <Link href="/admin" className="nav-link">
             {t("admin")}
           </Link>
@@ -51,9 +52,9 @@ export default async function Header() {
       <div className="right-section">
         <ToggleThemeButton />
         <ToggleLanguage curr={curr?.value} />
-        {user && <ProfileIcon />}
-        <CartIcon />
-        {user ? <LogoutButton /> : <LoginButton />}
+        {user && <ProfileDropdown />}
+        {user && <CartIcon />}
+        {!user && <LoginButton />}
       </div>
     </header>
   );

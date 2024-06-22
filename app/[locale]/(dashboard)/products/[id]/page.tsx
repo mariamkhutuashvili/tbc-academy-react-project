@@ -1,25 +1,62 @@
-// import Image from "next/image";
-import { getProductDetail } from "../../../../api";
-import AddToCartButton from "../../../../../components/UI/AddToCartButton";
+import {
+  getProductDetail,
+  getProducts,
+  getUserId,
+  getUserInfo,
+} from "../../../../api";
+import ProductGallery from "../../../../../components/productGallery/ProductGallery";
+import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
+import ShareButtons from "../../../../../components/UI/ShareButtons";
+import AddReview from "../../../../../components/reviews/AddReview";
+import AddedReviews from "../../../../../components/reviews/AddedReviews";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../../../../styles/Product.css";
+
+export async function generateMetadata({ params }: MetaDataProps) {
+  const productsData = await getProducts();
+  const product = productsData.find(
+    (product: ProductFromVercel) => product.id == params.id
+  );
+
+  return {
+    title: `${product.title}`,
+    description: `${product.description}`,
+  };
+}
 
 export default async function Product({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const product = await getProductDetail(id);
+  const {
+    product,
+    reviews,
+  }: { product: ProductFromVercel; reviews: Review[] } = await getProductDetail(
+    id
+  );
   console.log(product);
+
+  const user = await getUserInfo();
+  const userName = user?.name;
+  const user_id = await getUserId();
+
+  const userReviewIds = reviews.map((review: any) => review.user_id);
+  const userAlreadyWroteReview = userReviewIds.includes(user_id);
 
   return (
     <div key={product.id} className="product-page">
-      {/* <Image
-        src={productData.thumbnail}
-        alt="product"
-        width={400}
-        height={400}
-        priority
-      /> */}
+      <ProductGallery gallery={product.photo_gallery} />
+      <ShareButtons product={product} />
+      <AddReview
+        user_id={user_id}
+        product_id={product.id}
+        userName={userName}
+        reviews={reviews}
+        userAlreadyWroteReview={userAlreadyWroteReview}
+      />
+
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="product-price">Price: ${product.price}</p>
@@ -28,6 +65,8 @@ export default async function Product({
       <h4>Category: {product.category}</h4>
       <p>Stock: {product.stock}</p>
       <AddToCartButton id={product.id.toString()} />
+      <ToastContainer position="top-right" className="toast-container" />
+      {reviews.length > 0 && <AddedReviews reviews={reviews} />}
     </div>
   );
 }

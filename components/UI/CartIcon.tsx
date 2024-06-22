@@ -1,15 +1,6 @@
 import Link from "next/link";
 import { getUserCart } from "../../app/api";
 
-export interface Cart {
-  id: number;
-  user_id: number;
-  products: {
-    [key: string]: number;
-  };
-  added_on: string;
-}
-
 export default async function CartIcon() {
   const cart: Cart = await getUserCart();
 

@@ -3,6 +3,8 @@ import { NextRequest } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 
+export const revalidate = 0;
+
 export async function GET(_: NextRequest) {
   try {
     const session = await getSession();

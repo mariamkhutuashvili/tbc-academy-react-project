@@ -1,8 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useI18n } from "../../locales/client";
 
 export default function LoginButton() {
+  const t = useI18n();
+
   const router = useRouter();
 
   const handleLogin = () => {
@@ -10,7 +13,7 @@ export default function LoginButton() {
   };
   return (
     <button onClick={handleLogin} className="button login-button">
-      Login
+      {t("login")}
     </button>
   );
 }

@@ -3,11 +3,6 @@
 import { useI18n } from "../../locales/client";
 import "./Sort.css";
 
-interface SortProps {
-  isSorted: boolean;
-  onToggleSort: () => void;
-}
-
 export default function Sort({ isSorted, onToggleSort }: SortProps) {
   const t = useI18n();
   return (

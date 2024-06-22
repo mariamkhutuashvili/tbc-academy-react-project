@@ -1,22 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import blogImage from "../../public/assets/blog.jpg";
-import { getI18n } from "../../locales/server";
+import { useI18n } from "../../locales/client";
 import "./Article.css";
 
-interface ArticleProps {
-  id: number;
-  title: string;
-  date: string;
-}
-
-export default async function Article({ id, title, date }: ArticleProps) {
-  const t = await getI18n();
+export default function Article({ id, title, date, photo }: ArticleProps) {
+  const t = useI18n();
 
   return (
     <div className="article-container">
       <div className="article-image-container">
-        <Image src={blogImage} alt="Article" className="article-image" />
+        <Image
+          src={photo}
+          alt="Article"
+          className="article-image"
+          width={500}
+          height={300}
+        />
       </div>
       <div className="article-details">
         <h2 className="article-title">{title}</h2>

@@ -25,6 +25,21 @@
   border-radius: 5px;
 }
 
+.product-image {
+  margin-right: 20px;
+}
+
+.delete-icon svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  transform: scale(1.1);
+  color: #d32f2f;
+}
+
 .product-details {
   flex-grow: 1;
   display: flex;
@@ -60,11 +75,6 @@
 .cart-control button:hover {
   background-color: #ddd;
   transform: none;
-}
-
-.cart-control button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .cart-control span {
