@@ -4,6 +4,8 @@ import Modal from "@mui/material/Modal";
 import { useI18n } from "../../../locales/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { updateUserAction } from "../../../app/actions";
 
 export default function EditUser({
@@ -15,32 +17,27 @@ export default function EditUser({
 }) {
   const t = useI18n();
   const [open, setOpen] = useState<boolean>(false);
-  const [user, setUser] = useState<UserData>(userData);
   const router = useRouter();
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required(t("nameRequired")),
+    email: Yup.string()
+      .email(t("emailIsNotValid"))
+      .required(t("emailRequired")),
+  });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (values: UserData) => {
     try {
-      await updateUserAction(id, user);
+      await updateUserAction(id, values);
       console.log("User updated successfully");
     } catch (error) {
       console.error("Failed to update user:", error);
     }
     router.refresh();
     handleClose();
-  };
-
-  const handleChange = (
-    field: keyof UserData,
-    value: string | number | boolean
-  ) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      [field]: value,
-    }));
   };
 
   return (
@@ -67,39 +64,63 @@ export default function EditUser({
         aria-describedby="modal-modal-description"
         className="modal-center"
       >
-        <form onSubmit={handleSubmit} className="modal-form">
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">
-              {t("name")}
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder={t("name")}
-              value={user.name}
-              onChange={(e) => handleChange("name", e.target.value)}
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              {t("email")}
-            </label>
-            <input
-              id="email"
-              type="text"
-              placeholder={t("email")}
-              value={user.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              className="form-input"
-            />
-          </div>
-          <div className="form-actions">
-            <button type="submit" className="button submit-button">
-              {t("save")}
-            </button>
-          </div>
-        </form>
+        <Formik
+          initialValues={userData}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting, isValid, touched, errors }) => (
+            <Form className="modal-form">
+              <div className="form-group">
+                <label htmlFor="name" className="form-label">
+                  {t("name")}
+                </label>
+                <Field
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder={t("name")}
+                  className={`form-input ${
+                    touched.name && errors.name ? "input-error" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  {t("email")}
+                </label>
+                <Field
+                  id="email"
+                  name="email"
+                  type="text"
+                  placeholder={t("email")}
+                  className={`form-input ${
+                    touched.email && errors.email ? "input-error" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="form-actions">
+                <button
+                  type="submit"
+                  className="button"
+                  disabled={isSubmitting || !isValid}
+                >
+                  {t("save")}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </div>
   );

@@ -22,7 +22,7 @@ const generateStars = (stars: number) => {
   );
 };
 
-export default async function Reviews({ reviews }: { reviews: Review[] }) {
+export default async function AddedReviews({ reviews }: { reviews: Review[] }) {
   const t = await getI18n();
 
   return (

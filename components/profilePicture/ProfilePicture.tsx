@@ -54,14 +54,14 @@ export default function ProfilePicture({ userImage }: { userImage: string }) {
     }
     // Restrect to upload non image type files
     if (!validImageTypes.includes(file.type)) {
-      alert("Please upload a valid image type: jpg, png, or webp.");
+      alert(t("invalidImageType"));
       e.target.value = "";
       return;
     }
 
     // Don't give a possibility to upload image more then 1 MB
     if (file.size > maxImageSize) {
-      alert("Image size exceeds 100KB. Please upload a smaller image.");
+      alert(t("imageSizeExceedsLimit"));
       e.target.value = "";
       return;
     }

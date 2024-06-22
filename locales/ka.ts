@@ -19,7 +19,7 @@ export default {
   privacyPolicy: "კონფიდენციალურობის პოლიტიკა",
   newsletter: "სიახლეები",
   subscribeToOurNewsletter: "გამოიწერეთ სიახლეები:",
-  enterYourEmail: "შეიყვანეთ თქვენი მეილი",
+  enterYourEmail: "შეიყვანეთ თქვენი ელ-ფოსტა",
   subscribe: "გამოწერა",
 
   // HOME PAGE
@@ -48,7 +48,7 @@ export default {
   photoGallery: "ფოტო გალერია",
   evaluateTheProduct: "შეაფასე პროდუქტი",
   outOf5: "ვარსკვლავი 5-დან",
-  addReview: "დაწერე შეფასება",
+  addReview: "დაამატე შეფასება",
   productReviews: "პროდუქტის შეფასებები",
 
   //ABOUT PAGE
@@ -64,12 +64,12 @@ export default {
 
   // CONTACT PAGE
   contactUs: "დაგვიკავშირდი",
-  email: "მეილი",
+  email: "ელ-ფოსტა",
   phone: "ტელეფონი",
   address: "მისამართი",
   name: "სახელი",
   yourName: "შენი სახელი...",
-  yourEmail: "შენი მეილი...",
+  yourEmail: "შენი ელ-ფოსტა...",
   yourPhone: "შენი ტელეფონი...",
   yourAddress: "შენი მისამართი...",
   writeSomething: "დაწერე ტექსტი...",
@@ -135,4 +135,39 @@ export default {
   product: "პროდუქტი",
   star: "ვარსკვლავი",
   myReviews: "ჩემი შეფასებები",
+
+  //VALIDATION MESSAGES
+  titleRequired: "სათაური სავალდებულოა",
+  descriptionRequired: "აღწერა სავალდებულოა",
+  imageRequired: "სურათი სავალდებულოა",
+  priceRequired: "ფასი სავალდებულოა",
+  discountPriceRequired: "ფასდაკლების ფასი სავალდებულოა",
+  stockRequired: "მარაგი სავალდებულოა",
+  categoryRequired: "კატეგორია სავალდებულოა",
+  brandRequired: "ბრენდი სავალდებულოა",
+  priceMin: "ფასი უნდა იყოს 1-ზე მეტი",
+  discountPriceMin: "ფასდაკლების ფასი უნდა იყოს 1-ზე მეტი",
+  stockMin: "მარაგი უნდა იყოს 1 ან მეტი",
+  ratingRequired: "რეიტინგი აუცილებელია",
+  commentMaxLength: "კომენტარი უნდა იყოს მაქსიმუმ 255 სიმბოლო",
+  nameRequired: "სახელი სავალდებულოა",
+  emailIsNotValid: "ელ-ფოსტის ფორმატი არასწორია",
+  emailRequired: "ელ-ფოსტა სავალდებულოა",
+  invalidImageType:
+    "გთხოვთ, ატვირთოთ ვალიდური სურათის ტიპი: jpg, png, ან webp.",
+  imageSizeExceedsLimit:
+    "სურათის ზომა აჭარბებს 100KB. გთხოვთ, ატვირთოთ მცირე ზომის სურათი.",
+  phoneIsNotValid: "ტელეფონის ნომრის ფორმატი არასწორია",
+  phoneIsRequired: "ტელეფონის ნომერი სავალდებულოა",
+  messageTooLong: "წერილის ტექსტი უნდა იყოს მაქსიმუმ 255 სიმბოლო",
+  addressIsRequired: "მისამართი სავალდებულოა",
+  messageRequired: "წერილის ტექსტი სავალდებულოა",
+  //
+  // tooShort: "მოკლე სათაურია!",
+  // tooLong: "გრძელი სათაურია!",
+  // surnameRequired: "გვარი სავალდებულოა",
+  // mailIsNotValid: "ელ-ფოსტა არ არის ვალიდური",
+  // minmessage: "მესიჯი უნდა შეიცავდეს მინიმუმ 10 სიმბოლოს",
+  // messageSent: "შეტყობინება გაგზავნილია",
+  // reviewMessage: "შეფასების შეტყობინება სავალდებულოა",
 } as const;

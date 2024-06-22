@@ -3,6 +3,8 @@
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { createEditReviewAction } from "../../../app/actions";
 import { useI18n } from "../../../locales/client";
 
@@ -23,10 +25,13 @@ export default function EditReview({
 }) {
   const t = useI18n();
 
+  const validationSchema = Yup.object({
+    comment: Yup.string().max(255, t("commentMaxLength")),
+  });
+
   const [open, setOpen] = useState<boolean>(false);
-  const [star, setStar] = useState<number>(0);
+  const [star, setStar] = useState<number>(rating || 0);
   const [hover, setHover] = useState<number | null>(null);
-  const [comment, setComment] = useState<string>(reviewMessage || "");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const router = useRouter();
@@ -35,26 +40,9 @@ export default function EditReview({
     setStar(rating);
   }, [rating]);
 
-  const handleSendReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const reviewData: EditReviewData = {
-      id,
-      user_id,
-      product_id,
-      star,
-      comment,
-    };
-    try {
-      await createEditReviewAction(reviewData);
-      console.log("Review edited successfully");
-    } catch (error) {
-      console.error("Error editing review:", error);
-    }
-    handleClose();
-    router.refresh();
-  };
-
-  const renderModalStars = () => {
+  const renderModalStars = (
+    setFieldValue: (field: string, value: any) => void
+  ) => {
     return (
       <div className="modal-star-container">
         {Array.from({ length: 5 }).map((_, index) => {
@@ -70,7 +58,10 @@ export default function EditReview({
               }`}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
-              onClick={() => setStar(ratingValue)}
+              onClick={() => {
+                setStar(ratingValue);
+                setFieldValue("star", ratingValue);
+              }}
             >
               <path
                 strokeLinecap="round"
@@ -108,44 +99,80 @@ export default function EditReview({
         aria-describedby="modal-modal-description"
         className="modal-container"
       >
-        <div className="modal-content">
-          <form onSubmit={handleSendReview} className="review-form">
-            <div className="modal-stars">{renderModalStars()}</div>
-            <p className="modal-star-count">
-              {" "}
-              ({star} {t("outOf5")})
-            </p>
-            <div className="form-group">
-              <label className="form-label" htmlFor="userName">
-                {t("name")}
-              </label>
-              <input
-                type="text"
-                value={userName}
-                readOnly
-                disabled
-                className="form-input"
-              />
-            </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="comment">
-                {t("comment")}
-              </label>
-              <textarea
-                id="comment"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder={t("yourComment")}
-                className="form-input"
-              />
-            </div>
-            <div className="form-actions">
-              <button type="submit" className="button submit-button">
-                {t("comment")}
-              </button>
-            </div>
-          </form>
-        </div>
+        <Formik
+          initialValues={{ star: rating || 0, comment: reviewMessage || "" }}
+          validationSchema={validationSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            const reviewData: EditReviewData = {
+              id,
+              user_id,
+              product_id,
+              star: values.star,
+              comment: values.comment,
+            };
+
+            try {
+              await createEditReviewAction(reviewData);
+              console.log("Review edited successfully");
+            } catch (error) {
+              console.error("Error editing review:", error);
+            }
+            setSubmitting(false);
+            handleClose();
+            router.refresh();
+          }}
+        >
+          {({ setFieldValue, errors, touched, isValid, isSubmitting }) => (
+            <Form className="modal-content">
+              <div className="modal-stars">
+                {renderModalStars(setFieldValue)}
+              </div>
+              <p className="modal-star-count">
+                ({star} {t("outOf5")})
+              </p>
+              <div className="form-group">
+                <label className="form-label" htmlFor="userName">
+                  {t("name")}
+                </label>
+                <input
+                  type="text"
+                  value={userName}
+                  readOnly
+                  disabled
+                  className="form-input"
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="comment">
+                  {t("comment")}
+                </label>
+                <Field
+                  as="textarea"
+                  id="comment"
+                  name="comment"
+                  placeholder={t("yourComment")}
+                  className={`form-input ${
+                    touched.comment && errors.comment ? "input-error" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  name="comment"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="form-actions">
+                <button
+                  type="submit"
+                  className="button"
+                  disabled={!isValid || isSubmitting}
+                >
+                  {t("save")}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </>
   );

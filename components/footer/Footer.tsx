@@ -1,9 +1,24 @@
+"use client";
+
 import Link from "next/link";
-import { getI18n } from "../../locales/server";
+import { useI18n } from "../../locales/client";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import "./Footer.css";
 
-export default async function Footer() {
-  const t = await getI18n();
+export default function Footer() {
+  const t = useI18n();
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email(t("emailIsNotValid"))
+      .required(t("emailRequired")),
+  });
+
+  const handleSubmit = async (values: { email: string }) => {
+    console.log("Form submitted with email:", values.email);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-section">
@@ -34,17 +49,36 @@ export default async function Footer() {
       </div>
       <div className="footer-section">
         <h3>{t("newsletter")}</h3>
-        <form>
-          <label htmlFor="email">{t("subscribeToOurNewsletter")}</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder={t("enterYourEmail")}
-            className="newsletter-input"
-          />
-          <button type="submit">{t("subscribe")}</button>
-        </form>
+        <Formik
+          initialValues={{ email: "" }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, touched }) => (
+            <Form className="newsletter-form">
+              <label htmlFor="email">{t("subscribeToOurNewsletter")}</label>
+              <div className="form-group newsletter-input-container">
+                <Field
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder={t("enterYourEmail")}
+                  className={`form-input ${
+                    errors.email && touched.email ? "input-error" : ""
+                  }`}
+                />
+                <button type="submit" className="button subscribe-button">
+                  {t("subscribe")}
+                </button>
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </footer>
   );

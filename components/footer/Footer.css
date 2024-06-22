@@ -26,7 +26,24 @@
   margin-top: 20px;
 }
 
-.newsletter-form input[type="email"] {
-  padding: 10px;
-  margin-right: 10px;
+.newsletter-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.subscribe-button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 0 0;
+  background-color: purple;
+  color: white;
+  box-sizing: border-box;
+  /* transform: none; */
+}
+
+.footer .subscribe-button:hover:not(:disabled) {
+  transform: none;
+  opacity: 80%;
 }

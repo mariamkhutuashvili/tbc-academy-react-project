@@ -3,11 +3,13 @@
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { createAddReviewAction } from "../../app/actions";
 import { useI18n } from "../../locales/client";
-import "./StarRating.css";
+import "./AddReview.css";
 
-export default function StarRating({
+export default function AddReview({
   userName,
   user_id,
   reviews,
@@ -22,31 +24,17 @@ export default function StarRating({
 }) {
   const t = useI18n();
 
+  const validationSchema = Yup.object({
+    star: Yup.number().required(t("ratingRequired")),
+    comment: Yup.string().max(255, t("commentMaxLength")),
+  });
+
   const [open, setOpen] = useState<boolean>(false);
   const [star, setStar] = useState<number>(0);
   const [hover, setHover] = useState<number | null>(null);
-  const [comment, setComment] = useState<string>("");
   const router = useRouter();
 
   const handleClose = () => setOpen(false);
-
-  const handleSendReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const reviewData: ReviewData = {
-      user_id,
-      product_id,
-      star,
-      comment,
-    };
-    try {
-      await createAddReviewAction(reviewData);
-      console.log("Review added successfully");
-    } catch (error) {
-      console.error("Error creating review:", error);
-    }
-    handleClose();
-    router.refresh();
-  };
 
   const reviewsData: Review[] = reviews;
 
@@ -55,7 +43,6 @@ export default function StarRating({
     reviewsData.length > 0 ? totalStars / reviewsData.length : 0;
 
   const generateStars = (averageStars = 0) => {
-    // Ensure averageStars is a valid number and clamp it between 0 and 5
     averageStars = Math.max(0, Math.min(averageStars, 5));
 
     const fullStars = Math.floor(averageStars);
@@ -128,7 +115,9 @@ export default function StarRating({
     );
   };
 
-  const renderModalStars = () => {
+  const renderModalStars = (
+    setFieldValue: (field: string, value: any) => void
+  ) => {
     return (
       <div className="modal-star-container">
         {Array.from({ length: 5 }).map((_, index) => {
@@ -144,7 +133,10 @@ export default function StarRating({
               }`}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
-              onClick={() => setStar(ratingValue)}
+              onClick={() => {
+                setStar(ratingValue);
+                setFieldValue("star", ratingValue);
+              }}
             >
               <path
                 strokeLinecap="round"
@@ -180,45 +172,81 @@ export default function StarRating({
         aria-describedby="modal-modal-description"
         className="modal-container"
       >
-        <div className="modal-content">
-          <form onSubmit={handleSendReview} className="review-form">
-            <p>{t("evaluateTheProduct")}</p>
-            <div className="modal-stars">{renderModalStars()}</div>
-            <p className="modal-star-count">
-              ({star} {t("outOf5")})
-            </p>
-            <div className="form-group">
-              <label className="form-label" htmlFor="userName">
-                {t("name")}
-              </label>
-              <input
-                type="text"
-                value={userName}
-                readOnly
-                disabled
-                className="form-input"
-              />
-            </div>
+        <Formik
+          initialValues={{ star: 0, comment: "" }}
+          validationSchema={validationSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            const reviewData: ReviewData = {
+              user_id,
+              product_id,
+              star: values.star,
+              comment: values.comment,
+            };
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="comment">
-                {t("comment")}
-              </label>
-              <textarea
-                id="comment"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder={t("yourComment")}
-                className="form-input"
-              />
-            </div>
-            <div className="form-actions">
-              <button type="submit" className="button submit-button">
-                {t("comment")}
-              </button>
-            </div>
-          </form>
-        </div>
+            try {
+              await createAddReviewAction(reviewData);
+              console.log("Review added successfully");
+            } catch (error) {
+              console.error("Error creating review:", error);
+            }
+            handleClose();
+            router.refresh();
+            setSubmitting(false);
+          }}
+        >
+          {({ setFieldValue, errors, touched, isValid, isSubmitting }) => (
+            <Form className="modal-content">
+              <p>{t("evaluateTheProduct")}</p>
+              <div className="modal-stars">
+                {renderModalStars(setFieldValue)}
+              </div>
+              <p className="modal-star-count">
+                ({star} {t("outOf5")})
+              </p>
+              <div className="form-group">
+                <label className="form-label" htmlFor="userName">
+                  {t("name")}
+                </label>
+                <input
+                  type="text"
+                  value={userName}
+                  readOnly
+                  disabled
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" htmlFor="comment">
+                  {t("comment")}
+                </label>
+                <Field
+                  as="textarea"
+                  id="comment"
+                  name="comment"
+                  placeholder={t("yourComment")}
+                  className={`form-input ${
+                    touched.comment && errors.comment ? "input-error" : ""
+                  }`}
+                />
+                <ErrorMessage
+                  name="comment"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="form-actions">
+                <button
+                  type="submit"
+                  className="button submit-button"
+                  disabled={!isValid || isSubmitting || star === 0}
+                >
+                  {t("addReview")}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </div>
   );

@@ -2,32 +2,38 @@
 
 import { useState } from "react";
 import { useI18n } from "../../locales/client";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { editProfileInfo } from "../../app/actions";
 
 export default function ProfileInfo({ user }: any) {
   const t = useI18n();
 
-  const [nickname, setNickname] = useState(user?.name);
-  const [phone, setPhone] = useState(user?.phone || "");
-  const [address, setAddress] = useState(user?.address || "");
   const [infoUpdated, setInfoUpdated] = useState<Boolean>(false);
 
-  const userSub = user?.sub;
+  const validationSchema = Yup.object({
+    nickname: Yup.string().required(t("nameRequired")),
+    phone: Yup.string().matches(/^[0-9]+$/, t("phoneIsNotValid")),
+    address: Yup.string(),
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (
+    values: ProfileData,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+  ) => {
     const formData: ProfileData = {
-      userSub,
-      nickname,
-      phone,
-      address,
+      userSub: user?.sub,
+      nickname: values.nickname,
+      phone: values.phone,
+      address: values.address,
     };
     try {
       await editProfileInfo(formData);
       setInfoUpdated(true);
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Error updating profile info:", error);
     }
+    setSubmitting(false);
   };
 
   return (
@@ -36,39 +42,91 @@ export default function ProfileInfo({ user }: any) {
         <strong>{t("email")}: </strong>
         {user?.email}
       </p>
-      <form onSubmit={handleSubmit}>
-        <p>
-          <strong>{t("name")}: </strong>
-          <input
-            type="text"
-            placeholder={t("yourName")}
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </p>
-        <p>
-          <strong>{t("phone")}: </strong>
-          <input
-            type="text"
-            placeholder={t("phone")}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </p>
-        <p>
-          <strong>{t("address")}: </strong>
-          <input
-            type="text"
-            placeholder={t("address")}
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </p>
-        <button type="submit" className="button submit-button">
-          {t("change")}
-        </button>
-        {infoUpdated && <p>{t("yourInfoIsUpdated")}!</p>}
-      </form>
+      <Formik
+        initialValues={{
+          userSub: user?.sub || "",
+          nickname: user?.name || "",
+          phone: user?.phone || "",
+          address: user?.address || "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ touched, errors, isSubmitting, isValid }) => (
+          <Form>
+            <div className="form-group">
+              <label className="form-label" htmlFor="nickname">
+                {t("name")}
+              </label>{" "}
+              <div className="input-margin">
+                <Field
+                  className={`form-input ${
+                    touched.nickname && errors.nickname ? "input-error" : ""
+                  }`}
+                  type="text"
+                  name="nickname"
+                  placeholder={t("yourName")}
+                />
+                <ErrorMessage
+                  name="nickname"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="form-label" htmlFor="phone">
+                {t("phone")}
+              </label>
+              <div className="input-margin">
+                <Field
+                  className={`form-input ${
+                    touched.phone && errors.phone ? "input-error" : ""
+                  }`}
+                  type="text"
+                  name="phone"
+                  placeholder={t("phone")}
+                />
+                <ErrorMessage
+                  name="phone"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="form-label" htmlFor="address">
+                {t("address")}
+              </label>
+              <div className="input-margin">
+                <Field
+                  className={`form-input ${
+                    touched.address && errors.address ? "input-error" : ""
+                  }`}
+                  type="text"
+                  name="address"
+                  placeholder={t("address")}
+                />
+                <ErrorMessage
+                  name="address"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </div>
+            <div className="form-actions">
+              <button
+                type="submit"
+                className="button submit-button"
+                disabled={isSubmitting || !isValid}
+              >
+                {t("change")}
+              </button>
+            </div>
+            {infoUpdated && <p>{t("yourInfoIsUpdated")}!</p>}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

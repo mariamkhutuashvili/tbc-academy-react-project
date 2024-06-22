@@ -7,8 +7,8 @@ import {
 import ProductGallery from "../../../../../components/productGallery/ProductGallery";
 import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
 import ShareButtons from "../../../../../components/UI/ShareButtons";
-import StarRating from "../../../../../components/starRating/StarRating";
-import Reviews from "../../../../../components/reviews/Reviews";
+import AddReview from "../../../../../components/reviews/AddReview";
+import AddedReviews from "../../../../../components/reviews/AddedReviews";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../../../styles/Product.css";
@@ -49,7 +49,7 @@ export default async function Product({
     <div key={product.id} className="product-page">
       <ProductGallery gallery={product.photo_gallery} />
       <ShareButtons product={product} />
-      <StarRating
+      <AddReview
         user_id={user_id}
         product_id={product.id}
         userName={userName}
@@ -66,7 +66,7 @@ export default async function Product({
       <p>Stock: {product.stock}</p>
       <AddToCartButton id={product.id.toString()} />
       <ToastContainer position="top-right" className="toast-container" />
-      {reviews.length > 0 && <Reviews reviews={reviews} />}
+      {reviews.length > 0 && <AddedReviews reviews={reviews} />}
     </div>
   );
 }

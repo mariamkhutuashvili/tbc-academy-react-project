@@ -5,8 +5,8 @@ export async function POST(request: Request) {
   const { user_id, product_id, star, comment } = await request.json();
 
   try {
-    if (!star || !user_id || !product_id || !comment)
-      throw new Error("Star, user_id, product_id, and comment are required");
+    if (!star || !user_id || !product_id)
+      throw new Error("Star, user_id and product_id are required");
 
     const existingReviews = await sql`
       SELECT * FROM reviews

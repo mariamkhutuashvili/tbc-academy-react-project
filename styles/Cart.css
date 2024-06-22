@@ -77,11 +77,6 @@
   transform: none;
 }
 
-.cart-control button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .cart-control span {
   margin: 0 10px;
   font-weight: bold;

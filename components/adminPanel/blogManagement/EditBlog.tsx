@@ -5,48 +5,38 @@ import Image from "next/image";
 import { useI18n } from "../../../locales/client";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { updateBlog } from "../../../app/actions";
 
 export default function EditBlog({ blogData }: { blogData: PostData }) {
   const t = useI18n();
 
+  const validationSchema = Yup.object({
+    title: Yup.string().required(t("titleRequired")),
+    description: Yup.string().required(t("descriptionRequired")),
+    photo: Yup.string().required(t("imageRequired")),
+  });
+
   const [open, setOpen] = useState<boolean>(false);
-  const [blog, setBlog] = useState<PostData>(blogData);
   const [loading, setLoading] = useState<boolean>(false);
+  const [preview, setPreview] = useState<string>(blogData.photo);
   const inputFileRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      await updateBlog(blog);
-      console.log("Blog updated successfully");
-    } catch (error) {
-      console.error("Failed to update blog:", error);
-    }
-    router.refresh();
-    handleClose();
-  };
-
-  const handleChange = (
-    field: keyof PostData,
-    value: string | number | null
+  const handleFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setFieldValue: (field: string, value: any) => void
   ) => {
-    setBlog((prevBlog) => ({
-      ...prevBlog,
-      [field]: value,
-    }));
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       throw new Error("No file selected");
     }
 
     const file = e.target.files[0];
+    setPreview(URL.createObjectURL(file));
     setLoading(true);
 
     try {
@@ -56,10 +46,7 @@ export default function EditBlog({ blogData }: { blogData: PostData }) {
       });
 
       const newBlob = await response.json();
-      setBlog((prevBlog) => ({
-        ...prevBlog,
-        photo: newBlob.url,
-      }));
+      setFieldValue("photo", newBlob.url);
       setLoading(false);
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -91,60 +78,106 @@ export default function EditBlog({ blogData }: { blogData: PostData }) {
         aria-describedby="modal-modal-description"
         className="modal-center"
       >
-        <div className="modal-form">
-          <form onSubmit={handleSubmit} className="edit-form">
-            <div className="form-group">
-              <label className="form-label" htmlFor="title">
-                {t("title")}
-              </label>
-              <input
-                className="form-input"
-                id="title"
-                type="text"
-                placeholder={t("title")}
-                value={blog.title}
-                onChange={(e) => handleChange("title", e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="description">
-                {t("description")}
-              </label>
-              <textarea
-                className="form-input"
-                placeholder={t("description")}
-                value={blog.description}
-                onChange={(e) => handleChange("description", e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label className="form-label">{t("image")}</label>
-              <input
-                className="form-input"
-                type="file"
-                ref={inputFileRef}
-                onChange={handleFileChange}
-              />
-              {loading && <p>{t("loading")}...</p>}
-            </div>
-            {blog.photo && (
+        <Formik
+          initialValues={{
+            title: blogData.title,
+            description: blogData.description,
+            photo: blogData.photo || "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              await updateBlog({ ...blogData, ...values });
+              console.log("Blog updated successfully");
+            } catch (error) {
+              console.error("Failed to update blog:", error);
+            }
+            setSubmitting(false);
+            router.refresh();
+            handleClose();
+          }}
+        >
+          {({ setFieldValue, errors, touched, isValidating, isValid }) => (
+            <Form className="modal-form">
               <div className="form-group">
-                <Image
-                  src={blog.photo}
-                  alt="Blog Image"
-                  className="blog-image"
-                  width={100}
-                  height={100}
+                <label className="form-label" htmlFor="title">
+                  {t("title")}
+                </label>
+                <Field
+                  className={`form-input ${
+                    touched.title && errors.title ? "input-error" : ""
+                  }`}
+                  id="title"
+                  name="title"
+                  type="text"
+                  placeholder={t("title")}
+                />
+                <ErrorMessage
+                  name="title"
+                  component="div"
+                  className="error-message"
                 />
               </div>
-            )}
-            <div className="form-actions">
-              <button className="button" type="submit" disabled={loading}>
-                {loading ? t("loading") : t("save")}{" "}
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="description">
+                  {t("description")}
+                </label>
+                <Field
+                  className={`form-input ${
+                    touched.description && errors.description
+                      ? "input-error"
+                      : ""
+                  }`}
+                  as="textarea"
+                  name="description"
+                  placeholder={t("description")}
+                />
+                <ErrorMessage
+                  name="description"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">{t("image")}</label>
+                <input
+                  className={`form-input ${
+                    touched.photo && errors.photo ? "input-error" : ""
+                  }`}
+                  type="file"
+                  ref={inputFileRef}
+                  onChange={(e) => handleFileChange(e, setFieldValue)}
+                />
+                {loading && <p>{t("loading")}...</p>}
+                <ErrorMessage
+                  name="photo"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              {preview && (
+                <div className="form-group">
+                  <Image
+                    src={preview}
+                    alt="Blog Image"
+                    className="blog-image"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              )}
+              <div className="form-actions">
+                <button
+                  className="button"
+                  type="submit"
+                  disabled={loading || isValidating || !isValid}
+                >
+                  {loading ? t("loading") : t("save")}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </div>
   );

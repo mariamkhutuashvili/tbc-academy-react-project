@@ -16,21 +16,17 @@
   font-size: 3vw;
 }
 
-input[type="text"],
-.submit-button {
-  width: calc(100% - 20px);
-  padding: 12px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-  transition: border-color 0.3s;
-}
-
 .profile-picture-container {
   position: relative;
   border-radius: 50%;
   display: inline-block;
+}
+
+.file-label {
+  position: absolute;
+  right: 0rem;
+  bottom: 0rem;
+  cursor: pointer;
 }
 
 .profile-picture {
@@ -54,24 +50,10 @@ input[type="text"],
   display: none;
 }
 
-.file-label {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  cursor: pointer;
-}
-
 .camera-svg {
   width: 24px;
   height: 24px;
   stroke: currentColor;
-}
-
-.upload-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
 }
 
 .upload-button {
