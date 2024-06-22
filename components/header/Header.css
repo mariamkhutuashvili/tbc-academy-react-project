@@ -66,6 +66,11 @@
 .profile-link {
   display: inline-block;
   cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .dropdown-menu {

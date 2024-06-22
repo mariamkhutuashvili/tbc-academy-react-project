@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "../../locales/client";
 
-export default function ProfileDropdown() {
+export default function ProfileDropdown({ userInfo }: { userInfo: User }) {
   const t = useI18n();
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -33,21 +34,13 @@ export default function ProfileDropdown() {
   return (
     <div className="profile-icon-container" ref={dropdownRef}>
       <div onClick={toggleDropdown} className="profile-link">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="feather feather-user"
-        >
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
+        <Image
+          src={userInfo?.picture}
+          alt={userInfo?.name}
+          width={30}
+          height={30}
+          priority
+        />
       </div>
       {isDropdownOpen && (
         <div className="dropdown-menu">

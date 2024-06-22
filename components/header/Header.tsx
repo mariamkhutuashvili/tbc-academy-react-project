@@ -2,13 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
-import ProfileDropdown from "../profileDropdown/ProfileDropdown";
+// import ProfileDropdown from "../profileDropdown/ProfileDropdown";
 import CartIcon from "../UI/CartIcon";
 import LoginButton from "../UI/LoginButton";
 import { getI18n } from "../../locales/server";
 import { cookies } from "next/headers";
 import { getSession } from "@auth0/nextjs-auth0";
 import "./Header.css";
+import ProfileIcon from "../UI/ProfileIcon";
 
 export default async function Header() {
   const t = await getI18n();
@@ -52,7 +53,7 @@ export default async function Header() {
       <div className="right-section">
         <ToggleThemeButton />
         <ToggleLanguage curr={curr?.value} />
-        {user && <ProfileDropdown />}
+        {user && <ProfileIcon />}
         {user && <CartIcon />}
         {!user && <LoginButton />}
       </div>

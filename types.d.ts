@@ -159,6 +159,9 @@ interface User {
   name: string;
   email: string;
   role: string;
+  picture: string;
+  phone: number;
+  address: string;
 }
 
 interface EntryData {
