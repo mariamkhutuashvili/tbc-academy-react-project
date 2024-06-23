@@ -49,8 +49,8 @@
 
 .cart-quantity {
   position: absolute;
-  top: -7px;
-  right: -7px;
+  top: -9px;
+  right: -1px;
   background: purple;
   color: white;
   border-radius: 50%;
