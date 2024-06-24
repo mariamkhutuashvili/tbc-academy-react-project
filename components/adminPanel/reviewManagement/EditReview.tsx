@@ -123,7 +123,7 @@ export default function EditReview({
           }}
         >
           {({ setFieldValue, errors, touched, isValid, isSubmitting }) => (
-            <Form className="modal-content">
+            <Form className="modal-form">
               <div className="modal-stars">
                 {renderModalStars(setFieldValue)}
               </div>

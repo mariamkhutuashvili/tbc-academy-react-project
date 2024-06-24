@@ -39,19 +39,53 @@ export default function EditProduct({
   const [photo_gallery, setPhoto_gallery] = useState<
     { id: number; img_url: string; name: string }[]
   >(product?.photo_gallery || []);
-  const inputFileRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const router = useRouter();
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const id = product.id;
 
   useEffect(() => {
     setPhoto_gallery(product?.photo_gallery || []);
   }, [product?.photo_gallery]);
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const initialValues: any = {
+    id: Number(id),
+    title: product.title,
+    description: product.description,
+    price: product.price,
+    discountprice: product.discountprice,
+    stock: product.stock,
+    category: product.category,
+    brand: product.brand,
+    photo_gallery: product.photo_gallery || [],
+  };
+
+  const handleSubmit = async (values: any, { resetForm }: any) => {
+    const productData = { ...values, photo_gallery };
+
+    if (photo_gallery.length === 0) {
+      alert("Image cannot be empty");
+      return;
+    }
+
+    try {
+      await editProductAction(productData);
+      console.log("Product edited successfully");
+      resetForm();
+      handleClose();
+      router.refresh();
+    } catch (error) {
+      console.error("Error editing product:", error);
+    }
+  };
+
   const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    setFieldValue: (field: string, value: any) => void
+    setFieldValue: any
   ) => {
     if (!e.target.files) {
       throw new Error("No file selected");
@@ -84,27 +118,62 @@ export default function EditProduct({
         console.error("Error uploading file:", error);
       }
     }
-
+    setFieldValue("img_url", newImageUrls[0]?.img_url || "");
+    setPhoto_gallery((prev) => [...prev, ...newImageUrls]);
     setLoading(false);
-    setFieldValue("photo_gallery", [...photo_gallery, ...newImageUrls]);
+
+    // const updatedPhotoGallery = [...photo_gallery, ...newImageUrls];
+    // setPhoto_gallery(updatedPhotoGallery);
+    // setFieldValue("photo_gallery", updatedPhotoGallery);
+    // setLoading(false);
   };
 
-  const handleDeleteImage = (
-    id: number,
-    setFieldValue: (field: string, value: any) => void
-  ) => {
-    const updatedGallery = photo_gallery.filter((image) => image.id !== id);
-    setFieldValue("photo_gallery", updatedGallery);
+  // const handleDeleteImage = (id: number, setFieldValue: any) => {
+  //   const updatedGallery = photo_gallery.filter((image) => image.id !== id);
+  //   setPhoto_gallery(updatedGallery);
+  //   setFieldValue("photo_gallery", updatedGallery);
+  //   if (updatedGallery.length > 0) {
+  //     setFieldValue("img_url", updatedGallery[0].img_url);
+  //   } else {
+  //     setFieldValue("img_url", "");
+  //   }
+  // };
+
+  // const handleMoveToFirst = (id: number, setFieldValue: any) => {
+  //   setPhoto_gallery((prev) => {
+  //     const index = prev.findIndex((image) => image.id === id);
+  //     if (index > -1) {
+  //       const [selectedImage] = prev.splice(index, 1);
+  //       const updatedGallery = [selectedImage, ...prev];
+  //       setFieldValue("photo_gallery", updatedGallery);
+  //       setFieldValue("img_url", updatedGallery[0].img_url);
+  //       return updatedGallery;
+  //     }
+  //     return prev;
+  //   });
+  // };
+
+  const handleDeleteImage = (id: number, setFieldValue: any) => {
+    const newImageGallery = photo_gallery.filter((image) => image.id !== id);
+    setPhoto_gallery(newImageGallery);
+    if (newImageGallery.length > 0) {
+      setFieldValue("img_url", newImageGallery[0].img_url);
+    } else {
+      setFieldValue("img_url", "");
+    }
   };
 
-  const handleMoveToFirst = (
-    id: number,
-    setFieldValue: (field: string, value: any) => void
-  ) => {
+  const handleMoveToFirst = (id: number, setFieldValue: any) => {
     const index = photo_gallery.findIndex((image) => image.id === id);
     if (index > -1) {
-      const [selectedImage] = photo_gallery.splice(index, 1);
-      setFieldValue("photo_gallery", [selectedImage, ...photo_gallery]);
+      const selectedImage = photo_gallery[index];
+      const updatedGallery = [
+        selectedImage,
+        ...photo_gallery.slice(0, index),
+        ...photo_gallery.slice(index + 1),
+      ];
+      setPhoto_gallery(updatedGallery);
+      setFieldValue("img_url", updatedGallery[0].img_url);
     }
   };
 
@@ -133,42 +202,11 @@ export default function EditProduct({
         className="modal-center"
       >
         <Formik
-          initialValues={{
-            title: product.title,
-            description: product.description,
-            price: product.price,
-            discountprice: product.discountprice,
-            stock: product.stock,
-            category: product.category,
-            brand: product.brand,
-            photo_gallery: product.photo_gallery || [],
-          }}
+          initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={async (values, { setSubmitting }) => {
-            const productData: ProductFromVercel = {
-              id: product.id,
-              ...values,
-            };
-
-            try {
-              await editProductAction(productData);
-              console.log("Product updated successfully");
-            } catch (error) {
-              console.error("Error editing product:", error);
-            }
-            setSubmitting(false);
-            router.refresh();
-            handleClose();
-          }}
+          onSubmit={handleSubmit}
         >
-          {({
-            setFieldValue,
-            errors,
-            touched,
-            isValidating,
-            isValid,
-            values,
-          }) => (
+          {({ setFieldValue, errors, touched, isValidating, isValid }) => (
             <Form className="modal-form">
               <div className="form-group">
                 <label className="form-label" htmlFor="title">
@@ -327,7 +365,7 @@ export default function EditProduct({
                 {loading && <p>{t("loading")}...</p>}
               </div>
               <div className="form-group">
-                {values.photo_gallery.map((image) => (
+                {photo_gallery.map((image) => (
                   <div key={image.id}>
                     <Image
                       src={image.img_url}

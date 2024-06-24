@@ -75,12 +75,6 @@
   top: 90px !important;
 }
 
-.modal-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .modal-content {
   background-color: white;
   padding: 32px 40px;
