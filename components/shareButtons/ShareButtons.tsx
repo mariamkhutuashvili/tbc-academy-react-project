@@ -10,11 +10,14 @@ import {
   LinkedinIcon,
 } from "react-share";
 import { useI18n } from "../../locales/client";
+import "./ShareButtons.css";
 
 export default function ShareButtons({
-  product,
+  data,
+  path,
 }: {
-  product: ProductFromVercel;
+  data: ProductFromVercel;
+  path: string;
 }) {
   const t = useI18n();
 
@@ -29,8 +32,8 @@ export default function ShareButtons({
         <div>
           <div className="share-button-wrapper">
             <FacebookShareButton
-              url={`https://tbc-academy-react-project.vercel.app/products/${product.id}`}
-              title={product.title}
+              url={`https://tbc-academy-react-project.vercel.app/${path}/${data.id}`}
+              title={data.title}
             >
               <FacebookIcon size={32} round />
               <span className="hover-text">{t("shareOnFacebook")}</span>
@@ -38,8 +41,8 @@ export default function ShareButtons({
           </div>
           <div className="share-button-wrapper">
             <TwitterShareButton
-              url={`https://tbc-academy-react-project.vercel.app/products/${product.id}`}
-              title={product.title}
+              url={`https://tbc-academy-react-project.vercel.app/${path}/${data.id}`}
+              title={data.title}
             >
               <XIcon size={32} round />
               <span className="hover-text">{t("shareOnTwitter")}</span>
@@ -47,8 +50,8 @@ export default function ShareButtons({
           </div>
           <div className="share-button-wrapper">
             <LinkedinShareButton
-              url={`https://tbc-academy-react-project.vercel.app/products/${product.id}`}
-              title={product.title}
+              url={`https://tbc-academy-react-project.vercel.app/${path}/${data.id}`}
+              title={data.title}
             >
               <span className="hover-text">{t("shareOnLinkedIn")}</span>
               <LinkedinIcon size={32} round />

@@ -1,30 +1,17 @@
 .article-container {
   display: flex;
-  margin: 50px;
+  margin: 50px 0;
   align-items: center;
-}
-
-.article-image-container {
-  flex: 2;
-  margin-right: 20px;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-}
-
-.article-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
+  flex-direction: column;
 }
 
 .article-details {
+  width: 80%;
   flex: 3;
 }
 
 .article-title {
-  margin-top: 0;
+  margin-top: 20;
 }
 
 .article-date {
@@ -34,6 +21,74 @@
 }
 
 .read-more-button {
-  text-decoration: underline;
-  font-style: italic;
+  position: relative;
+  margin: auto;
+  padding: 19px 22px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.read-more-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 28px;
+  background: purple;
+  opacity: 0.5;
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+}
+
+.read-more-button span {
+  position: relative;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.read-more-button svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.read-more-button:hover::before {
+  width: 100%;
+  background: purple;
+}
+
+.read-more-button:hover svg {
+  transform: translateX(0);
+}
+
+.read-more-button:active {
+  transform: scale(0.96);
+}
+
+.article-image-container {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.article-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  transition: transform 1.1s;
+}
+
+.article-container:hover .article-image {
+  transform: scale(1.05);
 }

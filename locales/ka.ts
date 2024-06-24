@@ -67,6 +67,7 @@ export default {
   description: "აღწერა",
   image: "სურათი",
   searchBlog: "მოძებნე ბლოგი...",
+  noOptions: "ვერ მოიძებნა",
 
   // CONTACT PAGE
   contactUs: "დაგვიკავშირდი",

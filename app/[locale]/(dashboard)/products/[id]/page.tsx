@@ -6,7 +6,7 @@ import {
 } from "../../../../api";
 import ProductGallery from "../../../../../components/productGallery/ProductGallery";
 import AddToCartButton from "../../../../../components/cartControls/AddToCartButton";
-import ShareButtons from "../../../../../components/UI/ShareButtons";
+import ShareButtons from "../../../../../components/shareButtons/ShareButtons";
 import AddReview from "../../../../../components/reviews/AddReview";
 import AddedReviews from "../../../../../components/reviews/AddedReviews";
 import { ToastContainer } from "react-toastify";
@@ -51,7 +51,7 @@ export default async function Product({
   return (
     <div key={product.id} className="product-page">
       <ProductGallery gallery={product.photo_gallery} />
-      <ShareButtons product={product} />
+      <ShareButtons data={product} path="products" />
       <AddReview
         user_id={user_id}
         product_id={product.id}
