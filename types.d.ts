@@ -1,5 +1,15 @@
 //products page
 
+interface Category {
+  id: "categories" | "food" | "toys" | "beds" | "accessories" | "grooming";
+  name: string;
+}
+
+interface FilterProps {
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
+
 interface ProductFromVercel {
   id: number;
   title: string;

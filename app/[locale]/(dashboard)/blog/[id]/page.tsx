@@ -22,13 +22,16 @@ export default async function Post({
 
   return (
     <div key={blogData.id} className="post-page">
-      <Image
-        src={blogData.photo}
-        alt="Blog Image"
-        width={500}
-        height={300}
-        priority
-      />
+      <div className="blog-image-container">
+        <Image
+          src={blogData.photo}
+          alt={blogData.title}
+          width={500}
+          height={300}
+          className="blog-image"
+          priority
+        />
+      </div>
       <p>{dateAdded}</p>
       <h1>{blogData.title}</h1>
       <p>{blogData.description}</p>

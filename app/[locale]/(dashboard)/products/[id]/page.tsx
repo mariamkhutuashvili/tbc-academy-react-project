@@ -10,6 +10,7 @@ import ShareButtons from "../../../../../components/UI/ShareButtons";
 import AddReview from "../../../../../components/reviews/AddReview";
 import AddedReviews from "../../../../../components/reviews/AddedReviews";
 import { ToastContainer } from "react-toastify";
+import { getI18n } from "../../../../../locales/server";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../../../styles/Product.css";
 
@@ -30,6 +31,8 @@ export default async function Product({
 }: {
   params: { id: string };
 }) {
+  const t = await getI18n();
+
   const {
     product,
     reviews,
@@ -59,11 +62,28 @@ export default async function Product({
 
       <h2>{product.title}</h2>
       <p>{product.description}</p>
-      <p className="product-price">Price: ${product.price}</p>
-      <p className="product-price">Discount Price: ${product.discountprice}</p>
-      <h4>Brand: {product.brand}</h4>
-      <h4>Category: {product.category}</h4>
-      <p>Stock: {product.stock}</p>
+      <p className="product-price">
+        {t("price")}: ${product.price}
+      </p>
+      {/* <p className="product-price">{t("discountPrice")}: ${product.discountprice}</p> */}
+      <h4>
+        {t("brand")}: {product.brand}
+      </h4>
+      <h4>
+        {t("category")}:{" "}
+        {t(
+          product.category as
+            | "categories"
+            | "food"
+            | "toys"
+            | "beds"
+            | "accessories"
+            | "grooming"
+        )}
+      </h4>
+      <p>
+        {t("stock")}: {product.stock}
+      </p>
       <AddToCartButton id={product.id.toString()} />
       <ToastContainer position="top-right" className="toast-container" />
       {reviews.length > 0 && <AddedReviews reviews={reviews} />}

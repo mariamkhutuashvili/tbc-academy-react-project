@@ -2,23 +2,33 @@
 
 import { useI18n } from "../../locales/client";
 import { ChangeEvent } from "react";
-import "./DebounceSearch.css";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface SearchProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Search({ onChange }: SearchProps) {
+export default function DebounceSearch({ onChange }: SearchProps) {
   const t = useI18n();
   return (
     <div className="search-container">
-      <input
-        type="text"
-        placeholder={t("searchProducts")}
-        className="search-input"
-        onChange={onChange}
-      />
-      <button className="button search-button">{t("search")}</button>
+      <Paper
+        component="form"
+        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+      >
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder={t("searchProducts")}
+          className="search-input"
+          onChange={onChange}
+        />
+        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+          <SearchIcon />
+        </IconButton>
+      </Paper>
     </div>
   );
 }

@@ -38,6 +38,12 @@ export default {
   authorization: "Authorization",
   redirectToLogin:
     "Only registered users can place an order. Please log in or register.",
+  categories: "Filter by Category",
+  food: "Cat Food",
+  toys: "Playtime Toys",
+  beds: "Cat Beds",
+  accessories: "Cat Accessories",
+  grooming: "Grooming Essentials",
 
   // PRODUCT PAGE
   price: "Price",

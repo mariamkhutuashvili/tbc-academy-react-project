@@ -20,9 +20,7 @@ export default function EditProduct({
     title: Yup.string().required(t("titleRequired")),
     description: Yup.string().required(t("descriptionRequired")),
     price: Yup.number().required(t("priceRequired")).min(1, t("priceMin")),
-    discountprice: Yup.number()
-      .required(t("discountPriceRequired"))
-      .min(1, t("discountPriceMin")),
+    discountprice: Yup.number().required(t("discountPriceRequired")),
     stock: Yup.number().required(t("stockRequired")).min(1, t("stockMin")),
     category: Yup.string().required(t("categoryRequired")),
     brand: Yup.string().required(t("brandRequired")),

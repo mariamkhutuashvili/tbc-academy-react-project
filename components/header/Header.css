@@ -22,6 +22,8 @@
   flex: 1;
 }
 
+/* Navigation */
+
 .nav {
   display: flex;
   justify-content: center;
@@ -43,6 +45,8 @@
   text-decoration: underline;
 }
 
+/* Cart icon */
+
 .cart-link {
   position: relative;
 }
@@ -57,6 +61,8 @@
   padding: 2px 6px;
   font-size: 12px;
 }
+
+/* Profile Dropdown */
 
 .profile-icon-container {
   position: relative;
@@ -82,48 +88,85 @@
   border-radius: 8px;
   overflow: hidden;
   z-index: 1000;
+  width: 200px;
+  background: #eee;
 }
 
 .dropdown-link {
   display: block;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: black;
-  transition: background-color 0.3s;
   width: 100%;
-  text-align: left;
-  border: none;
-  background: none;
-  cursor: pointer;
+  padding: 20px;
+  text-decoration: none;
+  color: #444;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.3s;
 }
 
 .dropdown-link:hover {
-  background-color: #f0f0f0;
+  background-color: #fff;
+  /* color: #fff; */
 }
 
-.logout-button,
-.login-button {
+.dropdown-link::after {
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0px;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  z-index: -1;
+}
+
+.dropdown-link:nth-child(1)::after {
+  background: #3498db;
+}
+
+.dropdown-link:nth-child(2)::after {
+  background: #ffd071;
+}
+
+.dropdown-link:nth-child(3)::after {
+  background: #f0776c;
+}
+
+.dropdown-link:nth-child(4)::after {
+  background: #1abc9c;
+}
+
+.dropdown-link:hover::after {
+  width: 100%;
+}
+
+/* Login & logout */
+
+.login-button,
+.logout-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border: none;
+  margin: 0px;
+  border-radius: 0%;
+  padding: 16px;
   background-color: purple;
   color: white;
-  cursor: pointer;
-  border-radius: 4px;
+  width: 100%;
+}
+
+.login-button svg,
+.logout-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  margin-right: 8px;
 }
 
 .right-section svg {
   margin-right: 10px;
 }
 
-.logout-button svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-  margin-right: 0;
-}
+/* Theme switcher */
 
 .theme-switcher {
   position: relative;

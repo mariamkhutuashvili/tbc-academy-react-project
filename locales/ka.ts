@@ -29,7 +29,7 @@ export default {
   onlineStore: "ონლაინ მაღაზია",
   searchProducts: "მოძებნე პროდუქტები...",
   search: "ძიება",
-  sortByPrice: "ფასით დალაგება",
+  sortByPrice: "დალაგება ფასით",
   reset: "დალაგების გაუქმება",
   shareOnFacebook: "გააზიარე Facebook-ზე",
   shareOnTwitter: "გააზიარე Twitter-ზე",
@@ -38,6 +38,12 @@ export default {
   authorization: "ავტორიზაცია",
   redirectToLogin:
     "შეკვეთის გაფორმება შეუძლია მხოლოდ რეგისტრირებულ მომხმარებელს. გთხოვთ გაიაროთ ავტორიზაცია/რეგისტრაცია.",
+  categories: "კატეგორიით გაფილტვრა",
+  food: "კატის საჭმელი",
+  toys: "კატის სათამაშოები",
+  beds: "კატის საწოლი",
+  accessories: "კატის აქსესუარები",
+  grooming: "მოვლის საშუალებები",
 
   // PRODUCT PAGE
   price: "ფასი",
@@ -162,6 +168,7 @@ export default {
   messageTooLong: "წერილის ტექსტი უნდა იყოს მაქსიმუმ 255 სიმბოლო",
   addressIsRequired: "მისამართი სავალდებულოა",
   messageRequired: "წერილის ტექსტი სავალდებულოა",
+
   //
   // tooShort: "მოკლე სათაურია!",
   // tooLong: "გრძელი სათაურია!",

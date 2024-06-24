@@ -12,3 +12,11 @@
   color: purple;
   font-size: 3vw;
 }
+
+.blog-image-container {
+  width: 50%;
+}
+
+.blog-image {
+  width: 100%;
+}
