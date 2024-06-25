@@ -39,13 +39,35 @@ export default function ProfileDropdown({ userInfo }: { userInfo: User }) {
     <div className="profile-icon-container" ref={dropdownRef}>
       <div onClick={toggleDropdown} className="profile-link">
         {userInfo ? (
-          <Image
-            src={userInfo?.picture}
-            alt={userInfo?.name}
-            width={30}
-            height={30}
-            priority
-          />
+          <div className={`user-avatar ${isDropdownOpen ? "open" : ""}`}>
+            <div>
+              <Image
+                src={userInfo?.picture}
+                alt={userInfo?.name}
+                width={30}
+                height={30}
+                className={`user-photo ${isDropdownOpen ? "visible" : ""}`}
+                priority
+              />{" "}
+            </div>
+            <div className="svg-overlay">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="user-svg"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          </div>
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"

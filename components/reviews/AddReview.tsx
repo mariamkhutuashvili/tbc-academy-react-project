@@ -157,12 +157,9 @@ export default function AddReview({
         <p className="star-average">({averageStars.toFixed(1)})</p>
       </label>
       {!(userAlreadyWroteReview || userName === undefined) && (
-        <button
-          className="button add-review-button"
-          onClick={() => setOpen(true)}
-        >
+        <span className="add-review-button" onClick={() => setOpen(true)}>
           {t("addReview")}
-        </button>
+        </span>
       )}
 
       <Modal

@@ -84,13 +84,54 @@
   display: inline-block;
 }
 
+.user-avatar {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.user-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  opacity: 0;
+  transform: rotateY(-180deg);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.svg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.user-avatar:hover .svg-overlay,
+.user-avatar.open .svg-overlay {
+  opacity: 0;
+}
+
+.user-avatar:hover .user-photo,
+.user-avatar.open .user-photo {
+  opacity: 1;
+  transform: rotateY(0);
+}
+
 .profile-link {
   display: inline-block;
   cursor: pointer;
   border-radius: 50%;
   overflow: hidden;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
 }
 
@@ -175,10 +216,6 @@
   height: 24px;
   stroke: currentColor;
   margin-right: 8px;
-}
-
-.right-section svg {
-  margin-right: 10px;
 }
 
 /* Theme switcher */

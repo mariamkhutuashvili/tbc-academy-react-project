@@ -103,7 +103,10 @@ export default async function Admin() {
             {blogs.map((blog: BlogData) => (
               <tr key={blog.id}>
                 <td>{blog.title}</td>
-                <td>{blog.description}</td>
+                <td>{`${blog.description
+                  .split(" ")
+                  .slice(0, 30)
+                  .join(" ")}} ...`}</td>
                 <td>
                   <Image
                     src={blog.photo}
@@ -147,7 +150,10 @@ export default async function Admin() {
             {products.map((product: ProductFromVercel) => (
               <tr key={product.id}>
                 <td>{product.title}</td>
-                <td>{product.description}</td>
+                <td>{`${product.description
+                  .split(" ")
+                  .slice(0, 30)
+                  .join(" ")}} ...`}</td>
                 <td>{product.price}</td>
                 <td>{product.discountprice}</td>
                 <td>{product.stock}</td>

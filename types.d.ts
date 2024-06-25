@@ -90,6 +90,7 @@ interface Review {
   name: string;
   email: string;
   user_id: number;
+  picture: string;
   star: number;
   comment: string;
   product_id: number;

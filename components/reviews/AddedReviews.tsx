@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getI18n } from "../../locales/server";
 
 const generateStars = (stars: number) => {
@@ -26,13 +27,22 @@ export default async function AddedReviews({ reviews }: { reviews: Review[] }) {
   const t = await getI18n();
 
   return (
-    <div>
+    <div className="reviews">
       <h3>{t("productReviews")}</h3>
       {reviews?.map((review) => (
         <div key={review.id} className="review">
-          <p>{review.name}</p>
-          <div>{generateStars(review.star)}</div>
-          <p>{review.comment}</p>
+          <Image
+            src={review.picture}
+            alt={review.name}
+            width={50}
+            height={50}
+            className="review-avatar"
+          />
+          <div className="review-data">
+            <div>{generateStars(review.star)}</div>
+            <h4>{review.name}</h4>
+            <p>{review.comment}</p>
+          </div>
         </div>
       ))}
     </div>

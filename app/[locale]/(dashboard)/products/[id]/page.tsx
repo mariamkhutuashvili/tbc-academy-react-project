@@ -39,7 +39,6 @@ export default async function Product({
   }: { product: ProductFromVercel; reviews: Review[] } = await getProductDetail(
     id
   );
-  console.log(product);
 
   const user = await getUserInfo();
   const userName = user?.name;
@@ -50,42 +49,48 @@ export default async function Product({
 
   return (
     <div key={product.id} className="product-page">
-      <ProductGallery gallery={product.photo_gallery} />
-      <ShareButtons data={product} path="products" />
-      <AddReview
-        user_id={user_id}
-        product_id={product.id}
-        userName={userName}
-        reviews={reviews}
-        userAlreadyWroteReview={userAlreadyWroteReview}
-      />
+      <div className="product-container">
+        <div className="product-gallery">
+          <ProductGallery gallery={product.photo_gallery} />
+        </div>
+        <div className="product-details">
+          <h2 className="product-title">{product.title}</h2>
+          <p className="product-price">${product.price}</p>
+          {/* <p className="product-price">{t("discountPrice")}: ${product.discountprice}</p> */}
+          <AddReview
+            user_id={user_id}
+            product_id={product.id}
+            userName={userName}
+            reviews={reviews}
+            userAlreadyWroteReview={userAlreadyWroteReview}
+          />
+          <p className="product-description">{product.description}</p>
+          <div className="product-actions">
+            <AddToCartButton id={product.id.toString()} />
+          </div>
+          <h4>
+            {t("brand")}: {product.brand}
+          </h4>
+          <h4>
+            {t("category")}:{" "}
+            {t(
+              product.category as
+                | "categories"
+                | "food"
+                | "toys"
+                | "beds"
+                | "accessories"
+                | "grooming"
+                | "litter"
+            )}
+          </h4>
+          <p>
+            {t("stock")}: {product.stock}
+          </p>
 
-      <h2>{product.title}</h2>
-      <p>{product.description}</p>
-      <p className="product-price">
-        {t("price")}: ${product.price}
-      </p>
-      {/* <p className="product-price">{t("discountPrice")}: ${product.discountprice}</p> */}
-      <h4>
-        {t("brand")}: {product.brand}
-      </h4>
-      <h4>
-        {t("category")}:{" "}
-        {t(
-          product.category as
-            | "categories"
-            | "food"
-            | "toys"
-            | "beds"
-            | "accessories"
-            | "grooming"
-            | "litter"
-        )}
-      </h4>
-      <p>
-        {t("stock")}: {product.stock}
-      </p>
-      <AddToCartButton id={product.id.toString()} />
+          <ShareButtons data={product} path="products" />
+        </div>
+      </div>
       <ToastContainer position="top-right" className="toast-container" />
       {reviews.length > 0 && <AddedReviews reviews={reviews} />}
     </div>
