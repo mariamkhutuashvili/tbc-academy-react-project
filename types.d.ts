@@ -226,5 +226,4 @@ interface Cart {
 interface QuantityProps {
   id: string;
   quantity: number;
-  price: number;
 }

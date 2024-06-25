@@ -2,11 +2,7 @@
 
 import { handleAddToCart, handleDecrement } from "../../app/actions";
 
-export default function ChangeQuantityButton({
-  id,
-  quantity,
-  price,
-}: QuantityProps) {
+export default function ChangeQuantityButton({ id, quantity }: QuantityProps) {
   return (
     <div className="cart-control">
       <button
@@ -22,7 +18,6 @@ export default function ChangeQuantityButton({
       >
         +
       </button>
-      <span>${price * quantity}</span>
     </div>
   );
 }
