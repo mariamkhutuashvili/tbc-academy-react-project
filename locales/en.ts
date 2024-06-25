@@ -74,6 +74,7 @@ export default {
   email: "Email",
   phone: "Phone",
   address: "Address",
+  hours: "Working hours",
   name: "Name",
   yourName: "Your name...",
   yourEmail: "Your email...",

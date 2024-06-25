@@ -74,6 +74,7 @@ export default {
   email: "ელ-ფოსტა",
   phone: "ტელეფონი",
   address: "მისამართი",
+  hours: "სამუშაო საათები",
   name: "სახელი",
   yourName: "შენი სახელი...",
   yourEmail: "შენი ელ-ფოსტა...",
