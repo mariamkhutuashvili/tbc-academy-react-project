@@ -38,6 +38,13 @@ export default {
   authorization: "Authorization",
   redirectToLogin:
     "Only registered users can place an order. Please log in or register.",
+  categories: "Filter by Category",
+  food: "Cat Food",
+  toys: "Playtime Toys",
+  beds: "Cat Beds",
+  accessories: "Cat Accessories",
+  grooming: "Grooming Essentials",
+  litter: "Cat Litter",
 
   // PRODUCT PAGE
   price: "Price",
@@ -61,12 +68,14 @@ export default {
   description: "Description",
   image: "Image",
   searchBlog: "Search Blog",
+  noOptions: "NO OPTIONS",
 
   // CONTACT PAGE
   contactUs: "Contact Us",
   email: "Email",
   phone: "Phone",
   address: "Address",
+  hours: "Working hours",
   name: "Name",
   yourName: "Your name...",
   yourEmail: "Your email...",
@@ -120,7 +129,11 @@ export default {
   addToCart: "Add to Cart",
   clearCart: "Clear Cart",
   remove: "Remove",
+  cartTotals: "Cart Totals",
+  totalQuantity: "Total Quantity",
+  quantity: "Quantity",
   totalPrice: "Total Price",
+  subtotal: "Subtotal",
   backToShop: "Back to Shop",
   placeAnOrder: "Place an Order",
   cartIsEmpty: "კალათა ცარიელია",
@@ -161,12 +174,27 @@ export default {
   messageTooLong: "Message must be at most 255 character",
   addressIsRequired: "Address is required",
   messageRequired: "Message is Required",
-  //
-  // tooShort: "To Short!",
-  // tooLong: "To Long",
-  // surnameRequired: "Surname is Required",
-  // mailIsNotValid: "Email is not valid",
-  // minMessage: "message must be at least 10 characters",
-  // messageSent: "Message Sent",
-  // reviewMessage: "Review message is required",
+
+  // ABOUT PAGE
+  aboutUs: "About us",
+  makeYourCatHappy: "Make Your Cat Happy",
+  welcomeText:
+    "Welcome to Cat Shop! Our mission is to provide you and your beloved cats with the highest quality products. We are committed to making your shopping experience as delightful as possible.",
+  ourStory: "Our Story",
+  ourStoryText:
+    "Cat Shop was born out of a passion for cats and a desire to create an online shop that caters to all their needs. We are a small team of cat enthusiasts who want to bring the best products from around the world to fellow cat lovers.",
+  whatWeOffer: "What We Offer",
+  catFood: "Cat Food",
+  catFoodDescription: "High-quality food to keep your cat healthy.",
+  playtimeToys: "Playtime Toys",
+  playtimeToysDescription: "Fun toys to keep your cat active and happy.",
+  catBeds: "Cat Beds",
+  catBedsDescription: "Comfortable beds for your cat.",
+  catAccessories: "Cat Accessories",
+  catAccessoriesDescription: "Stylish and practical accessories for your cat.",
+  groomingEssentials: "Grooming Essentials",
+  groomingEssentialsDescription:
+    "Top grooming products for a clean, happy cat.",
+  catLitter: "Cat Litter",
+  catLitterDescription: "Various options to keep the litter box clean.",
 } as const;

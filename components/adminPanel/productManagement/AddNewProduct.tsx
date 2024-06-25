@@ -16,9 +16,7 @@ export default function AddNewProduct() {
     title: Yup.string().required(t("titleRequired")),
     description: Yup.string().required(t("descriptionRequired")),
     price: Yup.number().required(t("priceRequired")).min(1, t("priceMin")),
-    discountprice: Yup.number()
-      .required(t("discountPriceRequired"))
-      .min(1, t("discountPriceMin")),
+    discountprice: Yup.number().required(t("discountPriceRequired")),
     stock: Yup.number().required(t("stockRequired")).min(1, t("stockMin")),
     category: Yup.string().required(t("categoryRequired")),
     brand: Yup.string().required(t("brandRequired")),
@@ -35,6 +33,9 @@ export default function AddNewProduct() {
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const [photo_gallery, setPhoto_gallery] = useState<
+    { id: number; img_url: string; name: string }[]
+  >([]);
   const router = useRouter();
 
   const handleOpen = () => setOpen(true);
@@ -42,8 +43,7 @@ export default function AddNewProduct() {
 
   const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    setFieldValue: (field: string, value: any) => void,
-    photo_gallery: { id: number; img_url: string; name: string }[]
+    setFieldValue: (field: string, value: any) => void
   ) => {
     if (!e.target.files) {
       throw new Error("No file selected");
@@ -72,21 +72,23 @@ export default function AddNewProduct() {
           img_url: newBlob.url,
           name: file.name,
         });
-        setLoading(false);
       } catch (error) {
         console.error("Error uploading file:", error);
       }
     }
 
-    setFieldValue("photo_gallery", [...photo_gallery, ...newImageUrls]);
+    const updatedPhotoGallery = [...photo_gallery, ...newImageUrls];
+    setPhoto_gallery(updatedPhotoGallery);
+    setFieldValue("photo_gallery", updatedPhotoGallery);
+    setLoading(false);
   };
 
   const handleDeleteImage = (
     id: number,
-    setFieldValue: (field: string, value: any) => void,
-    photo_gallery: { id: number; img_url: string; name: string }[]
+    setFieldValue: (field: string, value: any) => void
   ) => {
     const updatedGallery = photo_gallery.filter((image) => image.id !== id);
+    setPhoto_gallery(updatedGallery);
     setFieldValue("photo_gallery", updatedGallery);
   };
 
@@ -114,36 +116,21 @@ export default function AddNewProduct() {
             photo_gallery: [],
           }}
           validationSchema={validationSchema}
-          onSubmit={async (values, { setSubmitting }) => {
-            const productData: Products = {
-              title: values.title,
-              description: values.description,
-              price: values.price,
-              discountprice: values.discountprice,
-              stock: values.stock,
-              category: values.category,
-              brand: values.brand,
-              photo_gallery: values.photo_gallery,
-            };
-
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            const productData = { ...values, photo_gallery: photo_gallery };
             try {
               await createAddProductAction(productData);
+              resetForm();
+              setPhoto_gallery([]);
+              handleClose();
+              router.refresh();
             } catch (error) {
               console.error("Error creating product:", error);
             }
-            handleClose();
-            router.refresh();
             setSubmitting(false);
           }}
         >
-          {({
-            setFieldValue,
-            errors,
-            touched,
-            isValidating,
-            isValid,
-            values,
-          }) => (
+          {({ setFieldValue, errors, touched, isSubmitting }) => (
             <Form className="modal-form">
               <div className="form-group">
                 <label className="form-label" htmlFor="title">
@@ -291,9 +278,7 @@ export default function AddNewProduct() {
                   }`}
                   type="file"
                   ref={inputFileRef}
-                  onChange={(e) =>
-                    handleFileChange(e, setFieldValue, values.photo_gallery)
-                  }
+                  onChange={(e) => handleFileChange(e, setFieldValue)}
                   multiple
                 />
                 {loading && <p>{t("loading")}...</p>}
@@ -304,7 +289,7 @@ export default function AddNewProduct() {
                 />
               </div>
               <div className="form-group">
-                {values.photo_gallery.map((image: Gallery) => (
+                {photo_gallery.map((image) => (
                   <div key={image.id}>
                     <Image
                       src={image.img_url}
@@ -316,13 +301,7 @@ export default function AddNewProduct() {
                     <button
                       type="button"
                       className="button"
-                      onClick={() =>
-                        handleDeleteImage(
-                          image.id,
-                          setFieldValue,
-                          values.photo_gallery
-                        )
-                      }
+                      onClick={() => handleDeleteImage(image.id, setFieldValue)}
                     >
                       {t("delete")}
                     </button>
@@ -333,7 +312,7 @@ export default function AddNewProduct() {
                 <button
                   className="button"
                   type="submit"
-                  disabled={loading || isValidating || !isValid}
+                  disabled={loading || isSubmitting}
                 >
                   {loading ? t("loading") : t("save")}
                 </button>

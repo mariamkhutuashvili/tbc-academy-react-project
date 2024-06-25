@@ -14,20 +14,22 @@ export default function BlogsData({ blogData }: { blogData: BlogData[] }) {
   );
 
   return (
-    <div>
+    <div className="blogs-data">
       <AutoCompleteSearch blogData={blogData} setSearch={setSearch} />
-      {filteredBlogs.map((post) => {
-        const dateAdded = new Date(post.date_added);
-        return (
-          <Article
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            date={dateAdded.toLocaleDateString()}
-            photo={post.photo}
-          />
-        );
-      })}
+      <div>
+        {filteredBlogs.map((post) => {
+          const dateAdded = new Date(post.date_added);
+          return (
+            <Article
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              date={dateAdded.toLocaleDateString()}
+              photo={post.photo}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -195,7 +195,7 @@ export default function AddReview({
           }}
         >
           {({ setFieldValue, errors, touched, isValid, isSubmitting }) => (
-            <Form className="modal-content">
+            <Form className="modal-form">
               <p>{t("evaluateTheProduct")}</p>
               <div className="modal-stars">
                 {renderModalStars(setFieldValue)}

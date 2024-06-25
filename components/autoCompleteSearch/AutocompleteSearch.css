@@ -1,0 +1,21 @@
+.autocomplete-search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiAutocomplete-option {
+  text-align: left !important;
+}
+
+.MuiAutocomplete-option:hover {
+  background-color: #f7ecfa !important;
+}
+
+.MuiAutocomplete-listbox {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

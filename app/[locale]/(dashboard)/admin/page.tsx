@@ -50,7 +50,10 @@ export default async function Admin() {
             <tr>
               <th>{t("name")}</th>
               <th>{t("email")}</th>
+              <th>{t("phone")}</th>
+              <th>{t("address")}</th>
               <th>{t("role")}</th>
+              <th>{t("image")}</th>
               <th>{t("actions")}</th>
             </tr>
           </thead>
@@ -59,7 +62,18 @@ export default async function Admin() {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>{user.address}</td>
                 <td>{user.role}</td>
+                <td>
+                  <Image
+                    src={user.picture}
+                    alt="User Image"
+                    width={50}
+                    height={50}
+                    priority
+                  />
+                </td>
                 <td className="admin-table-cell-actions">
                   <div className="admin-actions-container">
                     <EditUser userData={user} id={user.id} />

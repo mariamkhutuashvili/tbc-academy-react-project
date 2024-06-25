@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getBlogDetail, getBlogs } from "../../../../api";
-import "../../../../../styles/Post.css";
+import "../../../../../styles/BlogPost.css";
+import ShareButtons from "../../../../../components/shareButtons/ShareButtons";
 
 export async function generateMetadata({ params }: MetaDataProps) {
   const blogData = await getBlogs();
@@ -22,16 +23,20 @@ export default async function Post({
 
   return (
     <div key={blogData.id} className="post-page">
-      <Image
-        src={blogData.photo}
-        alt="Blog Image"
-        width={500}
-        height={300}
-        priority
-      />
+      <div className="post-image-container">
+        <Image
+          src={blogData.photo}
+          alt="Blog Image"
+          width={500}
+          height={300}
+          className="post-image"
+          priority
+        />
+      </div>
       <p>{dateAdded}</p>
       <h1>{blogData.title}</h1>
       <p>{blogData.description}</p>
+      <ShareButtons data={blogData} path="blog" />
     </div>
   );
 }

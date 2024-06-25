@@ -2,6 +2,7 @@
 
 import { Autocomplete, TextField } from "@mui/material";
 import { useI18n } from "../../locales/client";
+import "./AutocompleteSearch.css";
 
 export default function AutoCompleteSearch({
   blogData,
@@ -13,12 +14,13 @@ export default function AutoCompleteSearch({
   const t = useI18n();
 
   return (
-    <div>
+    <div className="autocomplete-search">
       <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={blogData}
         getOptionLabel={(option) => option.title}
+        noOptionsText={t("noOptions")}
         onChange={(_event, value) => {
           setSearch(value ? value.title : "");
         }}
@@ -26,6 +28,23 @@ export default function AutoCompleteSearch({
           width: 300,
           "& .MuiAutocomplete-endAdornment": {
             display: "none",
+          },
+          "& .MuiInputLabel-root": {
+            color: "grey",
+            "&.Mui-focused": {
+              color: "purple",
+            },
+          },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "purple",
+            },
+            "&:hover fieldset": {
+              borderColor: "darkviolet",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "purple",
+            },
           },
         }}
         renderInput={(params) => (

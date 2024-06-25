@@ -9,6 +9,7 @@ import AddToCartButton from "../cartControls/AddToCartButton";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Products.css";
+import FilterCategory from "../filterCategory/FilterCategory";
 
 function debounce<T extends (...args: any[]) => void>(
   func: T,
@@ -29,6 +30,7 @@ export default function ProductsData({
 }) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSorted, setIsSorted] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] = useState("categories");
 
   const router = useRouter();
 
@@ -37,7 +39,7 @@ export default function ProductsData({
     1000
   );
 
-  const filteredAndSortedProducts = product
+  let filteredAndSortedProducts = product
     .filter(
       (p: ProductFromVercel) =>
         p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -47,6 +49,12 @@ export default function ProductsData({
     .sort((a: { price: string }, b: { price: string }) =>
       isSorted ? Number(a.price) - Number(b.price) : 0
     );
+  // .filter((p: ProductFromVercel) => p.category === selectedCategory);
+  if (selectedCategory !== "categories") {
+    filteredAndSortedProducts = filteredAndSortedProducts.filter(
+      (p: ProductFromVercel) => p.category === selectedCategory
+    );
+  }
 
   const handleProductClick = (id: number | string) => {
     router.push(`/products/${id}`);
@@ -54,10 +62,18 @@ export default function ProductsData({
 
   return (
     <div className="store-data">
-      <DebounceSearch
-        onChange={(e) => debouncedSetSearchTerm(e.target.value)}
-      />
-      <Sort isSorted={isSorted} onToggleSort={() => setIsSorted(!isSorted)} />
+      <div className="search-filter-container">
+        <DebounceSearch
+          onChange={(e) => debouncedSetSearchTerm(e.target.value)}
+        />
+        <FilterCategory
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      </div>
+      <div className="sort-container">
+        <Sort isSorted={isSorted} onToggleSort={() => setIsSorted(!isSorted)} />
+      </div>
       <div className="products-grid">
         {filteredAndSortedProducts.map((p: ProductFromVercel) => (
           <div
@@ -66,18 +82,20 @@ export default function ProductsData({
             onClick={() => handleProductClick(p.id)}
           >
             {p.photo_gallery && p.photo_gallery.length > 0 ? (
-              <Image
-                src={p.photo_gallery[0].img_url}
-                alt={p.title}
-                width={500}
-                height={500}
-              />
+              <div className="image-container">
+                <Image
+                  className="image-zoom"
+                  src={p.photo_gallery[0].img_url}
+                  alt={p.title}
+                  width={500}
+                  height={500}
+                />
+              </div>
             ) : (
               <div className="placeholder-image">No Image Available</div>
             )}
             <div className="product-content">
               <h2>{p.title}</h2>
-              <p>{p.description}</p>
               <div className="price-container">
                 <p className="product-price">${p.price}</p>
                 <AddToCartButton id={p.id.toString()} />

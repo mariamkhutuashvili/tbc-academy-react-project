@@ -1,5 +1,22 @@
 //products page
 
+interface Category {
+  id:
+    | "categories"
+    | "food"
+    | "toys"
+    | "beds"
+    | "accessories"
+    | "grooming"
+    | "litter";
+  name: string;
+}
+
+interface FilterProps {
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
+
 interface ProductFromVercel {
   id: number;
   title: string;
@@ -159,6 +176,9 @@ interface User {
   name: string;
   email: string;
   role: string;
+  picture: string;
+  phone: number;
+  address: string;
 }
 
 interface EntryData {
@@ -206,5 +226,4 @@ interface Cart {
 interface QuantityProps {
   id: string;
   quantity: number;
-  price: number;
 }

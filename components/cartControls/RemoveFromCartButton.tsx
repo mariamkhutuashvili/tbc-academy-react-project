@@ -1,17 +1,13 @@
 "use client";
 
 import { handleRemoveProductFromCart } from "../../app/actions";
-// import { useI18n } from "../../locales/client";
 
 export default function RemoveFromCartButton({ id }: { id: string }) {
-  // const t = useI18n();
-
   return (
     <div
       className="delete-icon"
       onClick={() => handleRemoveProductFromCart(id)}
     >
-      {/* <span className="hover-text">{t("remove")}</span> */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

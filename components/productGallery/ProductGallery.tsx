@@ -29,7 +29,7 @@ export default function ProductGallery({ gallery }: { gallery: Gallery[] }) {
     <>
       <div className="gallery-container">
         <Swiper
-          loop={true}
+          loop={false}
           spaceBetween={10}
           thumbs={{
             swiper:
@@ -57,7 +57,7 @@ export default function ProductGallery({ gallery }: { gallery: Gallery[] }) {
         </Swiper>
         <Swiper
           onSwiper={setThumbSwiper}
-          loop={true}
+          loop={false}
           spaceBetween={12}
           slidesPerView={4}
           freeMode={true}

@@ -5,6 +5,11 @@ import EditReview from "../../../../../components/adminPanel/reviewManagement/Ed
 import DeleteReview from "../../../../../components/adminPanel/reviewManagement/DeleteReview";
 import "../../../../../styles/Reviews.css";
 
+export const metadata = {
+  title: "My Reviews",
+  description: "Manage Your Reviews",
+};
+
 export default async function page() {
   const t = await getI18n();
 

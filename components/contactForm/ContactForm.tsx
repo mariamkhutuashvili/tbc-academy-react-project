@@ -5,7 +5,6 @@ import { useI18n } from "../../locales/client";
 import { createContactAction } from "../../app/actions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import "./ContactForm.css";
 
 export default function ContactForm() {
   const t = useI18n();
