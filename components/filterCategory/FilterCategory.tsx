@@ -10,6 +10,7 @@ const categories: Category[] = [
   { id: "beds", name: "Cat Beds" },
   { id: "accessories", name: "Cat Accessories" },
   { id: "grooming", name: "Grooming Essentials" },
+  { id: "litter", name: "Cat Litter" },
 ];
 
 export default function FilterCategory({
@@ -39,6 +40,7 @@ export default function FilterCategory({
                   | "beds"
                   | "accessories"
                   | "grooming"
+                  | "litter"
               )}
             </option>
           ))}

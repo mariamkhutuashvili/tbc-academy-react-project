@@ -79,6 +79,7 @@ export default async function Product({
             | "beds"
             | "accessories"
             | "grooming"
+            | "litter"
         )}
       </h4>
       <p>

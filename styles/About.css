@@ -1,9 +1,76 @@
-.about {
-  flex-grow: 1;
-  padding: 20px;
-  text-align: center;
+.about-container {
+  padding: 50px;
+  width: 1200px;
+}
+
+.about-wrapper {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.main-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.text-container {
+  flex: 1;
+  padding-left: 50px;
+  text-align: left;
+}
+
+.about-us-label {
+  background-color: #f9575c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.more-info {
+  margin-top: 50px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 30px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.card-icon,
+.card-description,
+h3 {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
 }

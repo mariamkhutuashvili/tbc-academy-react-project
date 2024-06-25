@@ -1,7 +1,14 @@
 //products page
 
 interface Category {
-  id: "categories" | "food" | "toys" | "beds" | "accessories" | "grooming";
+  id:
+    | "categories"
+    | "food"
+    | "toys"
+    | "beds"
+    | "accessories"
+    | "grooming"
+    | "litter";
   name: string;
 }
 
