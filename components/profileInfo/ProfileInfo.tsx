@@ -53,7 +53,7 @@ export default function ProfileInfo({ user }: any) {
         onSubmit={handleSubmit}
       >
         {({ touched, errors, isSubmitting, isValid }) => (
-          <Form>
+          <Form className="profile-form">
             <div className="form-group">
               <label className="form-label" htmlFor="nickname">
                 {t("name")}

@@ -160,3 +160,8 @@
   height: 24px;
   cursor: pointer;
 }
+
+.delete-icon:hover {
+  transform: scale(1.1);
+  color: #d32f2f;
+}

@@ -69,7 +69,7 @@
 .cart-quantity {
   position: absolute;
   top: -9px;
-  right: -1px;
+  right: -9px;
   background: purple;
   color: white;
   border-radius: 50%;
