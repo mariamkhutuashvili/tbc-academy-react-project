@@ -197,4 +197,10 @@ export default {
     "Top grooming products for a clean, happy cat.",
   catLitter: "Cat Litter",
   catLitterDescription: "Various options to keep the litter box clean.",
+
+  //HOMEPAGE
+  everythingForYourCats: "Everything for your cats",
+  shopNow: "Shop Now",
+  popularCategories: "Popular Categories",
+  showAll: "Show All",
 } as const;

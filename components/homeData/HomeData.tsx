@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "../../locales/client";
 import Image from "next/image";
 import Link from "next/link";
 import food from "../../public/assets/food.png";
@@ -38,6 +39,8 @@ export default function HomeData({
 }: {
   products: ProductsDataProps;
 }) {
+  const t = useI18n();
+
   const [selectedCategory, setSelectedCategory] = useState("categories");
 
   const handleCategoryClick = (id: string) => {
@@ -60,7 +63,16 @@ export default function HomeData({
               className={selectedCategory === category.id ? "selected" : ""}
               onClick={() => handleCategoryClick(category.id)}
             >
-              {category.id}
+              {t(
+                category.id as
+                  | "categories"
+                  | "food"
+                  | "toys"
+                  | "beds"
+                  | "accessories"
+                  | "grooming"
+                  | "litter"
+              )}
             </button>
           );
         })}
@@ -81,10 +93,10 @@ export default function HomeData({
         ))}
       </div>
       <button className="show-all-button">
-        <Link href={"/products"}>Show all</Link>
+        <Link href={"/products"}>{t("showAll")}</Link>
       </button>
       <h2 style={{ textAlign: "center", padding: "50px 0" }}>
-        Popular Categories
+        {t("popularCategories")}
       </h2>
       <div
         style={{
@@ -127,7 +139,18 @@ export default function HomeData({
                         height={200}
                       />
                     </div>
-                    <span>{category.name}</span>
+                    <span>
+                      {t(
+                        category.name as
+                          | "categories"
+                          | "food"
+                          | "toys"
+                          | "beds"
+                          | "accessories"
+                          | "grooming"
+                          | "litter"
+                      )}
+                    </span>
                   </div>
                 </SwiperSlide>
               );

@@ -201,4 +201,10 @@ export default {
   catLitter: "კატების ქვიშა",
   catLitterDescription:
     "შესანიშნავი ვარიანტები ქვიშის ყუთის სისუფთავის შესანარჩუნებლად.",
+
+  //HOMEPAGE
+  everythingForYourCats: "ყველაფერი თქვენი კატებისთვი",
+  shopNow: "შეიძინე ახლავე",
+  popularCategories: "პოპულარული კატეგორიები",
+  showAll: "ყველას ნახვა",
 } as const;
