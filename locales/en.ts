@@ -106,7 +106,7 @@ export default {
   login: "Login",
 
   // ADMIN PAGE
-  admin: "admin",
+  admin: "Admin",
   users: "Users",
   actions: "Actions",
   addUser: "Add User",

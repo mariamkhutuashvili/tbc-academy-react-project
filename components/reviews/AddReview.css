@@ -29,17 +29,17 @@
 }
 
 .add-review-button:hover {
-  color: purple;
+  color: #8c1ceb;
 }
 
 .star-filled {
-  fill: #f6be59;
+  fill: #f88e32;
   stroke: none;
 }
 
 .star-empty {
   fill: none;
-  stroke: #f6be59;
+  stroke: #f88e32;
 }
 
 .modal-stars {

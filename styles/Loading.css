@@ -3,11 +3,11 @@
   top: 25%;
   left: 50%;
   transform-origin: 50% 50%;
-  transform: rotate(90deg) translate(-50%, 0%);
+  transform: rotate(65deg) translate(-50%, 0%);
   font-size: 50px;
   width: 1em;
   height: 3em;
-  color: purple;
+  color: #8c1ceb;
 }
 
 .paw {

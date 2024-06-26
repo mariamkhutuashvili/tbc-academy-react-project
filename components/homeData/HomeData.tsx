@@ -52,9 +52,6 @@ export default function HomeData({
         );
   return (
     <main className="home-main-container">
-      <h1 style={{ textAlign: "center", padding: "50px 0" }}>
-        Everything for your cats!
-      </h1>
       <div className="categories-container">
         {categories.map((category) => {
           return (
@@ -126,8 +123,8 @@ export default function HomeData({
                       <Image
                         src={category.img}
                         alt={category.name}
-                        width={100}
-                        height={100}
+                        width={200}
+                        height={200}
                       />
                     </div>
                     <span>{category.name}</span>

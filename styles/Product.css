@@ -45,7 +45,7 @@
 
 .product-price {
   font-size: 1.5rem;
-  color: purple;
+  color: #8c1ceb;
   margin: 10px 0 0 0;
 }
 
@@ -74,7 +74,7 @@
 
 .cart-button {
   margin: 10px 0;
-  background: purple;
+  background-color: #8c1ceb;
   color: white;
 }
 
