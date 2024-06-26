@@ -34,12 +34,14 @@ export default function ToggleThemeButton() {
   useEffect(() => {
     // Define function to apply the theme
     const applyTheme = (themeValue: string) => {
-      const pageContent = document.querySelector(".pages") as HTMLElement;
-      pageContent.classList.remove("light-theme", "dark-theme");
-      if (themeValue === "light") {
-        pageContent.classList.add("light-theme");
-      } else if (themeValue === "dark") {
-        pageContent.classList.add("dark-theme");
+      const appContainer = document.getElementById("app-container");
+      if (appContainer) {
+        appContainer.classList.remove("light-theme", "dark-theme");
+        if (themeValue === "light") {
+          appContainer.classList.add("light-theme");
+        } else if (themeValue === "dark") {
+          appContainer.classList.add("dark-theme");
+        }
       }
     };
 

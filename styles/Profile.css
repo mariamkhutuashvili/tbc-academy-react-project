@@ -12,7 +12,6 @@
 
 .profile-container h1 {
   margin: 20px 0 20px 0;
-  color: purple;
   font-size: 3vw;
 }
 
@@ -62,5 +61,35 @@
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   cursor: pointer;
+  background-color: #8c1ceb;
+  color: white;
   transition: background-color 0.3s;
+}
+
+.profile-form .form-input {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: 2px solid #8b4513;
+  border-radius: 355px 45px 25px 25px/15px 125px 15px 255px;
+  box-sizing: border-box;
+  color: #4a5568;
+  outline: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.profile-form .submit-button {
+  color: #fff;
+  padding: 10px 20px;
+  border: 0px;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  outline: none;
+  border-radius: 355px 45px 225px 45px / 15px 225px 15px 225px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: background-color 0.2s ease-in-out;
 }

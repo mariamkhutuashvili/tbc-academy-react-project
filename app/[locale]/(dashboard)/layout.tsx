@@ -7,7 +7,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="App">
+    <div id="app-container" className="App">
       <div className="container">
         <Header />
         <div className="pages">{children}</div>

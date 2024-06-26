@@ -9,7 +9,6 @@
 
 .admin-header h1 {
   margin: 20px 0 20px 0;
-  color: purple;
   font-size: 3vw;
 }
 
@@ -30,7 +29,7 @@
 }
 
 .admin-table th {
-  background-color: purple;
+  background-color: #8c1ceb;
   color: white;
 }
 

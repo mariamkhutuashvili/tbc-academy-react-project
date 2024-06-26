@@ -23,7 +23,7 @@ export default async function Header() {
     <header className="header">
       <div className="left-section">
         <Link href="/">
-          <Image src="/assets/logo.png" alt="Logo" width={50} height={50} />
+          <Image src="/assets/logo.png" alt="Logo" width={150} height={40} />
         </Link>
       </div>
       <nav className="nav">

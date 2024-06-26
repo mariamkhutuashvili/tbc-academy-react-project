@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
     //Join tables
     const reviews =
-      await sql`SELECT r.id AS id, u.name, u.email, u.id as user_id, r.star, r.comment,r.product_id FROM reviews r JOIN users u ON u.id = r.user_id where r.product_id = ${Number(
+      await sql`SELECT r.id AS id, u.name, u.picture, u.email, u.id as user_id, r.star, r.comment,r.product_id FROM reviews r JOIN users u ON u.id = r.user_id where r.product_id = ${Number(
         id
       )}`;
 

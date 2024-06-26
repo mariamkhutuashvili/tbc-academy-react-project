@@ -36,7 +36,7 @@
   left: 0;
   display: block;
   border-radius: 28px;
-  background: purple;
+  background: #8c1ceb;
   opacity: 0.5;
   width: 56px;
   height: 56px;
@@ -63,7 +63,7 @@
 
 .read-more-button:hover::before {
   width: 100%;
-  background: purple;
+  background: #8c1ceb;
 }
 
 .read-more-button:hover svg {
