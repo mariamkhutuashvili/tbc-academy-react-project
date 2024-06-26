@@ -1,5 +1,6 @@
-import Title from "../../../components/UI/Title";
-import { getI18n } from "../../../locales/server";
+// import Title from "../../../components/UI/Title";
+import { getProducts } from "../../api";
+import HomeData from "../../../components/homeData/HomeData";
 import "../../../styles/Home.css";
 
 export const metadata = {
@@ -8,11 +9,9 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const t = await getI18n();
-
+  const products = await getProducts();
   return (
-    <main className="home">
-      <Title titleName={t("headline")} />
-    </main>
+    // <Title titleName={t("headline")} />
+    <HomeData products={products} />
   );
 }
