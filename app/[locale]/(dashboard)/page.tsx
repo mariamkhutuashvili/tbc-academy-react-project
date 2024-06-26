@@ -1,4 +1,5 @@
 // import Title from "../../../components/UI/Title";
+import { getI18n } from "../../../locales/server";
 import Image from "next/image";
 import { getProducts } from "../../api";
 import HomeData from "../../../components/homeData/HomeData";
@@ -10,6 +11,8 @@ export const metadata = {
 };
 
 export default async function Home() {
+  const t = await getI18n();
+
   const products = await getProducts();
   return (
     <>
@@ -25,10 +28,10 @@ export default async function Home() {
             />
             <div className="banner_text">
               <h1 style={{ textAlign: "center", padding: "50px 0" }}>
-                Everything for your cats!
+                {t("everythingForYourCats")}!
               </h1>
-              <a href="#">
-                <p className="button banner-button">Shop Now</p>
+              <a href={"/products"}>
+                <p className="button banner-button">{t("shopNow")}</p>
               </a>
             </div>
           </div>
