@@ -40,10 +40,17 @@
   background-color: #8c1ceb;
   color: white;
   box-sizing: border-box;
-  /* transform: none; */
 }
 
 .footer .subscribe-button:hover:not(:disabled) {
   transform: none;
   opacity: 80%;
+}
+
+.footer-copyright {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
 }
