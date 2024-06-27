@@ -153,3 +153,23 @@
   height: 100%;
   object-fit: contain;
 }
+
+@media (max-width: 1024px) {
+  .product-page {
+    padding: 0;
+    width: 85%;
+    padding: 20px;
+  }
+  .product-container {
+    flex-direction: column;
+  }
+  .product-details {
+    padding-left: 20px;
+  }
+  .reviews {
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+}

@@ -7,7 +7,9 @@ import ToggleThemeButton from "../UI/ToggleTheme";
 import ToggleLanguage from "../UI/ToggleLanguage";
 import CartIcon from "../UI/CartIcon";
 import ProfileIcon from "../UI/ProfileIcon";
+// import "../../styles/Responsive.css";
 import "./Header.css";
+import MobileMenu from "../UI/MobileMenu";
 
 export default async function Header() {
   const t = await getI18n();
@@ -54,6 +56,7 @@ export default async function Header() {
         <ProfileIcon />
         {user && <CartIcon />}
       </div>
+      <MobileMenu isAdmin={isAdmin} />
     </header>
   );
 }

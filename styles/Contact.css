@@ -111,3 +111,12 @@ textarea.form-input {
   margin-top: 15px;
   transition: background-color 0.2s ease-in-out;
 }
+
+@media (max-width: 1024px) {
+  .contact-container {
+    width: auto;
+  }
+  .contact-container-wrapper {
+    flex-direction: column;
+  }
+}

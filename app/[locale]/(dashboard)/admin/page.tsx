@@ -257,10 +257,6 @@ export default async function Admin() {
             </table>
           </AccordionDetails>
         </Accordion>
-
-        <div className="admin-header">
-          <Title titleName={t("formEntries")} />
-        </div>
       </div>
       <div className="orders-management">
         <Accordion>
