@@ -3,9 +3,13 @@
 import { useState } from "react";
 import Article from "../article/Article";
 import AutoCompleteSearch from "../autoCompleteSearch/AutoCompleteSearch";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 export default function BlogsData({ blogData }: { blogData: BlogData[] }) {
   const [search, setSearch] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const postsPerPage = 5;
 
   const filteredBlogs = blogData.filter(
     (b: BlogData) =>
@@ -13,11 +17,23 @@ export default function BlogsData({ blogData }: { blogData: BlogData[] }) {
       b.description.toLowerCase().includes(search.toLowerCase())
   );
 
+  const totalPages = Math.ceil(filteredBlogs.length / postsPerPage);
+
+  const handleChangePage = (_: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const currentPosts = filteredBlogs.slice(
+    startIndex,
+    startIndex + postsPerPage
+  );
+
   return (
     <div className="blogs-data">
       <AutoCompleteSearch blogData={blogData} setSearch={setSearch} />
       <div>
-        {filteredBlogs.map((post) => {
+        {currentPosts.map((post) => {
           const dateAdded = new Date(post.date_added);
           return (
             <Article
@@ -29,7 +45,15 @@ export default function BlogsData({ blogData }: { blogData: BlogData[] }) {
             />
           );
         })}
-      </div>
+      </div>{" "}
+      <Stack spacing={2} alignItems="center">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handleChangePage}
+          color="secondary"
+        />
+      </Stack>
     </div>
   );
 }
