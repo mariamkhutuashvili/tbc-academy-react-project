@@ -20,8 +20,11 @@
 
 .text-container {
   flex: 1;
-  padding-left: 50px;
   text-align: left;
+}
+
+.text-container h2 {
+  color: #f88e32;
 }
 
 .about-us-label {
@@ -67,10 +70,15 @@ p {
   height: 200px;
 }
 
+.card:hover .card-icon {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
 .card-icon,
 .card-description,
 h3 {
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   opacity: 1;
   visibility: visible;
 }

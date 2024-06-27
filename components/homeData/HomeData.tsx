@@ -92,7 +92,7 @@ export default function HomeData({
           </div>
         ))}
       </div>
-      <button className="show-all-button">
+      <button className="button show-all-button">
         <Link href={"/products"}>{t("showAll")}</Link>
       </button>
       <h2 style={{ textAlign: "center", padding: "50px 0" }}>

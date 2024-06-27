@@ -120,7 +120,7 @@ export default function ToggleThemeButton() {
       <button className="button theme-button">{getThemeIcon()}</button>
       <div className="theme-switcher-content">
         <button
-          className={`button ${theme === "light" ? "active" : ""}`}
+          className={`button light-button ${theme === "light" ? "active" : ""}`}
           onClick={() => toggleTheme("light")}
           aria-label="Light Theme"
         >
@@ -141,7 +141,7 @@ export default function ToggleThemeButton() {
           {t("light")}
         </button>
         <button
-          className={`button ${theme === "dark" ? "active" : ""}`}
+          className={`button dark-button ${theme === "dark" ? "active" : ""}`}
           onClick={() => toggleTheme("dark")}
           aria-label="Dark Theme"
         >
