@@ -136,7 +136,7 @@ export default {
   subtotal: "Subtotal",
   backToShop: "Back to Shop",
   placeAnOrder: "Place an Order",
-  cartIsEmpty: "კალათა ცარიელია",
+  cartIsEmpty: "Cart is empty",
 
   //CHECKOUT PAGE
   orderInformation: "Order Information",

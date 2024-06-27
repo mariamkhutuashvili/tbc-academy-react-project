@@ -161,11 +161,27 @@ textarea.form-input {
   color: white;
 }
 
+/* :root {
+  --loader-background-color: white;
+}
+
+.dark-theme {
+  --loader-background-color: black;
+} */
+
 .light-theme .header,
 .light-theme .footer,
-.light-theme .header button {
+.light-theme .header .theme-button,
+.light-theme .header .translate-button {
   background-color: #ebe0f4;
   color: black;
+}
+
+.light-theme .sort-button,
+.light-theme .cart-button,
+.light-theme .banner-button {
+  background-color: #8c1ceb;
+  color: white;
 }
 
 .dark-theme .header,
@@ -176,19 +192,23 @@ textarea.form-input {
   color: white;
 }
 
-.dark-theme .nav-link .dark-theme h1 {
-  color: white;
+.dark-theme .card-info h3 {
+  color: black;
 }
 
-.dark-theme .form-label {
-  color: white;
+.dark-theme .theme-switcher-content {
+  background-color: black;
 }
 
-.dark-theme .order-summary .checkout-details span {
-  color: white;
-}
-
-.dark-theme .text-container p {
+.dark-theme .nav-link h1,
+.dark-theme .form-label,
+.dark-theme .order-summary .checkout-details span,
+.dark-theme .text-container p,
+.dark-theme .price-container p,
+.dark-theme .product-card h2,
+.dark-theme .product-card p,
+.dark-theme .banner-button,
+.dark-theme .contact-info-item p {
   color: white;
 }
 
@@ -204,10 +224,6 @@ textarea.form-input {
 .dark-theme .nav-link:hover {
   color: #e5d4f3;
   text-decoration: none;
-}
-
-.dark-theme .price-container p {
-  color: white;
 }
 
 /* Scroll */
