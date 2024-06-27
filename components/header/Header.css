@@ -282,3 +282,60 @@
   display: flex;
   align-items: center;
 }
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+    position: relative;
+  }
+  .mobile-menu nav {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 90px;
+    width: 100%;
+    height: calc(100vh - 103px);
+    background-color: #f3f3f3;
+    color: black;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-menu nav a {
+    display: block;
+    margin: 10px 0;
+    color: black;
+    text-decoration: none;
+    font-size: 1.5em;
+  }
+
+  .mobile-menu.open nav {
+    display: flex;
+  }
+
+  .mobile-menu button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 1001;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 10px;
+  }
+}

@@ -34,3 +34,18 @@
   pointer-events: none;
   margin: 0px;
 }
+
+@media (max-width: 1024px) {
+  .post-image-container {
+    height: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .post-page {
+    width: 400px;
+  }
+  .post-image-container {
+    height: 250px;
+  }
+}
